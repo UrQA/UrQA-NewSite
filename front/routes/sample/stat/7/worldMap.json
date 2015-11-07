@@ -1,0 +1,12 @@
+{
+  "data": [
+    {"location": "kr", "value": 230.26},
+    {"location": "kw", "value": 626},
+    {"location": "kg", "value": 345.26},
+    {"location": "la", "value": 171.26},
+    {"location": "lv", "value": 475.26},
+    {"location": "lb", "value": 575.26},
+    {"location": "ls", "value": 1075.26},
+    {"location": "lt", "value": 25.26}
+  ]
+}

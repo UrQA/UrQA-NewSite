@@ -1,0 +1,24 @@
+{
+  "data" : [
+    {
+    "label": "Unhandle",
+    "data": 4.59
+    },
+    {
+      "label": "Critical",
+      "data": 40.81
+    },
+    {
+      "label": "Major",
+      "data": 13.21
+    },
+    {
+      "label": "Minor",
+      "data": 16.24
+    },
+    {
+      "label": "Native",
+      "data": 20.43
+    }
+  ]
+}

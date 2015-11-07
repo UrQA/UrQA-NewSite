@@ -1,0 +1,16 @@
+{
+  "data": [
+    {"value": 17.6, "label": "com.android.volley.toolbox.d"},
+    {"value": 13.7, "label": "at droom.sleepIfUCan.activity.af (:211)"},
+    {"value": 11, "label": "droom.sleepIfUCan.activity.af" },
+    {"value": 8.7, "label": "android.database.sqlite.SQLiteStatement"},
+    {"value": 8.5, "label": "android.content.res.Resources"},
+    {"value": 5.3, "label": "android.os.BinderProxy" },
+    {"value": 4.5, "label": "at android.widget.NumberPicker$ChangeCurrentByOneFromLongPressCommand" },
+    {"value": 4.3, "label": "at android.content.res.Resources" },
+    {"value": 4, "label": "android.database.sqlite.SQLiteStatement" },
+    {"value": 2, "label": "android.database.sqlite.SQLiteConnection" },
+    {"value": 1.6, "label": "droom.sleepIfUCan.activity.SelectPictureActivity" },
+    {"value": 18.8, "label": "Others" }
+  ]
+}

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+    <base href="/projects">
+    <% include ../layout/header %>
+</head>
+
+<body>
+
+<section id="container" >
+    <% include ../layout/navibar %>
+<aside>
+	<div id="sidebar" class="nav-collapse" ng-controller="NavSideCtrl">
+		<!-- sidebar menu start-->
+		<div class="leftside-navigation">
+			<ul class="sidebar-menu" id="nav-accordion" >
+				<li ng-repeat="link in menu" ng-class="link.menu !== undefined ? 'sub-menu': ''">
+				<a class="active" ui-sref="{{link.path}}">
+					<i class="fa" ng-class="link.icon"></i>
+					<span translate="{{link.name}}"></span>
+				</a>
+				<ul class="sub" ng-if="link.menu">
+					<li ng-repeat="sub in link.menu">
+					<a ui-sref="{{sub.path}}" translate="{{sub.name}}"></a>
+					</li>
+				</ul>
+				</li>
+			</ul>
+		</div>        
+		<!-- sidebar menu end-->
+	</div>
+</aside>
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Add Project</h4>
+            </div>
+            <form class="form-horizontal bucket-form">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label" for="appname-input">APP Name</label>
+                        <div class="col-sm-9">
+                            <input id="appname-input" type="text" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label" for="platform-input">Platform</label>
+                        <div class="col-sm-9">
+                            <select id="platform-input" class="form-control">
+                                <option>Android</option>
+                                <option>iOS</option>
+                                <option>Unity</option>
+                                <option>Cordova</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label" for="category-input">Category</label>
+                        <div class="col-sm-9">
+                            <select id="category-input" class="form-control">
+                                <option>Producivity</option>
+                                <option>News & Magazines</option>
+                                <option>Library & Demo</option>
+                                <option>Sports</option>
+                                <option>Health & Fitness</option>
+                                <option>Finance</option>
+                                <option>Business</option>
+                                <option>Photography</option>
+                                <option>Game</option>
+                                <option>Music & Audio</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label" for="stage-input">Stage</label>
+                        <div class="col-sm-9">
+                            <select id="stage-input" class="form-control">
+                                <option>Test</option>
+                                <option>Develop</option>
+                                <option>Release</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button data-dismiss="modal" class="btn btn-default" type="button">Close</button>
+                    <button class="btn btn-success" type="submit">Add project</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- modal -->
+<!--sidebar end-->
+
+<!--main content start-->
+<section id="main-content">
+    <section class="wrapper">
+    <!-- page start-->
+
+    <div class="row">
+        <div class="col-md-12">
+            <!--breadcrumbs start -->
+            <ul class="breadcrumb">
+                <li><a href="#"><i class="fa fa-home"></i> Home</a></li>
+                <li class="active">Active Projects</li>
+            </ul>
+            <!--breadcrumbs end -->
+        </div>
+    </div>
+    <ui-view/>
+    <!-- page end-->
+    </section>
+</section>
+<!--main content end-->
+
+
+</section>
+
+<!-- Placed js at the end of the document so the pages load faster -->
+
+<!-- TODO:: grunt로 하나로 합치기 -->
+<% include scripts %>
+
+
+
+
+
+
+<!--common script init for all pages-->
+
+
+</body>
+</html>

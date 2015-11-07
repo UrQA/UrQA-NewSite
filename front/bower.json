@@ -1,0 +1,56 @@
+{
+  "name": "urqa-frontend",
+  "version": "0.0.0",
+  "homepage": "https://github.com/UrQA/Frontend-Node",
+  "authors": [
+    "mse201 <mse201@zuminternet.com>"
+  ],
+  "description": "urqa frontend version",
+  "keywords": [
+    "bug-report"
+  ],
+  "license": "PRIVATE",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/js/bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~1.x",
+    "datatables": "~1.10.4",
+    "bootstrap": "3.1.0",
+    "fontawesome": "~4.3.0",
+    "html5shiv": "~3.7.2",
+    "respond": "~1.4.2",
+    "jquery.scrollTo": "~1.4.14",
+    "slimScroll": "~1.3.3",
+    "jquery.nicescroll": "~3.5.6",
+    "jquery-zclip": "~1.1.5",
+    "dcjqaccordion": "~2.7.1",
+    "jquery.easy-pie-chart": "~2.1.6",
+    "jquery.sparkline": "~2.1.2",
+    "flot": "~0.8.3",
+    "flot.tooltip": "~0.8.4",
+    "iCheck": "~1.0.2",
+    "ion.rangeSlider": "1.9.3",
+    "jquery.tagsinput": "~1.3.3",
+    "morris.js": "~0.5.1",
+    "c3": "~0.4.10",
+    "d3": "~3.5.5",
+    "jquery.iframe-transport": "~1.0.0",
+    "blueimp-file-upload": "~9.9.3",
+    "bootstrap-switch": "2.0.0",
+    "select2": "3.4.5",
+    "Chart.js": "1.0.1",
+    "angular": "~1.3.15",
+    "angular-ui-router": "~0.2.15",
+    "angular-resource": "~1.3.15",
+    "angular-translate": "~2.7.0",
+    "angular-bootstrap": "~0.13.0",
+    "lodash": "~3.10.0"
+  }
+}

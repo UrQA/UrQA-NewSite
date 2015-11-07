@@ -1,0 +1,49 @@
+{
+  "count": 20,
+  "results": [
+    {
+      "pid": 223,
+      "count": 6,
+      "apikey": "AE226726",
+      "platform": 1,
+      "name": "HoneMobileTest",
+      "stage": 2,
+      "category": 13,
+      "timezone": "Asia/Seoul",
+      "owner_uid": 279
+    },
+    {
+      "pid": 229,
+      "count": 10,
+      "apikey": "46A26736",
+      "platform": 1,
+      "name": "텔레톡비-v2",
+      "stage": 2,
+      "category": 13,
+      "timezone": "Asia/Seoul",
+      "owner_uid": 10
+    },
+    {
+      "pid": 416,
+      "count": 336,
+      "apikey": "01E79D29",
+      "platform": 1,
+      "name": "EXTRADE",
+      "stage": 3,
+      "category": 14,
+      "timezone": "Asia/Seoul",
+      "owner_uid": 353
+    },
+    {
+      "pid": 427,
+      "count": 3,
+      "apikey": "5966A037",
+      "platform": 1,
+      "name": "MultiChannelPlayer",
+      "stage": 1,
+      "category": 8,
+      "timezone": "Asia/Seoul",
+      "owner_uid": 566
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "data": [
+    {"value": 210, "name": "unknown"},
+    {"value": 5, "name": "droom.sleepIfUCan.activity.PhotoAlarmDismissActivity"},
+    {"value": 11, "name": "android.app.Activity" },
+    {"value": 3, "name": "droom.sleepIfUCan.activity.AlarmAlertFullScreenActivity"},
+    {"value": 8, "name": "droom.sleepIfUCan.activity.SetAlarmActivity"},
+    {"value": 5, "name": "droom.sleepIfUCan.activity.MainActivity" },
+    {"value": 4, "name": "droom.sleepIfUCan.activity.MenuActivity" },
+    {"value": 4, "name": "droom.sleepIfUCan.activity.SelectPictureActivity" }
+  ]
+}
