@@ -17,7 +17,6 @@ var sampleAjaxRoutes = rootRequire('routes/sample/ajax');;
 var users = rootRequire('routes/users');
 var projectsRoutes = rootRequire('routes/projects');
 var api = rootRequire('routes/api');
-
 var dashboardRoutes = rootRequire('routes/projectDetailRouter');
 
 
@@ -31,11 +30,9 @@ app.use(function(req, res, next) {
     res.locals.resourceUrl = function(path) {
         return res.locals.baseUrl + "/static" + path;
     };
-
     res.locals.getUrl = function(path) {
         return res.locals.baseUrl + path;
-    }
-
+    };
     //디폴트로 설정해야 하는 요소들은 여기에서 처리
     next();
 });

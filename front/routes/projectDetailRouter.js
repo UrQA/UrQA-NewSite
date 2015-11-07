@@ -12,6 +12,4 @@ router.get('/*', function(req, res) {
     res.render('layout/ProjectDetail/layout');
 });
 
-
-
 module.exports = router;

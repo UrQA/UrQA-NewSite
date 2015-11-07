@@ -46,13 +46,13 @@
 
 <script>
     var urqaio = urqaio || {};
-
-    urqaio.baseUrl = '<%= baseUrl%>';
+    urqaio.baseUrl = '<%= baseUrl %>';
 </script>
 <!--Angular-->
 <script src="/node_modules/angular/angular.min.js"></script>
 
 <script src="/node_modules/angular-ui-router/release/angular-ui-router.min.js"></script>
+<script src="<%= resourceUrl('/bower_components/angular-sanitize/angular-sanitize.js') %>"></script>
 <script src="/node_modules/angular-resource/angular-resource.js"></script>
 <script src="/node_modules/angular-translate/dist/angular-translate.min.js"></script>
 <script src="/node_modules/angular-bootstrap/ui-bootstrap.min.js"></script>
