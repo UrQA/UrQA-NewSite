@@ -9,7 +9,6 @@ angular.module("app")
 
 .controller("DashBoardDailyGraphController", function ($scope, $element, DashboardErrorDailyService) {
 
-
 	$scope.elementJquery = $($element);
 
 	var dailyChart = $scope.elementJquery.find("#daily-visit-chart");

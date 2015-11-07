@@ -26,16 +26,18 @@ angular.module("app")
 	PROJECTS: {
 		PLATFORM: {
 			1: "Android",
-			2: "IOS",
+			2: "iOS",
 			3: "Unity",
-			4: "Cordova"
+			4: "Cordova",
+			5: "JavaScript"
 		},
 
 		PLATFORM_ICON: {
 			1: "fa-android",
 			2: "fa-apple",
 			3: "",
-			4: ""
+			4: "",
+			5: ""
 		},
 
 		STAGE: {

@@ -3,7 +3,6 @@ global.rootRequire = function(name) {
     return require(__dirname + '/' + name);
 }
 
-
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
@@ -17,6 +16,7 @@ var routes = rootRequire('routes/index')
 var sampleAjaxRoutes = rootRequire('routes/sample/ajax');;
 var users = rootRequire('routes/users');
 var projectsRoutes = rootRequire('routes/projects');
+var api = rootRequire('routes/api');
 
 var dashboardRoutes = rootRequire('routes/projectDetailRouter');
 
@@ -51,9 +51,11 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use('/static', express.static(path.join(__dirname, 'public')));
-app.use('/node_modules', express.static('node_modules'));
+app.use('/node_modules', express.static(path.join(__dirname, 'node_modules')));
+app.use('/static/bower_components', express.static(path.join(__dirname, 'bower_components')));
 
 app.use('/', routes);
+app.use('/api', api);
 app.use('/users', users);
 app.use('/projects', projectsRoutes);
 app.use('/ajax', sampleAjaxRoutes);
@@ -84,9 +86,6 @@ app.use(function(req, res, next) {
     next(err);
 });
 
-
-
-
 // error handlers
 
 // development error handler
@@ -104,7 +103,5 @@ if (app.get('env') === 'development') {
 
 // production error handler
 // no stacktraces leaked to user
-
-
 
 module.exports = app;

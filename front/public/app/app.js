@@ -14,7 +14,6 @@ app.config(function ($locationProvider) {
 	$translateProvider.preferredLanguage("en");
 })
 
-
 .run(function ($rootScope, $state) {
 	$rootScope.$state = $state;
 });

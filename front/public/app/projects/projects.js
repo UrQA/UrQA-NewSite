@@ -1,6 +1,5 @@
 var app = angular.module("app");
 
-
 app.constant("NAV_SIDE", [{
     name: "NAV_SIDE.PROJECTS",
     path: "projects.list",
@@ -55,7 +54,7 @@ app.config(function ($stateProvider) {
 })
 
 .factory("ProjectModel", function ($resource) {
-    return $resource("/ajax/projects");
+    return $resource("/api/projects/list");
 })
 
 .controller("ProjectCtrl", function ($scope, $window, data) {
