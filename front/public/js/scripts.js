@@ -7,7 +7,7 @@ function hyperlink(self)
 function copyClipboard(obj, value)
 {
     $(obj).zclip({
-        path: urqaio.baseUrl + '/bower_components/jquery-zclip/ZeroClipboard.swf',
+        path: urqaio.baseUrl + '/node_modules/jquery-zclip/ZeroClipboard.swf',
         copy: function(){ return value; },
         beforeCopy: function () {},
         afterCopy: function () {
