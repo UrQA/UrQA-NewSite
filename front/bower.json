@@ -45,6 +45,7 @@
     "blueimp-file-upload": "~9.9.3",
     "bootstrap-switch": "2.0.0",
     "select2": "3.4.5",
-    "Chart.js": "1.0.1"
+    "Chart.js": "1.0.1",
+    "jsrender": "~1.0.0-rc.70"
   }
 }

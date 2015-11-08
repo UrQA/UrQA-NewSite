@@ -2,6 +2,9 @@
 <html lang="en">
 <head>
     <% include ../header %>
+    <script>
+        urqaio.currentProject = '<%= data.id%>';
+    </script>
 </head>
 
 <body>
@@ -62,12 +65,6 @@
 
     <!-- TODO:: grunt로 하나로 합치기 -->
     <%- include(scriptContainer) %>
-
-
-
-
-
-
 
 </body>
 

@@ -177,11 +177,6 @@ $(document).ready(function () {
 
         }
 
-
-
-
-
-
         /*==Collapsible==*/
         $('.widget-head').click(function (e) {
             var widgetElem = $(this).children('.widget-collapse').children('i');
@@ -199,9 +194,6 @@ $(document).ready(function () {
             e.preventDefault();
         });
 
-
-
-
         /*==Sidebar Toggle==*/
 
         $(".leftside-navigation .sub-menu > a").click(function () {
@@ -212,8 +204,6 @@ $(document).ready(function () {
             else
                 $(".leftside-navigation").scrollTo("+=" + Math.abs(diff), 500);
         });
-
-
 
         $('.sidebar-toggle-box .fa-bars').click(function (e) {
 
@@ -263,7 +253,6 @@ $(document).ready(function () {
             if ($('.header').hasClass('merge-header')) {
                 $('.header').removeClass('merge-header')
             }
-
 
         });
 

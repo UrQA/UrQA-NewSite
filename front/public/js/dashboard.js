@@ -7,8 +7,8 @@
             "bStateSave": true,
             "bProcessing": true,
             "bServerSide": true,
-            "sAjaxSource": urqaio.baseUrl + "/ajax/sample1",
-            "sAjaxDataProp": "aaData",
+            "sAjaxSource": '/api/project/'+urqaio.currentProject+'/errors/tranding',
+            "sAjaxDataProp": "errorData",
             "bUseRendered": true,
             "bLengthChange": false,
             "bSort": false,
@@ -21,7 +21,6 @@
                         var nameList = ["Rank", "Count", "Name", "Tags", "Date"];
                         var styleList = ["text-center", "text-center", "table-text-ellipsis", "tags", "res-hidden"];
                         $(nTd).attr("data-title", nameList[iCol]).addClass(styleList[iCol]);
-
                         if (iCol == 0)
                         {
                             $(nTd).html('<span class=\"label label-' + sData.toLowerCase() + ' label-mini\" style=\"width:100%\">' + sData + '</span>');
@@ -42,8 +41,10 @@
                             for (var sTag in oDataList)
                                 sHTML += "<span class=\"label label-primary label-mini\">" + oDataList[sTag] + "</span>\n ";
                             sHTML += "\n</p>";
-
                             $(nTd).html(sHTML);
+                        } else if (iCol == 4)
+                        {
+                            $(nTd).html('<div>' + sData + '</div>');
                         }
                     }
                 }
@@ -52,43 +53,14 @@
                 $('div.dataTables_paginate')[0].style.display = "none";
             }
         } );
-
         $('#btnTranding').click(function() {
-            _dataTable.api().ajax.url(urqaio.baseUrl + "/ajax/sample2").load();
+            _dataTable.api().ajax.url('/api/project/'+urqaio.currentProject+'/errors/tranding').load();
         } );
         $('#btnLatest').click(function() {
-            _dataTable.api().ajax.url(urqaio.baseUrl + "/ajax/sample1").load();
+            _dataTable.api().ajax.url('/api/project/'+urqaio.currentProject+'/errors/latest').load();
         } );
-        //////////////////////////
 
         if ($.fn.plot) {
-
-            var d1 = [
-                [0, 10],
-                [1, 20],
-                [2, 33],
-                [3, 24],
-                [4, 45],
-                [5, 96],
-                [6, 47],
-                [7, 18],
-                [8, 11],
-                [9, 13],
-                [10, 21]
-
-            ];
-            var data = ([{
-                label: "Too",
-                data: d1,
-                lines: {
-                    show: true,
-                    fill: true,
-                    lineWidth: 2,
-                    fillColor: {
-                        colors: ["rgba(255,255,255,.1)", "rgba(160,220,220,.8)"]
-                    }
-                }
-            }]);
             var options = {
                 grid: {
                     backgroundColor: {
@@ -105,14 +77,12 @@
                 // Tooltip
                 tooltip: true,
                 tooltipOpts: {
-                    content: "%s X: %x Y: %y",
+                    content: "날짜: %x 에러 수: %y",
                     shifts: {
                         x: -60,
                         y: 25
                     },
-                    defaultTheme: false
                 },
-
                 legend: {
                     labelBoxBorderColor: "#ccc",
                     show: false,
@@ -122,40 +92,29 @@
                     stack: true,
                     shadowSize: 0,
                     highlightColor: 'rgba(30,120,120,.5)'
-
                 },
                 xaxis: {
-                    tickLength: 0,
-                    tickDecimals: 0,
+                    mode : 'time',
+                    type : 'timeseries',
+                    timeformat: "%m/%d",
+                    minTickSize: [1, "day"],
                     show: true,
-                    min: 2,
-
                     font: {
-
                         style: "normal",
-
-
                         color: "#666666"
                     }
                 },
                 yaxis: {
                     ticks: 3,
                     tickDecimals: 0,
+                    min: 0,
                     show: true,
                     tickColor: "#f0f0f0",
                     font: {
-
                         style: "normal",
-
-
                         color: "#666666"
                     }
                 },
-                //        lines: {
-                //            show: true,
-                //            fill: true
-                //
-                //        },
                 points: {
                     show: true,
                     radius: 2,
@@ -163,9 +122,26 @@
                 },
                 colors: ["#87cfcb", "#48a9a7"]
             };
-            var plot = $.plot($("#daily-visit-chart"), data, options);
-
-
+            $.ajax({
+                url:'/api/project/'+urqaio.currentProject+'/daily/error',
+                success:function(data){
+                    var d = ([{
+                        label: "Too",
+                        data: data,
+                        lines: {
+                            show: true,
+                            fill: true,
+                            lineWidth: 2,
+                            fillColor: {
+                                colors: ["rgba(255,255,255,.1)", "rgba(160,220,220,.8)"]
+                            }
+                        }
+                    }]);
+                    var plot = $.plot($("#daily-visit-chart"), d, options);
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                }
+            });
 
             // DONUT
             var dataPie = [{
@@ -221,8 +197,6 @@
 
         }
 
-
-
         /*==Slim Scroll ==*/
         if ($.fn.slimScroll) {
             $('.event-list').slimscroll({
@@ -238,9 +212,6 @@
                 wheelStep: 35
             });
         }
-
     });
-
-
 })(jQuery);
 

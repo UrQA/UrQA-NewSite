@@ -2,12 +2,11 @@
 <section id="main-content">
     <section id="dashboard" class="wrapper">
         <!-- page start -->
-
         <div class="row">
             <div class="col-md-12">
                 <!--breadcrumbs start -->
                 <ul class="breadcrumb">
-                    <li><a href="projects.html"><i class="fa fa-home"></i> Home</a></li>
+                    <li><a href="/projects"><i class="fa fa-home"></i> Home</a></li>
                     <li><a href="#">텔레톡비-v2</a></li>
                     <li class="active">Dashboard</li>
                 </ul>
@@ -15,47 +14,52 @@
             </div>
         </div>
 
-        <!--mini statistics start-->
-        <div class="row">
-            <div class="col-md-3 col-sm-6">
-                <div class="mini-stat clearfix">
-                    <span class="mini-stat-icon orange"><i class="fa fa-bug"></i></span>
-                    <div class="mini-stat-info">
-                        <span>4.91K</span>
-                        Bug Received Week
+        <div>
+            <!--mini statistics start-->
+            <div class="row">
+                <div class="col-md-3 col-sm-6">
+                    <div class="mini-stat clearfix">
+                        <span class="mini-stat-icon orange"><i class="fa fa-bug"></i></span>
+                        <div class="mini-stat-info">
+                            <div id="load_crash">
+                            </div>
+                            Weekly Crashes
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="mini-stat clearfix">
+                        <span class="mini-stat-icon tar"><i class="fa fa-users"></i></span>
+                        <div class="mini-stat-info">
+                            <div id="load_user">
+                            </div>
+                            Weekly Active Users
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="mini-stat clearfix">
+                        <span class="mini-stat-icon pink"><i class="fa fa-bar-chart-o"></i></span>
+                        <div class="mini-stat-info">
+                            <div id="load_rate">
+                            </div>
+                            Avg Bug Rate
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="mini-stat clearfix">
+                        <span class="mini-stat-icon green"><i class="fa fa-code-fork"></i></span>
+                        <div class="mini-stat-info">
+                            <div id="load_sdk">
+                            </div>
+                            Problematic SDK
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-3 col-sm-6">
-                <div class="mini-stat clearfix">
-                    <span class="mini-stat-icon tar"><i class="fa fa-users"></i></span>
-                    <div class="mini-stat-info">
-                        <span>14.37K</span>
-                        Active Users Week
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 col-sm-6">
-                <div class="mini-stat clearfix">
-                    <span class="mini-stat-icon pink"><i class="fa fa-bar-chart-o"></i></span>
-                    <div class="mini-stat-info">
-                        <span>0.05%</span>
-                        Avg Bug Rate
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 col-sm-6">
-                <div class="mini-stat clearfix">
-                    <span class="mini-stat-icon green"><i class="fa fa-gavel"></i></span>
-                    <div class="mini-stat-info">
-                        <span>84.51%</span>
-                        Bug Fix Rate
-                    </div>
-                </div>
-            </div>
+            <!--mini statistics end-->
         </div>
-        <!--mini statistics end-->
-
         <div class="row">
             <div class="col-lg-8 col-sm-6">
                 <section class="panel">
@@ -64,12 +68,7 @@
                             <div class="daily-visit">
                                 <h4 class="widget-h">Daily Errors</h4>
                                 <div id="daily-visit-chart" style="width:100%; height: 150px; display: block">
-
                                 </div>
-                                <ul class="chart-meta clearfix">
-                                    <li class="pull-left visit-chart-value">3233</li>
-                                    <li class="pull-right visit-chart-title"><i class="fa fa-arrow-up"></i> 15%</li>
-                                </ul>
                             </div>
                         </div>
                     </div>
@@ -114,22 +113,22 @@
                         <div id="errors-table" class="adv-table">
                             <table class="table table-hover table-striped" id="dynamic-table">
                                 <thead>
-                                    <tr>
-                                        <th style="width:50px">Rank</th>
-                                        <th style="width:60px">Count</th>
-                                        <th>Name</th>
-                                        <th style="width:180px">Tags</th>
-                                        <th style="width:60px" class="res-hidden">Date</th>
-                                    </tr>
+                                <tr>
+                                    <th style="width:50px">Rank</th>
+                                    <th style="width:60px">Count</th>
+                                    <th>Name</th>
+                                    <th style="width:180px">Tags</th>
+                                    <th style="width:60px" class="res-hidden">Date</th>
+                                </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td data-title="Rank" class="text-center"></td>
-                                        <td data-title="Count" class="text-center text-danger text-bold"></td>
-                                        <td data-title="Name" class="table-text-ellipsis"></td>
-                                        <td data-title="Tags" class="tags"></td>
-                                        <td data-title="Date" class="res-hidden"></td>
-                                    </tr>
+                                <tr>
+                                    <td data-title="Rank" class="text-center"></td>
+                                    <td data-title="Count" class="text-center text-danger text-bold"></td>
+                                    <td data-title="Name" class="table-text-ellipsis"></td>
+                                    <td data-title="Tags" class="tags"></td>
+                                    <td data-title="Date" class="res-hidden"></td>
+                                </tr>
                                 </tbody>
                             </table>
                         </div>
@@ -137,11 +136,93 @@
                 </section>
             </div>
         </div>
-        <!--
-        1. 디바이스별 Crash Rank
-        2. 인기있는 APP Version
-        3. 
-        -->
     </section>
 </section>
-<!--main content end-->
+
+<% include scripts %>
+
+<script id="textDataTmpl" type="text/x-jsrender">
+    <span>{{:data}}</span>
+</script>
+<script>
+    var template = $.templates("#textDataTmpl");
+    var b, s = -1;
+    var err = false;
+    $.ajax({
+        url:'/api/project/<%= data.id %>/weekly/error',
+        success:function(data){
+            var htmlOutput = template.render(data);
+            $("#load_crash").html(htmlOutput);
+            b = data.data;
+            updateRate();
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            var data = {data:'<i class="fa fa-exclamation-triangle"></i>'};
+            var htmlOutput = template.render(data);
+            $("#load_crash").html(htmlOutput);
+            err = true;
+        }
+    });
+    $.ajax({
+        url:'/api/project/<%= data.id %>/weekly/session',
+        success:function(data){
+            var htmlOutput = template.render(data);
+            $("#load_user").html(htmlOutput);
+            s = data.data;
+            updateRate();
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            var data = {data:'<i class="fa fa-exclamation-triangle"></i>'};
+            var htmlOutput = template.render(data);
+            $("#load_user").html(htmlOutput);
+            updateRate();
+            err = true;
+        }
+    });
+    $.ajax({
+        url:'/api/project/<%= data.id %>/sdk',
+        success:function(data){
+            var htmlOutput = template.render(data);
+            $("#load_sdk").html(htmlOutput);
+            updateRate();
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            var data = {data:'<i class="fa fa-exclamation-triangle"></i>'};
+            var htmlOutput = template.render(data);
+            $("#load_sdk").html(htmlOutput);
+            updateRate();
+            err = true;
+        }
+    });
+    $.ajax({
+        url:'/api/project/<%= data.id %>/sdk',
+        success:function(data){
+            var htmlOutput = template.render(data);
+            $("#load_sdk").html(htmlOutput);
+            updateRate();
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            var data = {data:'<i class="fa fa-exclamation-triangle"></i>'};
+            var htmlOutput = template.render(data);
+            $("#load_sdk").html(htmlOutput);
+            updateRate();
+            err = true;
+        }
+    });
+    function updateRate(){
+        if(err == true){
+            var data = {data:'<i class="fa fa-exclamation-triangle"></i>'};
+            var htmlOutput = template.render(data);
+            $("#load_rate").html(htmlOutput);
+        }
+        else if(b != -1 && s != -1 && err != true){
+            if(s == 0){
+                s=1;
+            }
+            var percent = (b/s*100).toFixed(1);
+            var data = {data:percent+"%"};
+            var htmlOutput = template.render(data);
+            $("#load_rate").html(htmlOutput);
+        }
+    }
+</script>

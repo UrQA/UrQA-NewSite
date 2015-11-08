@@ -116,11 +116,14 @@
                     <ul class="breadcrumb">
                         <li><a href="#"><i class="fa fa-home"></i> Home</a></li>
                         <li class="active">Active Projects</li>
+                        <li id="load"><i id="load_icon" class="fa fa-refresh fa-spin"></i></li>
                     </ul>
                     <!--breadcrumbs end -->
                 </div>
             </div>
-            <ui-view/>
+            <div id="projects" class="row">
+                <!-- load -->
+            </div>
             <!-- page end-->
         </section>
     </section>
@@ -128,8 +131,50 @@
 </section>
 <!-- Placed js at the end of the document so the pages load faster -->
 
-<!-- TODO:: grunt로 하나로 합치기 -->
 <% include scripts %>
+
+<script id="projectTmpl" type="text/x-jsrender">
+<div class="col-sm-6 col-md-4 col-lg-3">
+    <aside class="profile-nav alt">
+        <section class="panel">
+            <div class="user-heading alt gray-bg" onclick="javascript:location.href='/dashboard/{{:id}}';">
+                <h1>
+                    <span data-placement="top" data-toggle="tooltip" class="tooltips" type="button">{{:title}}</span>
+                </h1>
+                <p>{{:stage}} stage</p>
+            </div>
+
+            <ul class="nav nav-pills nav-stacked">
+                <li class="copy">
+                    <a href="javascript:;">
+                        <i class="fa fa-key"></i> API Key <span class="badge label-inverse pull-right r-activity">{{:apikey}}</span>
+                    </a></li>
+                <li>
+                    <a>
+                        <i class="fa fa-bullseye"></i> Platform <span class="badge label-inverse pull-right r-activity">
+                            <i class="fa {{:platform_icon}}"></i>
+                            <span>{{:platform}}</span></span>
+                    </a></li>
+                <li><a> <i class="fa fa-bug"></i> Error Count <span class="badge label-primary pull-right r-activity">{{:weekly_errorcount}}</span></a></li>
+            </ul>
+        </section>
+    </aside>
+</div>
+</script>
+<script>
+    var template = $.templates("#projectTmpl");
+    $.ajax({
+        url:'/api/projects/list',
+        success:function(data){
+            var htmlOutput = template.render(data);
+            $("#projects").html(htmlOutput);
+            $('#load').remove();
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            $('#load_icon').attr('class','fa fa-exclamation-triangle');
+        }
+    })
+</script>
 
 <!--common script init for all pages-->
 </body>

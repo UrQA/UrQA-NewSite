@@ -13,10 +13,11 @@ var bodyParser = require('body-parser');
 var routes = rootRequire('routes/index')
 var sampleAjaxRoutes = rootRequire('routes/sample/ajax');;
 var users = rootRequire('routes/users');
-var login = rootRequire('routes/login');
+// var login = rootRequire('routes/login');
 var projectsRoutes = rootRequire('routes/projects');
 
 var dashboardRoutes = rootRequire('routes/dashboard');
+var apiRoutes = rootRequire('routes/api');
 
 var app = express();
 app.use(function(req, res, next) {
@@ -24,11 +25,9 @@ app.use(function(req, res, next) {
     res.locals.resourceUrl = function(path) {
         return res.locals.baseUrl + "/static" + path;
     };
-
     res.locals.getUrl = function(path) {
         return res.locals.baseUrl + path;
-    }
-
+    };
     //디폴트로 설정해야 하는 요소들은 여기에서 처리
     next();
 });
@@ -46,11 +45,12 @@ app.use(cookieParser());
 app.use('/static', express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
-app.use('/login', login);
+// app.use('/login', login);
 app.use('/users', users);
 app.use('/projects', projectsRoutes);
 app.use('/dashboard', dashboardRoutes);
 app.use('/ajax', sampleAjaxRoutes);
+app.use('/api', apiRoutes);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -77,7 +77,8 @@ if (app.get('env') === 'development') {
 // no stacktraces leaked to user
 app.use(function(err, req, res, next) {
     res.status(err.status || 500);
-    res.render('error', {
+    console.log(err.message);
+    res.send({
         message: err.message,
         error: {}
     });

@@ -1,0 +1,31 @@
+{
+  "PLATFORM": {
+    "1": "Android",
+    "2": "iOS",
+    "3": "Unity",
+    "4": "Cordova",
+    "5": "JavaScript"
+  },
+
+  "PLATFORM_ICON": {
+    "1": "fa-android",
+    "2": "fa-apple",
+    "3": "fa-gamepad",
+    "4": "fa-file-code-o",
+    "5": "fa-file-code-o"
+  },
+
+  "STAGE": {
+    "1": "Develop",
+    "2": "Test",
+    "3": "Release"
+  },
+
+  "RANK": {
+    "0": "Unhandler",
+    "1": "Native",
+    "2": "Critical",
+    "3": "Major",
+    "4": "Minor"
+  }
+}
