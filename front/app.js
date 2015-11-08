@@ -13,6 +13,7 @@ var bodyParser = require('body-parser');
 var routes = rootRequire('routes/index')
 var sampleAjaxRoutes = rootRequire('routes/sample/ajax');;
 var users = rootRequire('routes/users');
+var login = rootRequire('routes/login');
 var projectsRoutes = rootRequire('routes/projects');
 
 var dashboardRoutes = rootRequire('routes/dashboard');
@@ -45,6 +46,7 @@ app.use(cookieParser());
 app.use('/static', express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
+app.use('/login', login);
 app.use('/users', users);
 app.use('/projects', projectsRoutes);
 app.use('/dashboard', dashboardRoutes);
