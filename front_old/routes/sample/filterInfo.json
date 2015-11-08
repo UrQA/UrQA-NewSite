@@ -1,0 +1,54 @@
+{
+  "appVersion": [
+    {
+      "idx": 1,
+      "name": "1.24",
+      "conut": 259
+    },
+    {
+      "idx": 2,
+      "name": "1.25",
+      "count": 15,
+      "isOther": true
+    }
+  ],
+  "osVersion": [
+    {
+      "idx": 1,
+      "name":"4.4",
+      "count":214
+    },
+    {
+      "idx": 2,
+      "name":"5.0",
+      "count":15
+    },
+    {
+      "idx":3,
+      "name":"4.1",
+      "count":15
+    },
+    {
+      "idx":4,
+      "name":"4.2",
+      "count": 6
+    },
+    {
+      "idx":5,
+      "name" : "4.0",
+      "count": 4,
+      "isOther" : true
+    },
+    {
+      "idx":6,
+      "name" : "5.1",
+      "count": 2,
+      "isOther": true
+    }
+  ],
+
+  "tags": ["dev", "test", "real"],
+
+
+  "total": 260
+}

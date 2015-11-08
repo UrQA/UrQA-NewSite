@@ -1,0 +1,30 @@
+<div id="projects" class="row">
+    <div class="col-sm-6 col-md-4 col-lg-3" ng-repeat="project in list">
+        <!--widget start-->
+        <aside class="profile-nav alt">
+            <section class="panel">
+                <div class="user-heading alt gray-bg" ng-click="go('projects/v/'+project.id)">
+                    <h1>
+                        <span data-placement="top" data-toggle="tooltip" class="tooltips" type="button" data-original-title="{{project.title}}" ng-bind="project.title"></span>
+                    </h1>
+                    <p>{{'PROJECTS.STAGE.'+project.stage|translate}} stage</p>
+                </div>
+
+                <ul class="nav nav-pills nav-stacked">
+                    <li class="copy">
+                        <a href="javascript:;">
+                            <i class="fa fa-key"></i> API Key <span class="badge label-inverse pull-right r-activity" ng-bind="project.apikey"></span>
+                        </a></li>
+                    <li>
+                        <a>
+                            <i class="fa fa-bullseye"></i> Platform <span class="badge label-inverse pull-right r-activity">
+                            <i class="fa {{('PROJECTS.PLATFORM_ICON.'+ project.platform)|translate}}"></i>
+                            <span translate="{{'PROJECTS.PLATFORM.'+ project.platform}}"></span></span>
+                        </a></li>
+                    <li><a> <i class="fa fa-bug"></i> Error Count <span class="badge label-primary pull-right r-activity" ng-bind="project.weekly_errorcount"></span></a></li>
+                </ul>
+            </section>
+        </aside>
+        <!--widget end-->
+    </div>
+</div>

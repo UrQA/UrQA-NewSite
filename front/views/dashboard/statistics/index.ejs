@@ -1,0 +1,552 @@
+<!--main content start-->
+<section id="main-content">
+    <section class="wrapper">
+        <!-- page start-->
+        <div class="row">
+            <div class="col-md-12">
+                <ul class="breadcrumb">
+                    <li><a href="<%= getUrl('/projects')%>"><i class="fa fa-home"></i> Home</a></li>
+                    <li><a href="#">텔레톡비-v2</a></li>
+                    <li class="active">Statistics</li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="statistics-chart-area" class="row">
+            <div class="col-md-4">
+                <section class="panel">
+                    <header class="panel-heading">
+                        Daily Active Users
+                        <span class="tools pull-right">
+                            <a href="javascript:;" class="fa fa-chevron-down"></a>
+                         </span>
+                    </header>
+                    <div class="panel-body">
+                        <div id="dau-bar"></div>
+                    </div>
+                </section>
+            </div>
+            <div class="col-md-4">
+                <section class="panel">
+                    <header class="panel-heading">
+                        Crash Rates
+                        <span class="tools pull-right">
+                            <a href="javascript:;" class="fa fa-chevron-down"></a>
+                         </span>
+                    </header>
+                    <div class="panel-body">
+                        <div id="crash-rate"></div>
+                    </div>
+                </section>
+            </div>
+            <div class="col-md-4">
+                <section class="panel">
+                    <header class="panel-heading">
+                        Popular APP Version
+                        <span class="tools pull-right">
+                            <a href="javascript:;" class="fa fa-chevron-down"></a>
+                        </span>
+                    </header>
+                    <div class="panel-body">
+                        <div class="row">
+                            <!-- OS Version -->
+                            <div class="progress-table col-sm-12" style="height:326px">
+                                <div class="title-body">
+                                    <div class="col-xs-3 text-small">Version</div>
+                                    <div class="col-xs-9 text-small">Percentage</div>
+                                </div>
+                                <div class="content-body">
+                                    <div class="content-row">
+                                        <p>4.4.2</p>
+                                        <div>
+                                            <div class="progress progress-xs">
+                                                <div style="width: 67%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="20" role="progressbar" class="progress-bar progress-bar-danger">
+                                                    <span class="sr-only">67% Complete</span>
+                                                </div>
+                                            </div>
+                                            <div>67%</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="content-row">
+                                        <p>4.1.2</p>
+                                        <div>
+                                            <div class="progress progress-xs">
+                                                <div style="width: 17%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="20" role="progressbar" class="progress-bar progress-bar-warning">
+                                                    <span class="sr-only">17% Complete</span>
+                                                </div>
+                                            </div>
+                                            <div>17%</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="content-row">
+                                        <p>4.3</p>
+                                        <div>
+                                            <div class="progress progress-xs">
+                                                <div style="width: 7%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="20" role="progressbar" class="progress-bar progress-bar-info">
+                                                    <span class="sr-only">7% Complete</span>
+                                                </div>
+                                            </div>
+                                            <div>7%</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="content-row">
+                                        <p>4.2.2</p>
+                                        <div>
+                                            <div class="progress progress-xs">
+                                                <div style="width: 4%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="20" role="progressbar" class="progress-bar progress-bar-info">
+                                                    <span class="sr-only">4% Complete</span>
+                                                </div>
+                                            </div>
+                                            <div>4%</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="content-row">
+                                        <p>4.0.4</p>
+                                        <div>
+                                            <div class="progress progress-xs">
+                                                <div style="width: 3%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="20" role="progressbar" class="progress-bar progress-bar-info">
+                                                    <span class="sr-only">3% Complete</span>
+                                                </div>
+                                            </div>
+                                            <div>3%</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="content-row">
+                                        <p>4.0.4</p>
+                                        <div>
+                                            <div class="progress progress-xs">
+                                                <div style="width: 3%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="20" role="progressbar" class="progress-bar progress-bar-info">
+                                                    <span class="sr-only">3% Complete</span>
+                                                </div>
+                                            </div>
+                                            <div>3%</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="content-row">
+                                        <p>4.0.4</p>
+                                        <div>
+                                            <div class="progress progress-xs">
+                                                <div style="width: 3%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="20" role="progressbar" class="progress-bar progress-bar-info">
+                                                    <span class="sr-only">3% Complete</span>
+                                                </div>
+                                            </div>
+                                            <div>3%</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="content-row">
+                                        <p>4.0.4</p>
+                                        <div>
+                                            <div class="progress progress-xs">
+                                                <div style="width: 3%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="20" role="progressbar" class="progress-bar progress-bar-info">
+                                                    <span class="sr-only">3% Complete</span>
+                                                </div>
+                                            </div>
+                                            <div>3%</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="content-row">
+                                        <p>4.0.4</p>
+                                        <div>
+                                            <div class="progress progress-xs">
+                                                <div style="width: 3%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="20" role="progressbar" class="progress-bar progress-bar-info">
+                                                    <span class="sr-only">3% Complete</span>
+                                                </div>
+                                            </div>
+                                            <div>3%</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="content-row">
+                                        <p>4.0.4</p>
+                                        <div>
+                                            <div class="progress progress-xs">
+                                                <div style="width: 3%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="20" role="progressbar" class="progress-bar progress-bar-info">
+                                                    <span class="sr-only">3% Complete</span>
+                                                </div>
+                                            </div>
+                                            <div>3%</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="content-row">
+                                        <p>Others</p>
+                                        <div>
+                                            <div class="progress progress-xs">
+                                                <div style="width: 2%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="20" role="progressbar" class="progress-bar progress-bar-info">
+                                                    <span class="sr-only">2% Complete</span>
+                                                </div>
+                                            </div>
+                                            <div>2%</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12">
+                <section class="panel">
+                    <header class="panel-heading">
+                        WORLD MAP
+                        <span class="tools pull-right">
+                            <a href="javascript:;" class="fa fa-chevron-down"></a>
+                         </span>
+                    </header>
+
+                </section>
+            </div>
+            <div class="col-md-12" style="margin-top: -20px;">
+                <section class="panel">
+                    <div class="panel-body">
+                        <div class="chartJS" style="width:100%; height: 350px">
+                            <canvas id="world_vmap_info"></canvas>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12">
+                <section class="panel">
+                    <header class="panel-heading">
+                        Class Error Rate
+                    <span class="tools pull-right">
+                        <a href="javascript:;" class="fa fa-chevron-down"></a>
+                     </span>
+                    </header>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <div id="graph-donut"></div>
+                            </div>
+                            <div class="col-sm-9">
+                                <div class="progress-table large-table col-sm-12">
+                                    <div class="title-body">
+                                        <div class="col-xs-9 text-small">Class</div>
+                                        <div class="col-xs-3 text-small">Percentage</div>
+                                    </div>
+                                    <div class="content-body">
+                                        <div class="content-row">
+                                            <p class="text-ellipsis">com.android.volley.toolbox.d</p>
+                                            <div>
+                                                <div class="progress progress-xs">
+                                                    <div style="width: 17.6%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="20" role="progressbar" class="progress-bar progress-bar-danger">
+                                                        <span class="sr-only">17.6% Complete</span>
+                                                    </div>
+                                                </div>
+                                                <div>17.6%</div>
+                                            </div>
+                                        </div>
+
+                                        <div class="content-row">
+                                            <p class="text-ellipsis">at droom.sleepIfUCan.activity.af (:211)</p>
+                                            <div>
+                                                <div class="progress progress-xs">
+                                                    <div style="width: 13.7%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="20" role="progressbar" class="progress-bar progress-bar-warning">
+                                                        <span class="sr-only">13.7% Complete</span>
+                                                    </div>
+                                                </div>
+                                                <div>13.7%</div>
+                                            </div>
+                                        </div>
+
+                                        <div class="content-row">
+                                            <p class="text-ellipsis">droom.sleepIfUCan.activity.af</p>
+                                            <div>
+                                                <div class="progress progress-xs">
+                                                    <div style="width: 11%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="20" role="progressbar" class="progress-bar progress-bar-info">
+                                                        <span class="sr-only">11% Complete</span>
+                                                    </div>
+                                                </div>
+                                                <div>11%</div>
+                                            </div>
+                                        </div>
+
+                                        <div class="content-row">
+                                            <p class="text-ellipsis">android.database.sqlite.SQLiteStatement</p>
+                                            <div>
+                                                <div class="progress progress-xs">
+                                                    <div style="width: 8.7%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="20" role="progressbar" class="progress-bar progress-bar-info">
+                                                        <span class="sr-only">8.7% Complete</span>
+                                                    </div>
+                                                </div>
+                                                <div>8.7%</div>
+                                            </div>
+                                        </div>
+
+                                        <div class="content-row">
+                                            <p class="text-ellipsis">android.content.res.Resources</p>
+                                            <div>
+                                                <div class="progress progress-xs">
+                                                    <div style="width: 8.5%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="20" role="progressbar" class="progress-bar progress-bar-info">
+                                                        <span class="sr-only">8.5% Complete</span>
+                                                    </div>
+                                                </div>
+                                                <div>8.5%</div>
+                                            </div>
+                                        </div>
+
+                                        <div class="content-row">
+                                            <p class="text-ellipsis">android.os.BinderProxy</p>
+                                            <div>
+                                                <div class="progress progress-xs">
+                                                    <div style="width: 5.3%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="20" role="progressbar" class="progress-bar progress-bar-info">
+                                                        <span class="sr-only">5.3% Complete</span>
+                                                    </div>
+                                                </div>
+                                                <div>5.3%</div>
+                                            </div>
+                                        </div>
+
+                                        <div class="content-row">
+                                            <p class="text-ellipsis">at android.widget.NumberPicker$ChangeCurrentByOneFromLongPressCommand</p>
+                                            <div>
+                                                <div class="progress progress-xs">
+                                                    <div style="width: 4.5%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="20" role="progressbar" class="progress-bar progress-bar-info">
+                                                        <span class="sr-only">4.5% Complete</span>
+                                                    </div>
+                                                </div>
+                                                <div>4.5%</div>
+                                            </div>
+                                        </div>
+
+                                        <div class="content-row">
+                                            <p class="text-ellipsis">at android.content.res.Resources</p>
+                                            <div>
+                                                <div class="progress progress-xs">
+                                                    <div style="width: 4.3%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="20" role="progressbar" class="progress-bar progress-bar-info">
+                                                        <span class="sr-only">4.3% Complete</span>
+                                                    </div>
+                                                </div>
+                                                <div>4.3%</div>
+                                            </div>
+                                        </div>
+
+                                        <div class="content-row">
+                                            <p class="text-ellipsis">android.database.sqlite.SQLiteStatement</p>
+                                            <div>
+                                                <div class="progress progress-xs">
+                                                    <div style="width: 4%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="20" role="progressbar" class="progress-bar progress-bar-info">
+                                                        <span class="sr-only">4% Complete</span>
+                                                    </div>
+                                                </div>
+                                                <div>4%</div>
+                                            </div>
+                                        </div>
+
+                                        <div class="content-row">
+                                            <p class="text-ellipsis">android.database.sqlite.SQLiteConnection</p>
+                                            <div>
+                                                <div class="progress progress-xs">
+                                                    <div style="width: 2%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="20" role="progressbar" class="progress-bar progress-bar-info">
+                                                        <span class="sr-only">2% Complete</span>
+                                                    </div>
+                                                </div>
+                                                <div>2%</div>
+                                            </div>
+                                        </div>
+
+                                        <div class="content-row">
+                                            <p class="text-ellipsis">droom.sleepIfUCan.activity.SelectPictureActivity</p>
+                                            <div>
+                                                <div class="progress progress-xs">
+                                                    <div style="width: 1.6%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="20" role="progressbar" class="progress-bar progress-bar-info">
+                                                        <span class="sr-only">1.6% Complate</span>
+                                                    </div>
+                                                </div>
+                                                <div>1.6%</div>
+                                            </div>
+                                        </div>
+
+                                        <div class="content-row">
+                                            <p class="text-ellipsis">Others</p>
+                                            <div>
+                                                <div class="progress progress-xs">
+                                                    <div style="width: 18.8%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="20" role="progressbar" class="progress-bar progress-bar-info">
+                                                        <span class="sr-only">18.8% Complete</span>
+                                                    </div>
+                                                </div>
+                                                <div>18.8%</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12">
+                <section class="panel">
+                    <header class="panel-heading">
+                        Version Error Rate
+                        <span class="tools pull-right">
+                            <a href="javascript:;" class="fa fa-chevron-down"></a>
+                        </span>
+                    </header>
+                    <div class="panel-body">
+                        <div class="chart">
+                            <div id="version-chart"></div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12">
+                <section class="panel">
+                    <header class="panel-heading">
+                        Device Error Rate
+                        <span class="tools pull-right">
+                            <a href="javascript:;" class="fa fa-chevron-down"></a>
+                        </span>
+                    </header>
+                    <div class="panel-body">
+                        <div class="chartJS" style="width:100%; height: 350px">
+                            <canvas id="device-errorrate"></canvas>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12">
+                <section class="panel">
+                    <header class="panel-heading">
+                        Error by Activity
+                        <span class="tools pull-right">
+                            <a href="javascript:;" class="fa fa-chevron-down"></a>
+                        </span>
+                    </header>
+                    <div class="panel-body">
+                        <div class="progress-table large-table col-sm-12">
+                            <div class="title-body">
+                                <div class="col-xs-9 text-small">Version</div>
+                                <div class="col-xs-3 text-small">Percentage</div>
+                            </div>
+                            <div class="content-body">
+                                <div class="content-row">
+                                    <p class="text-ellipsis">unknown</p>
+                                    <div>
+                                        <div class="progress progress-xs">
+                                            <div style="width: 51.2%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="20" role="progressbar" class="progress-bar progress-bar-danger">
+                                                <span class="sr-only">51.2% Complete</span>
+                                            </div>
+                                        </div>
+                                        <div>21</div>
+                                    </div>
+                                </div>
+
+                                <div class="content-row">
+                                    <p class="text-ellipsis">droom.sleepIfUCan.activity.PhotoAlarmDismissActivity</p>
+                                    <div>
+                                        <div class="progress progress-xs">
+                                            <div style="width: 12.1%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="20" role="progressbar" class="progress-bar progress-bar-warning">
+                                                <span class="sr-only">12.1% Complete</span>
+                                            </div>
+                                        </div>
+                                        <div>5</div>
+                                    </div>
+                                </div>
+
+                                <div class="content-row">
+                                    <p class="text-ellipsis">android.app.Activity</p>
+                                    <div>
+                                        <div class="progress progress-xs">
+                                            <div style="width: 9.7%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="20" role="progressbar" class="progress-bar progress-bar-info">
+                                                <span class="sr-only">9.7% Complete</span>
+                                            </div>
+                                        </div>
+                                        <div>4</div>
+                                    </div>
+                                </div>
+
+                                <div class="content-row">
+                                    <p class="text-ellipsis">droom.sleepIfUCan.activity.AlarmAlertFullScreenActivity</p>
+                                    <div>
+                                        <div class="progress progress-xs">
+                                            <div style="width: 7.3%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="20" role="progressbar" class="progress-bar progress-bar-info">
+                                                <span class="sr-only">7.3% Complete</span>
+                                            </div>
+                                        </div>
+                                        <div>3</div>
+                                    </div>
+                                </div>
+
+                                <div class="content-row">
+                                    <p class="text-ellipsis">droom.sleepIfUCan.activity.SetAlarmActivity</p>
+                                    <div>
+                                        <div class="progress progress-xs">
+                                            <div style="width: 7.3%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="20" role="progressbar" class="progress-bar progress-bar-info">
+                                                <span class="sr-only">7.3% Complete</span>
+                                            </div>
+                                        </div>
+                                        <div>3</div>
+                                    </div>
+                                </div>
+
+                                <div class="content-row">
+                                    <p class="text-ellipsis">droom.sleepIfUCan.activity.MainActivity</p>
+                                    <div>
+                                        <div class="progress progress-xs">
+                                            <div style="width: 4.8%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="20" role="progressbar" class="progress-bar progress-bar-info">
+                                                <span class="sr-only">4.8% Complete</span>
+                                            </div>
+                                        </div>
+                                        <div>2</div>
+                                    </div>
+                                </div>
+
+                                <div class="content-row">
+                                    <p class="text-ellipsis">droom.sleepIfUCan.activity.MenuActivity</p>
+                                    <div>
+                                        <div class="progress progress-xs">
+                                            <div style="width: 4.8%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="20" role="progressbar" class="progress-bar progress-bar-info">
+                                                <span class="sr-only">4.8% Complete</span>
+                                            </div>
+                                        </div>
+                                        <div>2</div>
+                                    </div>
+                                </div>
+
+                                <div class="content-row">
+                                    <p class="text-ellipsis">droom.sleepIfUCan.activity.SelectPictureActivity</p>
+                                    <div>
+                                        <div class="progress progress-xs">
+                                            <div style="width: 2.4%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="20" role="progressbar" class="progress-bar progress-bar-info">
+                                                <span class="sr-only">2.4% Complete</span>
+                                            </div>
+                                        </div>
+                                        <div>1</div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <!-- page end-->
+    </section>
+</section>
+<!--main content end-->

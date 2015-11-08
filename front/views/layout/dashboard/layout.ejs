@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <% include ../header %>
+</head>
+
+<body>
+    <section id="container">
+        <% include ./navibar %>
+            <!--sidebar start-->
+            <aside>
+                <div id="sidebar" class="nav-collapse">
+                    <!-- sidebar menu start-->
+                    <div class="leftside-navigation">
+                        <ul class="sidebar-menu" id="nav-accordion">
+                            <li>
+                                <a class="active" href="<%= getUrl('/dashboard') %>">
+                                    <i class="fa fa-dashboard"></i>
+                                    <span>Dashboard</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="<%= getUrl('/dashboard/error') %>">
+                                    <i class="fa fa-laptop"></i>
+                                    <span>Errors</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="<%= getUrl('/dashboard/statistics') %>">
+                                    <i class="fa fa-book"></i>
+                                    <span>Statistics</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:;">
+                                    <i class="fa fa-bullhorn"></i>
+                                    <span>Settings</span>
+                                </a>
+                                <ul class="sub">
+                                    <li class="active"><a href="<%= getUrl('/dashboard/setting') %>">General</a></li>
+                                    <li><a href="<%= getUrl('/dashboard/setting/viewer')%>">Viewer</a></li>
+                                    <li><a href="<%= getUrl('/dashboard/setting/symbolicate') %>">Symbolicate</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- sidebar menu end-->
+                </div>
+            </aside>
+            <!--sidebar end-->
+
+            <!--main content start-->
+            <%- include(mainContainer) %>
+                <!--main content end-->
+
+
+
+
+    </section>
+
+    <!-- Placed js at the end of the document so the pages load faster -->
+
+    <!-- TODO:: grunt로 하나로 합치기 -->
+    <%- include(scriptContainer) %>
+
+
+
+
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <% include ../layout/header %>
+  </head>
+  <body class="login-body">
+    <div class="container">
+      <form action="<%= getUrl('/users/login') %>" method="post" class="form-signin">
+        <h2 class="form-signin-heading">HONEYQA PORTAL</h2>
+        <div class="login-wrap">
+          <div class="user-login-info">
+            <input type="text" placeholder="User ID" autofocus="" class="form-control">
+            <input type="password" placeholder="Password" class="form-control">
+          </div>
+          <button type="submit" class="btn btn-lg btn-login btn-block">Sign in</button>
+          <div class="btn btn-lg btn-google btn-block">
+            <span style="display: none">
+              sign in by Google
+            </span>
+          </div>
+
+          <div class="registration">Don't have an account yet?<a href="<%= getUrl('/users/join')%>">Create an account</a></div>
+        </div>
+        <!-- Modal-->
+        <div id="myModal" aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" class="modal fade">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" data-dismiss="modal" aria-hidden="true" class="close">×</button>
+                <h4 class="modal-title">Forgot Password ?</h4>
+              </div>
+              <div class="modal-body">
+                <p>Enter your e-mail address below to reset your password.</p>
+                <input type="text" name="email" placeholder="Email" autocomplete="off" class="form-control placeholder-no-fix">
+              </div>
+              <div class="modal-footer">
+                <button data-dismiss="modal" type="button" class="btn btn-default">Cancel</button>
+                <button type="button" class="btn btn-success">Submit</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- modal-->
+      </form>
+    </div>
+    <!-- Placed js at the end of the document so the pages load faster-->
+    
+    <% include ../layout/script %>
+  </body>
+</html>

@@ -1,0 +1,877 @@
+<!--main content start-->
+<section id="main-content">
+    <section id="errors" class="wrapper">
+        <!-- page start -->
+
+        <div class="row">
+            <div class="col-md-12">
+                <!--breadcrumbs start -->
+                <ul class="breadcrumb">
+                    <li><a href="<%= getUrl('/projects') %>"><i class="fa fa-home"></i> Home</a></li>
+                    <li><a href="<%= getUrl('/dashboard') %>">텔레톡비-v2</a></li>
+                    <li><a href="errors.html">Errors</a></li>
+                    <li class="active">Details</li>
+                </ul>
+                <!--breadcrumbs end -->
+            </div>
+        </div>
+
+        <!-- History Graph, Info -->
+        <div class="row">
+            <div class="col-md-6">
+                <section class="panel">
+                    <div class="panel-body">
+                        <div class="top-stats-panel">
+                            <div class="daily-visit">
+                                <h4 class="widget-h">History Graph</h4>
+                                <div id="error-history-graph" style="width:100%; min-width:100px; height: 164px; display: block"></div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <div class="col-md-3 col-sm-6">
+                <div class="mini-stat clearfix">
+                    <span class="mini-stat-icon orange"><i class="fa fa-rss"></i></span>
+                    <div class="mini-stat-info">
+                        <span>100%</span>
+                        WiFi
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <div class="mini-stat clearfix">
+                    <span class="mini-stat-icon tar"><i class="fa fa-signal"></i></span>
+                    <div class="mini-stat-info">
+                        <span>0%</span>
+                        Mobile Network
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <div class="mini-stat clearfix">
+                    <span class="mini-stat-icon pink"><i class="fa fa-location-arrow"></i></span>
+                    <div class="mini-stat-info">
+                        <span>80%</span>
+                        GPS
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <div class="mini-stat clearfix">
+                    <span class="mini-stat-icon green"><i class="fa fa-hdd-o"></i></span>
+                    <div class="mini-stat-info">
+                        <span>128.2MB</span>
+                        Memory
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Error Information -->
+        <div class="row">
+            <div class="col-lg-12">
+                <section class="panel">
+                    <header class="panel-heading">
+                        Error Information
+                        <span class="tools pull-right">
+                            <a href="javascript:;" class="fa fa-chevron-down"></a>
+                        </span>
+                    </header>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <form class="form-horizontal bucket-form" method="get">
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">Name</label>
+                                        <div class="col-sm-6">
+                                            <p class="form-control-static text-ellipsis">java.lang.RuntimeException: An error occured while executing doInBackground()</p>
+                                        </div>
+                                        <div class="col-sm-3" style="max-width:200px;float:right">
+                                            <span class="label label-danger" style="display:inline-block;width:100%;margin-top:3px;margin-bottom:-4px;padding:6px;font-size:120%;font-weight:500"><b>5,604</b> Occurred</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label"><i class="fa fa-thumb-tack"></i> Class</label>
+                                        <div class="col-sm-6">
+                                            <p class="form-control-static text-ellipsis">com.teletalkvi.core.BaseAsyncTask:62</p>
+                                        </div>
+                                        <div class="col-sm-3" style="max-width:200px;float:right">
+                                            <select data-index="1003" class="form-control" style="width:100%;margin-top:-4px;margin-bottom:-4px">
+                                                <option value="new">New</option>
+                                                <option value="open">Open</option>
+                                                <option value="fixed">Fixed</option>
+                                                <option value="ignore">Ignore</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label"><i class="fa fa-clock-o"></i> First-seen</label>
+                                        <div class="col-sm-3">
+                                            <p class="form-control-static text-ellipsis">2014.09.03</p>
+                                        </div>
+                                        <label class="col-sm-3 control-label"><i class="fa fa-clock-o"></i> Last-seen</label>
+                                        <div class="col-sm-3">
+                                            <p class="form-control-static text-ellipsis">2014.11.17</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label"><i class="fa fa-tags"></i> Tags</label>
+                                        <div class="col-sm-9">
+                                            <input id="tags_1" type="text" class="tags" value="php,ios,javascript,ruby,android,kindle" />
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <!-- Error Details -->
+        <div class="row">
+            <div class="col-lg-12">
+                <section class="panel">
+                    <header class="panel-heading">
+                        Error Details
+                        <span class="tools pull-right">
+                            <a href="javascript:;" class="fa fa-chevron-up"></a>
+                        </span>
+                    </header>
+                    <div class="panel-body" style="display:none">
+                        <div class="row">
+                            <!-- App Version -->
+                            <div class="progress-table col-sm-6">
+                                <label>App Versions</label>
+                                <div class="title-body">
+                                    <div class="col-xs-3 text-small">Version</div>
+                                    <div class="col-xs-9 text-small">Percentage</div>
+                                </div>
+                                <div class="content-body">
+                                    <div class="content-row">
+                                        <p>2.0.6</p>
+                                        <div>
+                                            <div class="progress progress-xs">
+                                                <div style="width: 100%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="20" role="progressbar" class="progress-bar progress-bar-danger">
+                                                    <span class="sr-only">100% Complete</span>
+                                                </div>
+                                            </div>
+                                            <div>100%</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- OS Version -->
+                            <div class="progress-table col-sm-6">
+                                <label>OS Version</label>
+                                <div class="title-body">
+                                    <div class="col-xs-3 text-small">Version</div>
+                                    <div class="col-xs-9 text-small">Percentage</div>
+                                </div>
+                                <div class="content-body">
+                                    <div class="content-row">
+                                        <p>4.4.2</p>
+                                        <div>
+                                            <div class="progress progress-xs">
+                                                <div style="width: 67%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="20" role="progressbar" class="progress-bar progress-bar-danger">
+                                                    <span class="sr-only">67% Complete</span>
+                                                </div>
+                                            </div>
+                                            <div>67%</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="content-row">
+                                        <p>4.1.2</p>
+                                        <div>
+                                            <div class="progress progress-xs">
+                                                <div style="width: 17%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="20" role="progressbar" class="progress-bar progress-bar-warning">
+                                                    <span class="sr-only">17% Complete</span>
+                                                </div>
+                                            </div>
+                                            <div>17%</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="content-row">
+                                        <p>4.3</p>
+                                        <div>
+                                            <div class="progress progress-xs">
+                                                <div style="width: 7%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="20" role="progressbar" class="progress-bar progress-bar-info">
+                                                    <span class="sr-only">7% Complete</span>
+                                                </div>
+                                            </div>
+                                            <div>7%</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="content-row">
+                                        <p>4.2.2</p>
+                                        <div>
+                                            <div class="progress progress-xs">
+                                                <div style="width: 4%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="20" role="progressbar" class="progress-bar progress-bar-info">
+                                                    <span class="sr-only">4% Complete</span>
+                                                </div>
+                                            </div>
+                                            <div>4%</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="content-row">
+                                        <p>4.0.4</p>
+                                        <div>
+                                            <div class="progress progress-xs">
+                                                <div style="width: 3%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="20" role="progressbar" class="progress-bar progress-bar-info">
+                                                    <span class="sr-only">3% Complete</span>
+                                                </div>
+                                            </div>
+                                            <div>3%</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="content-row">
+                                        <p>Others</p>
+                                        <div>
+                                            <div class="progress progress-xs">
+                                                <div style="width: 2%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="20" role="progressbar" class="progress-bar progress-bar-info">
+                                                    <span class="sr-only">2% Complete</span>
+                                                </div>
+                                            </div>
+                                            <div>2%</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Device -->
+                            <div class="progress-table col-sm-6">
+                                <label>Device</label>
+                                <div class="title-body">
+                                    <div class="col-xs-3 text-small">Name</div>
+                                    <div class="col-xs-9 text-small">Percentage</div>
+                                </div>
+                                <div class="content-body">
+                                    <div class="content-row">
+                                        <p>SHV-E250S</p>
+                                        <div>
+                                            <div class="progress progress-xs">
+                                                <div style="width: 6%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="20" role="progressbar" class="progress-bar progress-bar-danger">
+                                                    <span class="sr-only">6% Complete</span>
+                                                </div>
+                                            </div>
+                                            <div>6%</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="content-row">
+                                        <p>SM-N900S</p>
+                                        <div>
+                                            <div class="progress progress-xs">
+                                                <div style="width: 4%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="20" role="progressbar" class="progress-bar progress-bar-warning">
+                                                    <span class="sr-only">4% Complete</span>
+                                                </div>
+                                            </div>
+                                            <div>4%</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="content-row">
+                                        <p>SHV-E250K</p>
+                                        <div>
+                                            <div class="progress progress-xs">
+                                                <div style="width: 4%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="20" role="progressbar" class="progress-bar progress-bar-info">
+                                                    <span class="sr-only">4% Complete</span>
+                                                </div>
+                                            </div>
+                                            <div>4%</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="content-row">
+                                        <p>SM-N900K</p>
+                                        <div>
+                                            <div class="progress progress-xs">
+                                                <div style="width: 4%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="20" role="progressbar" class="progress-bar progress-bar-info">
+                                                    <span class="sr-only">4% Complete</span>
+                                                </div>
+                                            </div>
+                                            <div>4%</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="content-row">
+                                        <p>SM-N900L</p>
+                                        <div>
+                                            <div class="progress progress-xs">
+                                                <div style="width: 4%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="20" role="progressbar" class="progress-bar progress-bar-info">
+                                                    <span class="sr-only">4% Complete</span>
+                                                </div>
+                                            </div>
+                                            <div>4%</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="content-row">
+                                        <p>Others</p>
+                                        <div>
+                                            <div class="progress progress-xs">
+                                                <div style="width: 77%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="20" role="progressbar" class="progress-bar progress-bar-info">
+                                                    <span class="sr-only">77% Complete</span>
+                                                </div>
+                                            </div>
+                                            <div>77%</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Country -->
+                            <div class="progress-table col-sm-6">
+                                <label>Country</label>
+                                <div class="title-body">
+                                    <div class="col-xs-3 text-small">Country</div>
+                                    <div class="col-xs-9 text-small">Percentage</div>
+                                </div>
+                                <div class="content-body">
+                                    <div class="content-row">
+                                        <p>KR</p>
+                                        <div>
+                                            <div class="progress progress-xs">
+                                                <div style="width: 98%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="20" role="progressbar" class="progress-bar progress-bar-danger">
+                                                    <span class="sr-only">98% Complete</span>
+                                                </div>
+                                            </div>
+                                            <div>98%</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="content-row">
+                                        <p>US</p>
+                                        <div>
+                                            <div class="progress progress-xs">
+                                                <div style="width: 0.68%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="20" role="progressbar" class="progress-bar progress-bar-warning">
+                                                    <span class="sr-only">0.68% Complete</span>
+                                                </div>
+                                            </div>
+                                            <div>0.68%</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="content-row">
+                                        <p>JP</p>
+                                        <div>
+                                            <div class="progress progress-xs">
+                                                <div style="width: 0.27%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="20" role="progressbar" class="progress-bar progress-bar-info">
+                                                    <span class="sr-only">0.27% Complete</span>
+                                                </div>
+                                            </div>
+                                            <div>0.27%</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="content-row">
+                                        <p>GP</p>
+                                        <div>
+                                            <div class="progress progress-xs">
+                                                <div style="width: 0.18%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="20" role="progressbar" class="progress-bar progress-bar-info">
+                                                    <span class="sr-only">0.18% Complete</span>
+                                                </div>
+                                            </div>
+                                            <div>0.18%</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="content-row">
+                                        <p>TW</p>
+                                        <div>
+                                            <div class="progress progress-xs">
+                                                <div style="width: 0.12%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="20" role="progressbar" class="progress-bar progress-bar-info">
+                                                    <span class="sr-only">0.12% Complete</span>
+                                                </div>
+                                            </div>
+                                            <div>0.12%</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="content-row">
+                                        <p>Others</p>
+                                        <div>
+                                            <div class="progress progress-xs">
+                                                <div style="width: 0.72%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="20" role="progressbar" class="progress-bar progress-bar-info">
+                                                    <span class="sr-only">0.72% Complete</span>
+                                                </div>
+                                            </div>
+                                            <div>0.72%</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <!-- Stack Trace, etc.. -->
+        <div class="row">
+            <div class="col-lg-12">
+                <section class="panel">
+                    <header class="panel-heading tab-bg-dark-navy-blue" style="background:#e6e7ec !important">
+                        <ul class="nav nav-tabs">
+                            <li class="active">
+                                <a data-toggle="tab" href="#callstacks">Callstacks</a>
+                            </li>
+                            <li class="">
+                                <a data-toggle="tab" href="#instance">Instance</a>
+                            </li>
+                            <li class="">
+                                <a data-toggle="tab" href="#breadcrumb">Breadcrumb</a>
+                            </li>
+                            <li class="">
+                                <a data-toggle="tab" href="#comments">Comments</a>
+                            </li>
+                        </ul>
+                        <span class="tools pull-right" style="margin-top:-18px">
+                            <a href="javascript:;" class="fa fa-refresh"></a>
+                            <a href="javascript:;" class="fa fa-chevron-down"></a>
+                        </span>
+                    </header>
+                    <div class="panel-body">
+                        <div class="tab-content">
+                            <div id="callstacks" class="tab-pane active">
+                                <table class="table table-bordered table-striped">
+                                    <tbody>
+                                        <tr>
+                                            <td class="bold">0</td>
+                                            <td class="table-text-ellipsis-1">
+                                                <div>java.lang.RuntimeException: An error occured while executing doInBackground()</div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="bold">1</td>
+                                            <td class="table-text-ellipsis-1">
+                                                <div>at android.os.AsyncTask$3.done (AsyncTask.java:300)</div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="bold">2</td>
+                                            <td class="table-text-ellipsis-1">
+                                                <div>at java.util.concurrent.FutureTask.finishCompletion (FutureTask.java:355)</div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="bold">3</td>
+                                            <td class="table-text-ellipsis-1">
+                                                <div>at java.util.concurrent.FutureTask.setException (FutureTask.java:222)</div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="bold">4</td>
+                                            <td class="table-text-ellipsis-1">
+                                                <div>at java.util.concurrent.FutureTask.run (FutureTask.java:242)</div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="bold">5</td>
+                                            <td class="table-text-ellipsis-1">
+                                                <div>at android.os.AsyncTask$SerialExecutor$1.run (AsyncTask.java:231)</div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="bold">6</td>
+                                            <td class="table-text-ellipsis-1">
+                                                <div>at java.util.concurrent.ThreadPoolExecutor.runWorker (ThreadPoolExecutor.java:1112)</div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="bold">7</td>
+                                            <td class="table-text-ellipsis-1">
+                                                <div>at java.util.concurrent.ThreadPoolExecutor$Worker.run (ThreadPoolExecutor.java:587)</div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="bold">8</td>
+                                            <td class="table-text-ellipsis-1">
+                                                <div>at java.lang.Thread.run Caused by: java.lang.NullPointerException (Thread.java:841)</div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="bold">9</td>
+                                            <td class="table-text-ellipsis-1">
+                                                <div>at com.teletalkvi.core.BaseAsyncTask.doInBackground (BaseAsyncTask.java:62)</div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="bold">10</td>
+                                            <td class="table-text-ellipsis-1">
+                                                <div>at com.teletalkvi.core.BaseAsyncTask.doInBackground (BaseAsyncTask.java:1)</div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="bold">11</td>
+                                            <td class="table-text-ellipsis-1">
+                                                <div>at android.os.AsyncTask$2.call (AsyncTask.java:288)</div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="bold">12</td>
+                                            <td class="table-text-ellipsis-1">
+                                                <div>at java.util.concurrent.FutureTask.run (FutureTask.java:237)</div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="bold">13</td>
+                                            <td class="table-text-ellipsis-1">
+                                                <div>... 4 more</div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div id="instance" class="tab-pane">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <th data-label="APP Ver." data-mini="APP" style="width:18%"></th>
+                                        <th data-label="Country" data-mini="Area" style="widht:15%"></th>
+                                        <th data-label="Device" data-mini="Device"></th>
+                                        <th data-label="OS Ver." data-mini="OS" style="width:14%"></th>
+                                        <th data-label="Wifi" data-mini="Wifi" style="width:10%"></th>
+                                        <th data-label="Mobile" data-mini="Mobile" style="width:10%"></th>
+                                        <th data-label="Logs" data-mini="Logs" style="width:10%"></th>
+                                        <th data-label="Details" data-mini="Details" style="width:12%"></th>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>2.0.6</td>
+                                            <td>KR</td>
+                                            <td>LG-F200S</td>
+                                            <td>4.4.2</td>
+                                            <td><i class="fa fa-check-circle text-success" style="font-size:120%"></i></td>
+                                            <td><i class="fa fa-times-circle text-danger" style="font-size:120%"></i></td>
+                                            <td>View</td>
+                                            <td style="cursor:pointer" onclick="openDetails(this)"><i class="fa fa-chevron-down"></i></td>
+                                        </tr>
+                                        <tr style="display:none">
+                                            <td colspan="8">
+                                                <form class="form-horizontal bucket-form" method="get">
+                                                    <div class="form-group">
+                                                        <label class="col-xs-3 col-sm-3 control-label">
+                                                            App Version
+                                                        </label>
+                                                        <div class="col-xs-3 col-sm-3">
+                                                            <p class="form-control-static text-ellipsis">
+                                                                1.1
+                                                            </p>
+                                                        </div>
+
+                                                        <label class="col-xs-3 col-sm-3 control-label">
+                                                            OS Version
+                                                        </label>
+                                                        <div class="col-xs-3 col-sm-3">
+                                                            <p class="form-control-static text-ellipsis">
+                                                                4.4.2
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="col-xs-3 col-sm-3 control-label">
+                                                            Device
+                                                        </label>
+                                                        <div class="col-xs-3 col-sm-3">
+                                                            <p class="form-control-static text-ellipsis">
+                                                                SHV-E250L
+                                                            </p>
+                                                        </div>
+
+                                                        <label class="col-xs-3 col-sm-3 control-label">
+                                                            Brand
+                                                        </label>
+                                                        <div class="col-xs-3 col-sm-3">
+                                                            <p class="form-control-static text-ellipsis">
+                                                                SANSUMG
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="col-xs-3 col-sm-3 control-label">
+                                                            Apps Running
+                                                        </label>
+                                                        <div class="col-xs-3 col-sm-3">
+                                                            <p class="form-control-static text-ellipsis">
+                                                                40
+                                                            </p>
+                                                        </div>
+
+                                                        <label class="col-xs-3 col-sm-3 control-label">
+                                                            Ms From Start
+                                                        </label>
+                                                        <div class="col-xs-3 col-sm-3">
+                                                            <p class="form-control-static text-ellipsis">
+                                                                4502
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="col-xs-3 col-sm-3 control-label">
+                                                            Country
+                                                        </label>
+                                                        <div class="col-xs-3 col-sm-3">
+                                                            <p class="form-control-static text-ellipsis">
+                                                                KR
+                                                            </p>
+                                                        </div>
+
+                                                        <label class="col-xs-3 col-sm-3 control-label">
+                                                            Locale
+                                                        </label>
+                                                        <div class="col-xs-3 col-sm-3">
+                                                            <p class="form-control-static text-ellipsis">
+                                                                한국어
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="col-xs-3 col-sm-3 control-label">
+                                                            GPS
+                                                        </label>
+                                                        <div class="col-xs-3 col-sm-3">
+                                                            <p class="form-control-static text-ellipsis">
+                                                                <i class="fa fa-times-circle text-danger" style="font-size:120%"></i>
+                                                            </p>
+                                                        </div>
+
+                                                        <label class="col-xs-3 col-sm-3 control-label">
+                                                            Battery
+                                                        </label>
+                                                        <div class="col-xs-3 col-sm-3">
+                                                            <p class="form-control-static text-ellipsis">
+                                                                66%
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="col-xs-3 col-sm-3 control-label">
+                                                            Wifi
+                                                        </label>
+                                                        <div class="col-xs-3 col-sm-3">
+                                                            <p class="form-control-static text-ellipsis">
+                                                                <i class="fa fa-check-circle text-success" style="font-size:120%"></i>
+                                                            </p>
+                                                        </div>
+
+                                                        <label class="col-xs-3 col-sm-3 control-label">
+                                                            Mobile Network
+                                                        </label>
+                                                        <div class="col-xs-3 col-sm-3">
+                                                            <p class="form-control-static text-ellipsis">
+                                                                <i class="fa fa-times-circle text-danger" style="font-size:120%"></i>
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="col-xs-3 col-sm-3 control-label">
+                                                            Screen
+                                                        </label>
+                                                        <div class="col-xs-3 col-sm-3">
+                                                            <p class="form-control-static text-ellipsis">
+                                                                720 X 1280
+                                                            </p>
+                                                        </div>
+
+                                                        <label class="col-xs-3 col-sm-3 control-label">
+                                                            DPI
+                                                        </label>
+                                                        <div class="col-xs-3 col-sm-3">
+                                                            <p class="form-control-static text-ellipsis">
+                                                                142x124
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="col-xs-3 col-sm-3 control-label">
+                                                            Created Date
+                                                        </label>
+                                                        <div class="col-xs-3 col-sm-3">
+                                                            <p class="form-control-static text-ellipsis">
+                                                                2014-11-19 18:05:03
+                                                            </p>
+                                                        </div>
+
+                                                        <label class="col-xs-3 col-sm-3 control-label">
+                                                            Memory Avail
+                                                        </label>
+                                                        <div class="col-xs-3 col-sm-3">
+                                                            <p class="form-control-static text-ellipsis">
+                                                                4
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="col-xs-3 col-sm-3 control-label">
+                                                            Memory Total
+                                                        </label>
+                                                        <div class="col-xs-3 col-sm-3">
+                                                            <p class="form-control-static text-ellipsis">
+                                                                Xx
+                                                            </p>
+                                                        </div>
+
+                                                        <label class="col-xs-3 col-sm-3 control-label">
+                                                            Memory Max
+                                                        </label>
+                                                        <div class="col-xs-3 col-sm-3">
+                                                            <p class="form-control-static text-ellipsis">
+                                                                xX
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="col-xs-3 col-sm-3 control-label">
+                                                            Instance ID
+                                                        </label>
+                                                        <div class="col-xs-3 col-sm-3">
+                                                            <p class="form-control-static text-ellipsis">
+                                                                #1736422
+                                                            </p>
+                                                        </div>
+
+                                                        <label class="col-xs-3 col-sm-3 control-label">
+                                                            SDK Version
+                                                        </label>
+                                                        <div class="col-xs-3 col-sm-3">
+                                                            <p class="form-control-static text-ellipsis">
+                                                                0.95
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="col-xs-3 col-sm-3 control-label">
+                                                            Screen Orientation
+                                                        </label>
+                                                        <div class="col-xs-3 col-sm-3">
+                                                            <p class="form-control-static text-ellipsis">
+                                                                Horizon
+                                                            </p>
+                                                        </div>
+
+                                                        <label class="col-xs-3 col-sm-3 control-label">
+                                                            Rooted
+                                                        </label>
+                                                        <div class="col-xs-3 col-sm-3">
+                                                            <p class="form-control-static text-ellipsis">
+                                                                <i class="fa fa-times-circle text-danger" style="font-size:120%"></i>
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="col-xs-3 col-sm-3 control-label">
+                                                            Build ID
+                                                        </label>
+                                                        <div class="col-xs-9 col-sm-9">
+                                                            <p class="form-control-static text-ellipsis">
+                                                                0000-00000000-000000
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>2.0.6</td>
+                                            <td>KR</td>
+                                            <td>LG-F350S</td>
+                                            <td>4.4.2</td>
+                                            <td><i class="fa fa-check-circle text-success" style="font-size:120%"></i></td>
+                                            <td><i class="fa fa-check-circle text-success" style="font-size:120%"></i></td>
+                                            <td>View</td>
+                                            <td style="cursor:pointer" onclick="openDetails(this)"><i class="fa fa-chevron-down"></i></td>
+                                        </tr>
+                                        <tr style="display:none">
+                                            <td colspan="8">
+                                                <form class="form-horizontal bucket-form" method="get">
+                                                    2.0.6
+                                                </form>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>2.0.6</td>
+                                            <td>KR</td>
+                                            <td>SHV-E250L</td>
+                                            <td>4.4.2</td>
+                                            <td><i class="fa fa-check-circle text-success" style="font-size:120%"></i></td>
+                                            <td><i class="fa fa-circle text-danger" style="font-size:120%"></i></td>
+                                            <td>View</td>
+                                            <td style="cursor:pointer" onclick="openDetails(this)"><i class="fa fa-chevron-down"></i></td>
+                                        </tr>
+                                        <tr style="display:none">
+                                            <td colspan="8">
+                                                <form class="form-horizontal bucket-form" method="get">
+                                                    2.0.6
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div id="breadcrumb" class="tab-pane">Breadcrumb</div>
+                            <div id="comments" class="tab-pane">
+                                <div class="row">
+                                    <div class="comment-body col-sm-12">
+                                        <div class="comment-block">
+                                            <div class="profile">
+                                                <img src="<%= resourceUrl('/images/avatar1_small.jpg') %>" alt="" />
+                                            </div>
+                                            <div class="">
+                                            </div>
+                                            <div class="content">
+                                                <div>
+                                                    <label>John Doe</label>
+                                                    <span>12 minute ago</span>
+                                                    <p>
+                                                        <span class="text-primary text-bold">@James Kameron</span> Fixed a bug, thank you.
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="comment-body col-sm-12">
+                                        <div class="comment-block">
+                                            <div class="profile">
+                                                <img src="<%= resourceUrl('/images/avatar1_small.jpg') %>" alt="" />
+                                            </div>
+                                            <div class="content">
+                                                <div>
+                                                    <label>John Doe</label>
+                                                    <span>5 minute ago</span>
+                                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus lobortis erat et sollicitudin efficitur. Maecenas eget massa eget mauris ornare commodo. Aenean nunc nibh, rutrum semper libero sit amet, scelerisque ultricies diam. Nunc ex risus, malesuada non risus ut, dapibus ullamcorper felis. Suspendisse quis sem pretium, imperdiet magna ac, facilisis magna. Aenean auctor luctus dapibus. Donec convallis sem tristique, sodales eros sit amet, eleifend quam. Aliquam id rhoncus tortor. Praesent fringilla diam eros, non vehicula lectus sodales ac.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-12">
+                                        <form id="comment-form" class="form-horizontal">
+                                            <div class="input-group m-bot15">
+                                                <input type="text" class="form-control">
+                                                <span class="input-group-btn">
+                                                    <button class="btn btn-danger" type="submit">Comment</button>
+                                                </span>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </section>
+</section>
+<!--main content end-->
