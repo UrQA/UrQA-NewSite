@@ -21,6 +21,18 @@ router.get('/projects/list', function(req, res, next) {
     })
 });
 
+router.get('/project/:id', function(req, res, next) {
+    request('https://honeyqa.io:8080/project/'+req.params.id, function (error, response, body) {
+        if (!error && response.statusCode == 200) {
+            res.status(200);
+            res.json(body);
+        }else{
+            res.status(500);
+            res.json('{}');
+        }
+    })
+});
+
 router.get('/project/:id/sdk', function(req, res, next) {
     request('https://honeyqa.io:8080/project/'+req.params.id+'/most/errorbysdkversion', function (error, response, body) {
         if (!error && response.statusCode == 200) {

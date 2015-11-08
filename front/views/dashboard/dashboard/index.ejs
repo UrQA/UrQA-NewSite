@@ -7,7 +7,7 @@
                 <!--breadcrumbs start -->
                 <ul class="breadcrumb">
                     <li><a href="/projects"><i class="fa fa-home"></i> Home</a></li>
-                    <li><a href="#">텔레톡비-v2</a></li>
+                    <li><a id="load_title" href="#"><i id="load_icon" class="fa fa-refresh fa-spin"></i></a></li>
                     <li class="active">Dashboard</li>
                 </ul>
                 <!--breadcrumbs end -->
@@ -144,8 +144,12 @@
 <script id="textDataTmpl" type="text/x-jsrender">
     <span>{{:data}}</span>
 </script>
+<script id="plainDataTmpl" type="text/x-jsrender">
+{{:data}}
+</script>
 <script>
     var template = $.templates("#textDataTmpl");
+    var plainTemplate = $.templates("#plainDataTmpl");
     var b, s = -1;
     var err = false;
     $.ajax({
@@ -195,18 +199,16 @@
         }
     });
     $.ajax({
-        url:'/api/project/<%= data.id %>/sdk',
+        url:'/api/project/<%= data.id %>',
         success:function(data){
-            var htmlOutput = template.render(data);
-            $("#load_sdk").html(htmlOutput);
-            updateRate();
+            console.log(JSON.parse(data).title);
+            var htmlOutput = plainTemplate.render({data:JSON.parse(data).title});
+            $("#load_title").html(htmlOutput);
         },
         error: function(jqXHR, textStatus, errorThrown) {
             var data = {data:'<i class="fa fa-exclamation-triangle"></i>'};
-            var htmlOutput = template.render(data);
-            $("#load_sdk").html(htmlOutput);
-            updateRate();
-            err = true;
+            var htmlOutput = plainTemplate.render(data);
+            $("#load_title").html(htmlOutput);
         }
     });
     function updateRate(){
