@@ -9,7 +9,6 @@ angular.module("app")
         $scope.project = JSON.parse(PROJECT_INFO).id;
         $scope.elementJquery = $($element);
         var dailyChart = $scope.elementJquery.find("#daily-visit-chart");
-
         var options = {
             grid: {
                 backgroundColor: {
@@ -32,7 +31,6 @@ angular.module("app")
                     y: 25
                 },
             },
-
             legend: {
                 labelBoxBorderColor: "#ccc",
                 show: false,
@@ -42,10 +40,10 @@ angular.module("app")
                 stack: true,
                 shadowSize: 0,
                 highlightColor: 'rgba(30,120,120,.5)'
-
             },
             xaxis: {
-                mode: "time",
+                mode : 'time',
+                type : 'timeseries',
                 timeformat: "%m/%d",
                 minTickSize: [1, "day"],
                 show: true,

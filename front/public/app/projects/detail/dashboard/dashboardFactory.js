@@ -6,7 +6,7 @@ angular.module("app")
     }])
     .factory('DashboardErrorDailyService', ['$resource', function($resource) {
         return function(id) {
-            return $resource('https://honeyqa.io:8080/project/:id/weekly_appruncount', {id:id});
+            return $resource('https://honeyqa.io:8080/project/:id/weekly_appruncount2', {id:id});
         };
     }])
     .factory('DashboardBugService', ['$resource', function($resource){

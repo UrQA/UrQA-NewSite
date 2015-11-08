@@ -47,7 +47,7 @@ app.config(function ($stateProvider) {
                 } }
             })
             .state("projects.add", {
-                url: "^projects/add",
+                url: "add",
                 templateUrl: "/static/app/projects/projects.edit.html",
                 controller: "ProjectEditCtrl"
             });

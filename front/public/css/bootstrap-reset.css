@@ -147,14 +147,14 @@ ul {
 /*button*/
 
 .btn-default {
-    background-color: #c7cbd6;
-    border-color: #c7cbd6;
+    background-color: #1da7ee;
+    border-color: #0073bb;
     color: #fff;
 }
 
 .btn-default:hover, .btn-default:focus, .btn-default:active, .btn-default.active, .open .dropdown-toggle.btn-default {
-    background-color: #b0b5b9;
-    border-color: #b0b5b9;
+    background-color: #0073bb;
+    border-color: #0073bb;
     color: #fff;
 }
 
