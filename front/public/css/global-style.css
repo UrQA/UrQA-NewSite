@@ -394,13 +394,13 @@ div.progress-table .content-row:after {
 div.progress-table .content-row > p {
 	display:block;
 	float:left;
-	width:25%;
+	width:50%;
 	margin:0;
 	padding-right:15px;
 	font-weight: 700;
 }
 div.progress-table .content-row > div {
-	width:75%;
+	width:50%;
 	float:left;
 	/*padding-left:15px;*/
 	padding-right:15px;

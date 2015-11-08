@@ -13,20 +13,7 @@
         </div>
 
         <div id="statistics-chart-area" class="row">
-            <div class="col-md-4">
-                <section class="panel">
-                    <header class="panel-heading">
-                        Daily Active Users
-                        <span class="tools pull-right">
-                            <a href="javascript:;" class="fa fa-chevron-down"></a>
-                         </span>
-                    </header>
-                    <div class="panel-body">
-                        <div id="dau-bar"></div>
-                    </div>
-                </section>
-            </div>
-            <div class="col-md-4">
+            <div class="col-md-12">
                 <section class="panel">
                     <header class="panel-heading">
                         Crash Rates
@@ -42,18 +29,59 @@
             <div class="col-md-4">
                 <section class="panel">
                     <header class="panel-heading">
-                        Popular APP Version
+                        Rank Rates
                         <span class="tools pull-right">
                             <a href="javascript:;" class="fa fa-chevron-down"></a>
-                        </span>
+                         </span>
                     </header>
                     <div class="panel-body">
-                        <div class="row">
-                            <!-- OS Version -->
+                        <div id="graph-donut-rank"></div>
+                    </div>
+                </section>
+            </div>
+            <div class="col-md-4">
+                <section class="panel">
+                    <header class="panel-heading">
+                        SDK Rates
+                        <span class="tools pull-right">
+                            <a href="javascript:;" class="fa fa-chevron-down"></a>
+                         </span>
+                    </header>
+                    <div class="panel-body">
+                        <div id="graph-donut-sdk"></div>
+                    </div>
+                </section>
+            </div>
+            <div class="col-md-4">
+                <section class="panel">
+                    <header class="panel-heading">
+                        Country Rates
+                        <span class="tools pull-right">
+                            <a href="javascript:;" class="fa fa-chevron-down"></a>
+                         </span>
+                    </header>
+                    <div class="panel-body">
+                        <div id="graph-donut-country"></div>
+                    </div>
+                </section>
+            </div>
+
+            <!--
+                <div class="col-md-12">
+                    <section class="panel">
+                        <header class="panel-heading">
+                            Popular APP Version
+                            <span class="tools pull-right">
+                                <a href="javascript:;" class="fa fa-chevron-down"></a>
+                            </span>
+                        </header>
+                        <div class="panel-body">
+                            <div class="row">
+                                <!-- OS Version
                             <div class="progress-table col-sm-12" style="height:326px">
                                 <div class="title-body">
-                                    <div class="col-xs-3 text-small">Version</div>
-                                    <div class="col-xs-9 text-small">Percentage</div>
+                                    <div class="col-xs-4 text-small">Version</div>
+                                    <div class="col-xs-8 text-small">Percentage</div>
                                 </div>
                                 <div class="content-body">
                                     <div class="content-row">
@@ -194,7 +222,6 @@
                 </section>
             </div>
         </div>
-
         <div class="row">
             <div class="col-sm-12">
                 <section class="panel">
@@ -217,9 +244,23 @@
                 </section>
             </div>
         </div>
-
-        <div class="row">
+        -->
             <div class="col-sm-12">
+                <section class="panel">
+                    <header class="panel-heading">
+                        Version Error Rate
+                        <span class="tools pull-right">
+                            <a href="javascript:;" class="fa fa-chevron-down"></a>
+                        </span>
+                    </header>
+                    <div class="panel-body">
+                        <div class="chart">
+                            <div id="version-chart"></div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <div class="col-md-12">
                 <section class="panel">
                     <header class="panel-heading">
                         Class Error Rate
@@ -229,10 +270,7 @@
                     </header>
                     <div class="panel-body">
                         <div class="row">
-                            <div class="col-sm-3">
-                                <div id="graph-donut"></div>
-                            </div>
-                            <div class="col-sm-9">
+                            <div class="col-sm-12">
                                 <div class="progress-table large-table col-sm-12">
                                     <div class="title-body">
                                         <div class="col-xs-9 text-small">Class</div>
@@ -389,27 +427,6 @@
                     </div>
                 </section>
             </div>
-        </div>
-
-        <div class="row">
-            <div class="col-sm-12">
-                <section class="panel">
-                    <header class="panel-heading">
-                        Version Error Rate
-                        <span class="tools pull-right">
-                            <a href="javascript:;" class="fa fa-chevron-down"></a>
-                        </span>
-                    </header>
-                    <div class="panel-body">
-                        <div class="chart">
-                            <div id="version-chart"></div>
-                        </div>
-                    </div>
-                </section>
-            </div>
-        </div>
-
-        <div class="row">
             <div class="col-sm-12">
                 <section class="panel">
                     <header class="panel-heading">
@@ -425,16 +442,13 @@
                     </div>
                 </section>
             </div>
-        </div>
-
-        <div class="row">
             <div class="col-sm-12">
                 <section class="panel">
                     <header class="panel-heading">
                         Error by Activity
-                        <span class="tools pull-right">
-                            <a href="javascript:;" class="fa fa-chevron-down"></a>
-                        </span>
+                            <span class="tools pull-right">
+                                <a href="javascript:;" class="fa fa-chevron-down"></a>
+                            </span>
                     </header>
                     <div class="panel-body">
                         <div class="progress-table large-table col-sm-12">
@@ -545,7 +559,6 @@
                 </section>
             </div>
         </div>
-
         <!-- page end-->
     </section>
 </section>

@@ -1,43 +1,124 @@
 $(document).ready(function()
 {
+
+	$.ajax({
+		url:'https://honeyqa.io:8080/',
+		success:function(data){
+			$('#time').append(data);
+		}
+	});
+
+	/* Bar Graph 현재 사용 안함
 	Morris.Bar({
 	    element: 'dau-bar',
 	    data: [
-	        {x: '2011 Q1', y: 3, z: 2, a: 3},
-	        {x: '2011 Q2', y: 2, z: null, a: 1},
-	        {x: '2011 Q3', y: 0, z: 2, a: 4},
-	        {x: '2011 Q4', y: 2, z: 4, a: 3}
+	        {x: '11/01', y: 3, z: 2, a: 3, b: 5, c: null},
+	        {x: '11/02', y: 2, z: null, a: 1, b: 5, c: null},
+			{x: '11/02', y: 2, z: null, a: 1, b: 5, c: null},
+			{x: '11/02', y: 2, z: null, a: 1, b: 5, c: null}
 	    ],
 	    xkey: 'x',
-	    ykeys: ['y', 'z', 'a'],
-	    labels: ['Y', 'Z', 'A'],
-	    barColors:['#E67A77','#D9DD81','#79D1CF']
+	    ykeys: ['y', 'z', 'a', 'b', 'c'],
+	    labels: ['Y', 'Z', 'A', 'B', 'C'],
+	    barColors:['#E67A77','#D9DD81','#79D1CF','#79D1CF','#79D1CF']
 	});
+	*/
 
 
 	var day_data = [
-	    {"elapsed": "I", "value": 34},
-	    {"elapsed": "II", "value": 24},
-	    {"elapsed": "III", "value": 3},
-	    {"elapsed": "IV", "value": 12},
-	    {"elapsed": "V", "value": 13},
-	    {"elapsed": "VI", "value": 22},
-	    {"elapsed": "VII", "value": 5},
-	    {"elapsed": "VIII", "value": 26},
-	    {"elapsed": "IX", "value": 12},
-	    {"elapsed": "X", "value": 19}
+	    {"elapsed": "11/01", "value": 34},
+	    {"elapsed": "11/02", "value": 24},
+	    {"elapsed": "11/03", "value": 3},
+	    {"elapsed": "11/04", "value": 12},
+	    {"elapsed": "11/05", "value": 13},
+	    {"elapsed": "11/06", "value": 22},
+	    {"elapsed": "11/07", "value": 5}
 	];
-	Morris.Line({
+	Morris.Area({
 	    element: 'crash-rate',
 	    data: day_data,
 	    xkey: 'elapsed',
 	    ykeys: ['value'],
 	    labels: ['value'],
-	    lineColors:['#1FB5AD'],
+	    lineColors:['#79D1CF'],
 	    parseTime: false
 	});
 
+	Morris.Donut({
+		element: 'graph-donut-rank',
+		data: [
+			{value: 17.6, label: 'com.android.volley.toolbox.d', formatted: '17.6%' },
+			{value: 13.7, label: 'at droom.sleepIfUCan.activity.af (:211)', formatted: '13.7%' },
+			{value: 11, label: 'droom.sleepIfUCan.activity.af', formatted: '11%' },
+			{value: 8.7, label: 'android.database.sqlite.SQLiteStatement', formatted: '8.7%' },
+			{value: 8.5, label: 'android.content.res.Resources', formatted: '8.5%' },
+			{value: 5.3, label: 'android.os.BinderProxy', formatted: '5.3%' },
+			{value: 4.5, label: 'at android.widget.NumberPicker$ChangeCurrentByOneFromLongPressCommand', formatted: '4.5%' },
+			{value: 4.3, label: 'at android.content.res.Resources', formatted: '4.3%' },
+			{value: 4, label: 'android.database.sqlite.SQLiteStatement', formatted: '4%' },
+			{value: 2, label: 'android.database.sqlite.SQLiteConnection', formatted: '2%' },
+			{value: 1.6, label: 'droom.sleepIfUCan.activity.SelectPictureActivity', formatted: '1.6%' },
+			{value: 18.8, label: 'Others', formatted: '18.8%' },
+		],
+		backgroundColor: '#fff',
+		labelColor: '#1fb5ac',
+		colors: [
+			'#E67A77','#D9DD81','#79D1CF','#95D7BB'
+		],
+		formatter: function (x, data) { return data.formatted; }
+	});
 
+	Morris.Donut({
+		element: 'graph-donut-sdk',
+		data: [
+			{value: 17.6, label: 'com.android.volley.toolbox.d', formatted: '17.6%' },
+			{value: 13.7, label: 'at droom.sleepIfUCan.activity.af (:211)', formatted: '13.7%' },
+			{value: 11, label: 'droom.sleepIfUCan.activity.af', formatted: '11%' },
+			{value: 8.7, label: 'android.database.sqlite.SQLiteStatement', formatted: '8.7%' },
+			{value: 8.5, label: 'android.content.res.Resources', formatted: '8.5%' },
+			{value: 5.3, label: 'android.os.BinderProxy', formatted: '5.3%' },
+			{value: 4.5, label: 'at android.widget.NumberPicker$ChangeCurrentByOneFromLongPressCommand', formatted: '4.5%' },
+			{value: 4.3, label: 'at android.content.res.Resources', formatted: '4.3%' },
+			{value: 4, label: 'android.database.sqlite.SQLiteStatement', formatted: '4%' },
+			{value: 2, label: 'android.database.sqlite.SQLiteConnection', formatted: '2%' },
+			{value: 1.6, label: 'droom.sleepIfUCan.activity.SelectPictureActivity', formatted: '1.6%' },
+			{value: 18.8, label: 'Others', formatted: '18.8%' },
+		],
+		backgroundColor: '#fff',
+		labelColor: '#1fb5ac',
+		colors: [
+			'#E67A77','#D9DD81','#79D1CF','#95D7BB'
+		],
+		formatter: function (x, data) { return data.formatted; }
+	});
+
+	Morris.Donut({
+		element: 'graph-donut-country',
+		data: [
+			{value: 17.6, label: 'com.android.volley.toolbox.d', formatted: '17.6%' },
+			{value: 13.7, label: 'at droom.sleepIfUCan.activity.af (:211)', formatted: '13.7%' },
+			{value: 11, label: 'droom.sleepIfUCan.activity.af', formatted: '11%' },
+			{value: 8.7, label: 'android.database.sqlite.SQLiteStatement', formatted: '8.7%' },
+			{value: 8.5, label: 'android.content.res.Resources', formatted: '8.5%' },
+			{value: 5.3, label: 'android.os.BinderProxy', formatted: '5.3%' },
+			{value: 4.5, label: 'at android.widget.NumberPicker$ChangeCurrentByOneFromLongPressCommand', formatted: '4.5%' },
+			{value: 4.3, label: 'at android.content.res.Resources', formatted: '4.3%' },
+			{value: 4, label: 'android.database.sqlite.SQLiteStatement', formatted: '4%' },
+			{value: 2, label: 'android.database.sqlite.SQLiteConnection', formatted: '2%' },
+			{value: 1.6, label: 'droom.sleepIfUCan.activity.SelectPictureActivity', formatted: '1.6%' },
+			{value: 18.8, label: 'Others', formatted: '18.8%' },
+		],
+		backgroundColor: '#fff',
+		labelColor: '#1fb5ac',
+		colors: [
+			'#E67A77','#D9DD81','#79D1CF','#95D7BB'
+		],
+		formatter: function (x, data) { return data.formatted; }
+	});
+
+
+
+	/* country 사용 안함
 	var world_data = {
 	    "af":"16.63",
 	    "al":"11.58",
@@ -222,7 +303,7 @@ $(document).ready(function()
 	    "zm":"15.69",
 	    "zw":"5.57"
 	};
-
+	*/
 
     (function(){
 	    var t;
@@ -255,6 +336,7 @@ $(document).ready(function()
 	            options.animation = true;
 	        }
 
+			/* country 사용 안함
 	        (function(){
 	        	var okeys = [];
 		        var ovalues = [];
@@ -265,7 +347,7 @@ $(document).ready(function()
 				}
 				for (var i = 0; i < ovalues.length; i ++)
 				{
-					for (var j = i + 1; j < ovalues.length; j ++) 
+					for (var j = i + 1; j < ovalues.length; j ++)
 					{
 						if (ovalues[i] < ovalues[j])
 						{
@@ -309,6 +391,7 @@ $(document).ready(function()
 		        }
 		        var myLine = new Chart(document.getElementById("world_vmap_info").getContext("2d")).Bar(barChartData);
 	        })();
+	        */
 
 	        (function(){
 	        	var barChartData = {
@@ -329,29 +412,7 @@ $(document).ready(function()
 	}());
 
 
-	Morris.Donut({
-	    element: 'graph-donut',
-	    data: [
-	    	{value: 17.6, label: 'com.android.volley.toolbox.d', formatted: '17.6%' },
-	        {value: 13.7, label: 'at droom.sleepIfUCan.activity.af (:211)', formatted: '13.7%' },
-	        {value: 11, label: 'droom.sleepIfUCan.activity.af', formatted: '11%' },
-	        {value: 8.7, label: 'android.database.sqlite.SQLiteStatement', formatted: '8.7%' },
-	        {value: 8.5, label: 'android.content.res.Resources', formatted: '8.5%' },
-	        {value: 5.3, label: 'android.os.BinderProxy', formatted: '5.3%' },
-	        {value: 4.5, label: 'at android.widget.NumberPicker$ChangeCurrentByOneFromLongPressCommand', formatted: '4.5%' },
-	        {value: 4.3, label: 'at android.content.res.Resources', formatted: '4.3%' },
-	        {value: 4, label: 'android.database.sqlite.SQLiteStatement', formatted: '4%' },
-	        {value: 2, label: 'android.database.sqlite.SQLiteConnection', formatted: '2%' },
-	        {value: 1.6, label: 'droom.sleepIfUCan.activity.SelectPictureActivity', formatted: '1.6%' },
-	        {value: 18.8, label: 'Others', formatted: '18.8%' },
-	    ],
-	    backgroundColor: '#fff',
-	    labelColor: '#1fb5ac',
-	    colors: [
-	        '#E67A77','#D9DD81','#79D1CF','#95D7BB'
-	    ],
-	    formatter: function (x, data) { return data.formatted; }
-	});
+
 
 
 	(function(){
@@ -375,7 +436,9 @@ $(document).ready(function()
 		        groups: [
 		            ['data1','data2', 'data3', 'data4', 'data5']
 		        ]
-		    },
+		    },color: {
+				pattern: ['#1fb5ac','#E67A77','#D9DD81','#f0ad4e','#95D7BB']
+			},
 		    axis: {
 		        rotated: true,
 		        x: {
