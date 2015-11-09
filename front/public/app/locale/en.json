@@ -27,5 +27,12 @@
     "2": "Critical",
     "3": "Major",
     "4": "Minor"
+  },
+
+  "Status": {
+    "0": "New",
+    "1": "Open",
+    "2": "Fixed",
+    "3": "Ignore"
   }
 }

@@ -272,6 +272,23 @@ router.get('/project/:id/errors/latest', function(req, res, next) {
         })
 });
 
+router.get('/project/:id/weekly/rank', function(req, res, next) {
+    request('https://honeyqa.io:8080/project/'+req.params.id+'/rank_rate', function (error, response, body) {
+        if (!error && response.statusCode == 200) {
+            res.status(200);
+            var ranks = JSON.parse(body);
+            console.log(ranks);
+            for(var i in ranks){
+                ranks[i].rank = locale.RANK[ranks[i].rank];
+            }
+            res.json(ranks);
+        }else{
+            res.status(500);
+            res.json('{}');
+        }
+    })
+});
+
 function checkAll(d){
     if(d == '' || d == 'all')
         return true;
