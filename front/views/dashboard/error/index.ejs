@@ -6,8 +6,8 @@
             <div class="col-md-12">
                 <!--breadcrumbs start -->
                 <ul class="breadcrumb">
-                    <li><a href="<%= getUrl('/projects') %>"><i class="fa fa-home"></i> Home</a></li>
-                    <li><a href="<%= getUrl('/dashboard') %>">텔레톡비-v2</a></li>
+                    <li><a href="/projects"><i class="fa fa-home"></i> Home</a></li>
+                    <li><a id="load_title" href="#"><i id="load_icon" class="fa fa-refresh fa-spin"></i></a></li>
                     <li class="active">Errors</li>
                 </ul>
                 <!--breadcrumbs end -->
@@ -20,10 +20,10 @@
                     <header class="panel-heading">
                         Filter
                         <span class="tools pull-right">
-                            <a href="javascript:;" class="fa fa-chevron-up" onclick="$(this).ionRangeSlider('update');"></a>
+                            <a href="javascript:;" class="fa fa-chevron-down" onclick="$(this).ionRangeSlider('update');"></a>
                         </span>
                     </header>
-                    <div class="panel-body" style="display:none">
+                    <div class="panel-body">
                         <div class="row">
                             <div class="col-md-12">
                                 <form class="form-horizontal bucket-form" method="get">
@@ -116,7 +116,6 @@
                                             </div>
                                         </div>
                                     </div>
-
                                     <div class="form-group">
                                         <label class="col-sm-3 control-label">APP Version</label>
                                         <div class="col-sm-9 icheck">
@@ -126,46 +125,11 @@
                                                     <label>All</label>
                                                 </div>
                                             </div>
-
-                                            <div class="flat-green">
-                                                <div class="radio">
-                                                    <input id="check-app-2_0_7" type="checkbox" checked>
-                                                    <label>2.0.7</label>
-                                                </div>
-                                            </div>
-
-                                            <div class="flat-green">
-                                                <div class="radio">
-                                                    <input id="check-app-2_0_6" type="checkbox" checked>
-                                                    <label>2.0.6</label>
-                                                </div>
-                                            </div>
-
-                                            <div class="flat-green">
-                                                <div class="radio">
-                                                    <input id="check-app-2_0_5" type="checkbox" checked>
-                                                    <label>2.0.5</label>
-                                                </div>
-                                            </div>
-
-                                            <div class="flat-green">
-                                                <div class="radio">
-                                                    <input id="check-app-2_0_3" type="checkbox" checked>
-                                                    <label>2.0.3</label>
-                                                </div>
-                                            </div>
-
                                             <select id="select-app" class="form-control" style="width:100px">
                                                 <option>Select</option>
-                                                <option>2.0.2</option>
-                                                <option>2.0.1</option>
-                                                <option>2.0.0</option>
-                                                <option>1.9.8</option>
-                                                <option>1.9.6</option>
                                             </select>
                                         </div>
                                     </div>
-
                                     <div class="form-group">
                                         <label class="col-sm-3 control-label">OS Version</label>
                                         <div class="col-sm-9 icheck">
@@ -175,60 +139,18 @@
                                                     <label>All</label>
                                                 </div>
                                             </div>
-
-                                            <div class="flat-green">
-                                                <div class="radio">
-                                                    <input id="check-os-4_4" type="checkbox" checked>
-                                                    <label>4.4</label>
-                                                </div>
-                                            </div>
-
-                                            <div class="flat-green">
-                                                <div class="radio">
-                                                    <input id="check-os-4_1" type="checkbox" checked>
-                                                    <label>4.1</label>
-                                                </div>
-                                            </div>
-
-                                            <div class="flat-green">
-                                                <div class="radio">
-                                                    <input id="check-os-4_3" type="checkbox" checked>
-                                                    <label>4.3</label>
-                                                </div>
-                                            </div>
-
-                                            <div class="flat-green">
-                                                <div class="radio">
-                                                    <input id="check-os-4_2" type="checkbox" checked>
-                                                    <label>4.2</label>
-                                                </div>
-                                            </div>
-
                                             <select id="select-os" class="form-control" style="width:100px">
                                                 <option>Select</option>
-                                                <option>4.0.1</option>
-                                                <option>3.2.6</option>
-                                                <option>3.2.2</option>
-                                                <option>3.2</option>
-                                                <option>2.3.7</option>
-                                                <option>2.3.2</option>
-                                                <option>2.3.1</option>
-                                                <option>2.2</option>
-                                                <option>2.0.1</option>
                                             </select>
                                         </div>
                                     </div>
 
                                     <div class="form-group">
-                                        <label class="col-sm-3 control-label">Tag</label>
+                                        <label class="col-sm-3 control-label">Country</label>
                                         <div class="col-sm-9">
-                                            <div id="tagsearch" class="tagsearch">
-                                                <select class="form-control" style="width:100px">
+                                            <div id="countrysearch" class="tagsearch">
+                                                <select id="select-country" class="form-control" style="width:100px">
                                                     <option>Select</option>
-                                                    <option>EventBus</option>
-                                                    <option>Ignore</option>
-                                                    <option>ImageLoader</option>
-                                                    <option>Youtube</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -241,39 +163,6 @@
                                                 <select class="form-control" style="width:100px">
                                                     <option>Select</option>
                                                     <option>android.app.LoadedApk</option>
-                                                    <option>android.database.sqlite.SQLiteConnection</option>
-                                                    <option>android.database.sqlite.SQLiteDatabase</option>
-                                                    <option>android.database.sqlite.SQLiteOpenHelper</option>
-                                                    <option>android.database.sqlite.SQLiteSession</option>
-                                                    <option>android.graphics.Bitmap</option>
-                                                    <option>android.graphics.BitmapFactory</option>
-                                                    <option>android.os.BinderProxy</option>
-                                                    <option>android.os.Parcel</option>
-                                                    <option>android.view.LayoutInflater</option>
-                                                    <option>android.view.ViewGroup</option>
-                                                    <option>android.view.LayoutInflater</option>
-                                                    <option>android.view.ViewGroup</option>
-                                                    <option>android.view.ViewRootImpl</option>
-                                                    <option>com.google.android.youtube.api.jar.client.RemoteEmbeddedPlayer</option>
-                                                    <option>com.google.android.youtube.player.internal.r</option>
-                                                    <option>com.teletalkvi.android.app.detail.header.DetailContents</option>
-                                                    <option>com.teletalkvi.android.app.detail.header.DetailShare</option>
-                                                    <option>com.teletalkvi.android.app.home.main.MainListAdapter$2</option>
-                                                    <option>com.teletalkvi.android.app.home.program.filter.ProgramCategories</option>
-                                                    <option>com.teletalkvi.android.app.timeline.TimelineActivity</option>
-                                                    <option>com.teletalkvi.android.app.view.ListThumbView</option>
-                                                    <option>com.teletalkvi.android.network.timeline.async.AsyncGetComments</option>
-                                                    <option>com.teletalkvi.android.network.timeline.async.AsyncGetTimelineContents</option>
-                                                    <option>com.teletalkvi.core.adapter.BaseListAdapter</option>
-                                                    <option>com.teletalkvi.core.BaseAsyncTask</option>
-                                                    <option>com.teletalkvi.core.util.NotifyUtils</option>
-                                                    <option>java.io.BufferedReader</option>
-                                                    <option>java.lang.AbstractStringBuilder</option>
-                                                    <option>java.lang.reflect.Constructor</option>
-                                                    <option>java.lang.String</option>
-                                                    <option>java.nio.HeapByteBuffer</option>
-                                                    <option>libcore.reflect.TypeVariableImpl</option>
-                                                    <option>org.apache.http.util.ByteArrayBuffer</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -311,24 +200,24 @@
                         <div id="errors-table" class="adv-table">
                             <table class="table table-hover table-striped" id="dynamic-table">
                                 <thead>
-                                    <tr>
-                                        <th style="width:50px">Rank</th>
-                                        <th style="width:60px">Count</th>
-                                        <th class="auto-size">Name</th>
-                                        <th style="width:180px">Tags</th>
-                                        <th style="width:60px" class="res-hidden">Status</th>
-                                        <th style="width:60px" class="res-hidden">Date</th>
-                                    </tr>
+                                <tr>
+                                    <th style="width:50px">Rank</th>
+                                    <th style="width:60px">Count</th>
+                                    <th class="auto-size">Name</th>
+                                    <th style="width:180px">Tags</th>
+                                    <th style="width:60px" class="res-hidden">Status</th>
+                                    <th style="width:60px" class="res-hidden">Date</th>
+                                </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td data-title="Rank" class="text-center"></td>
-                                        <td data-title="Count" class="text-center text-danger text-bold"></td>
-                                        <td data-title="Name" class="table-text-ellipsis"></td>
-                                        <td data-title="Tags" class="tags"></td>
-                                        <td data-title="Status" class="res-hidden"></td>
-                                        <td data-title="Date" class="res-hidden"></td>
-                                    </tr>
+                                <tr>
+                                    <td data-title="Rank" class="text-center"></td>
+                                    <td data-title="Count" class="text-center text-danger text-bold"></td>
+                                    <td data-title="Name" class="table-text-ellipsis"></td>
+                                    <td data-title="Tags" class="tags"></td>
+                                    <td data-title="Status" class="res-hidden"></td>
+                                    <td data-title="Date" class="res-hidden"></td>
+                                </tr>
                                 </tbody>
                             </table>
                         </div>
@@ -336,10 +225,5 @@
                 </section>
             </div>
         </div>
-        <!--
-        1. 디바이스별 Crash Rank
-        2. 인기있는 APP Version
-        3. 
-        -->
     </section>
 </section>

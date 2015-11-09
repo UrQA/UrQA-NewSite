@@ -1,11 +1,11 @@
 <!-- Core js-->
 <script src="<%= resourceUrl('/bower_components/jquery/dist/jquery.js') %>"></script>
 <script src="<%= resourceUrl('/js/jquery-ui/jquery-ui-1.10.1.custom.min.js') %>"></script>
+<script src="<%= resourceUrl('/bower_components/jsrender/jsrender.js') %>"></script>
 <script src="<%= resourceUrl('/bower_components/bootstrap/dist/js/bootstrap.min.js') %>"></script>
 <script src="<%= resourceUrl('/bower_components/jquery.scrollTo/jquery.scrollTo.min.js') %>"></script>
 <script src="<%= resourceUrl('/bower_components/slimScroll/jquery.slimscroll.min.js') %>"></script>
 <script src="<%= resourceUrl('/bower_components/jquery.nicescroll/jquery.nicescroll.min.js') %>"></script>
-
 
 <!--[if lte IE 8]><script language="javascript" type="text/javascript" src="<%= resourceUrl('bower_components/flot/excanvas.min.js') %>"></script><![endif]-->
 <!--flot char -->
@@ -14,10 +14,7 @@
 <script src="<%= resourceUrl('/bower_components/flot/jquery.flot.resize.js') %>"></script>
 <script src="<%= resourceUrl('/bower_components/flot/jquery.flot.pie.js') %>"></script>
 
-
-
 <!-- chart -->
-
 
 <!--iCheck-->
 <script src="<%= resourceUrl('/bower_components/iCheck/icheck.min.js') %>"></script>
@@ -30,3 +27,53 @@
 
 <script src="<%= resourceUrl('/js/errors.js') %>"></script>
 <script src="<%= resourceUrl('/js/scripts.js') %>"></script>
+
+<script id="plainDataTmpl" type="text/x-jsrender">
+{{:data}}
+</script>
+
+<script id="appvTmpl" type="text/x-jsrender">
+<option>{{:appversion}}</option>
+</script>
+
+<script id="sdkvTmpl" type="text/x-jsrender">
+<option>{{:osversion}}</option>
+</script>
+
+<script id="countryTmpl" type="text/x-jsrender">
+<option>{{:country}}</option>
+</script>
+
+<script>
+    var appvtemplate = $.templates("#appvTmpl");
+    var countrytemplate = $.templates("#countryTmpl");
+    var plainTemplate = $.templates("#plainDataTmpl");
+    var sdkvtemplate = $.templates("#sdkvTmpl");
+    $.ajax({
+        url:'/api/project/<%= data.id %>',
+        success:function(data){
+            var htmlOutput = plainTemplate.render({data:JSON.parse(data).title});
+            $("#load_title").html(htmlOutput);
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            var data = {data:'<i class="fa fa-exclamation-triangle"></i>'};
+            var htmlOutput = plainTemplate.render(data);
+            $("#load_title").html(htmlOutput);
+        }
+    });
+    $.ajax({
+        url:'/api/project/<%= data.id %>/errors/filter',
+        success:function(data){
+            var j = JSON.parse(data);
+            var appv = appvtemplate.render(j.filter_appversions);
+            $("#select-app").append(appv);
+            var sdkv = sdkvtemplate.render(j.filter_sdkversions);
+            $("#select-os").append(sdkv);
+            var cv = countrytemplate.render(j.filter_countries);
+            $("#select-country").append(cv);
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            $('#load_icon').attr('class','fa fa-exclamation-triangle');
+        }
+    })
+</script>

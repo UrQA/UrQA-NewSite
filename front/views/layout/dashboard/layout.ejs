@@ -4,6 +4,7 @@
     <% include ../header %>
     <script>
         urqaio.currentProject = '<%= data.id%>';
+        urqaio.currentSection = '<%= data.section%>';
     </script>
 </head>
 
@@ -17,19 +18,31 @@
             <div class="leftside-navigation">
                 <ul class="sidebar-menu" id="nav-accordion">
                     <li>
+                        <% if (0 == data.section) { %>
                         <a class="active" href="/dashboard/<%= data.id%>">
-                            <i class="fa fa-dashboard"></i>
-                            <span>Dashboard</span>
-                        </a>
+                            <% } else { %>
+                            <a href="/dashboard/<%= data.id%>">
+                                <% } %>
+                                <i class="fa fa-dashboard"></i>
+                                <span>Dashboard</span>
+                            </a>
                     </li>
                     <li>
-                        <a href="/dashboard/<%= data.id%>/error">
+                        <% if (1 == data.section) { %>
+                        <a class="active" href="/dashboard/<%= data.id%>/error">
+                            <% } else { %>
+                            <a href="/dashboard/<%= data.id%>/error">
+                                <% } %>
                             <i class="fa fa-laptop"></i>
                             <span>Errors</span>
                         </a>
                     </li>
                     <li>
-                        <a href="/dashboard/<%= data.id%>/statistics">
+                        <% if (2 == data.section) { %>
+                        <a class="active" href="/dashboard/<%= data.id%>/statistics">
+                            <% } else { %>
+                            <a href="/dashboard/<%= data.id%>/statistics">
+                                <% } %>
                             <i class="fa fa-book"></i>
                             <span>Statistics</span>
                         </a>
@@ -40,9 +53,9 @@
                             <span>Settings</span>
                         </a>
                         <ul class="sub">
-                            <li class="active"><a href="/dashboard/<%= data.id%>/settings">General</a></li>
-                            <li><a href="/dashboard/<%= data.id%>/settings/viewer">Viewer</a></li>
-                            <li><a href="/dashboard/<%= data.id%>/settings/symbolicate">Symbolicate</a></li>
+                            <li class="active"><a href="/dashboard/<%= data.id%>/setting">General</a></li>
+                            <li><a href="/dashboard/<%= data.id%>/setting/viewer">Viewer</a></li>
+                            <li><a href="/dashboard/<%= data.id%>/setting/symbolicate">Symbolicate</a></li>
                         </ul>
                     </li>
                 </ul>

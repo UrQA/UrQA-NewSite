@@ -18,7 +18,7 @@ $(document).ready(function()
         "bStateSave": true,
         "bProcessing": true,
         "bServerSide": true,
-        "sAjaxSource": "/ajax/sample3",
+        "sAjaxSource": "/api/project/"+urqaio.currentProject+"/errors",
         "sAjaxDataProp": "aaData",
         "aaSorting": [[ 1, "desc" ]],
         "bUseRendered": true,
@@ -32,7 +32,6 @@ $(document).ready(function()
                     var nameList = ["Rank", "Count", "Name", "Tags", "Status", "Date"];
                     var styleList = ["text-center", "text-center", "table-text-ellipsis", "tags", "res-hidden", "res-hidden"];
                     $(nTd).attr("data-title", nameList[iCol]).addClass(styleList[iCol]);
-
                     if (iCol == 0)
                     {
                         $(nTd).parent().attr('onclick', 'document.location="error-details.html?id=' + oData["ID"] + '"').css("cursor", "pointer");
@@ -96,8 +95,6 @@ $(document).ready(function()
     } );
     updateFilterData = function() {
         _dataTable.api().ajax.reload();
-
-
     };
 
     $('#btnTranding').click(function() { _dataTable.api().ajax.url('./test3.json').load(); } );
@@ -185,8 +182,8 @@ $(document).ready(function()
             },
             {
                 "type": "tags",
-                "keyword": "tag",
-                "taglist": $("#tagsearch")
+                "keyword": "country",
+                "taglist": $("#countrysearch")
             },
             {
                 "type": "tags",
@@ -214,7 +211,6 @@ $(document).ready(function()
                             index ++;
                         }
                     }
-
                     // All Checked
                     if (index >= info["list"].length)
                         filterData[info["keyword"]] = "all";
