@@ -156,7 +156,7 @@
                     }
                     if(!check){
                         dataPie = [{
-                            label: '<i class="fa fa-exclamation-triangle"></i>',
+                            label: 'No data',
                             data: 100
                         }];
                     }
