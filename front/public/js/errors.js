@@ -97,8 +97,8 @@ $(document).ready(function()
         _dataTable.api().ajax.reload();
     };
 
-    $('#btnTranding').click(function() { _dataTable.api().ajax.url('./test3.json').load(); } );
-    $('#btnLatest').click(function() { _dataTable.api().ajax.url('./test4.json').load(); } );
+    $('#btnTranding').click(function() { _dataTable.api().ajax.url("/api/project/"+urqaio.currentProject+"/errors").load(); } );
+    $('#btnLatest').click(function() { _dataTable.api().ajax.url("/api/project/"+urqaio.currentProject+"/errors/latest").load(); } );
 
 
     /** iCheck */

@@ -217,6 +217,61 @@ router.get('/project/:id/errors', function(req, res, next) {
         })
 });
 
+router.get('/project/:id/errors/latest', function(req, res, next) {
+    // appversion / osversion / country
+    var data = {};
+    var dataArr = [];
+    var raw = '';
+    var rawArr;
+    if(checkAll(req.query.country)){
+    }else{
+        raw = req.query.country;
+        rawArr = raw.split(',');
+        for(var i=0;i<rawArr.length-1;i++){
+            dataArr.push(rawArr[i]);
+        }
+    }
+    data['country'] = dataArr;
+    dataArr = [];
+    if(checkAll(req.query.appversion)){
+    }else{
+        raw = req.query.appversion;
+        rawArr = raw.split(',');
+        for(var i=0;i<rawArr.length-1;i++){
+            dataArr.push(rawArr[i]);
+        }
+    }
+    data['appversion'] = dataArr;
+    dataArr = [];
+    if(checkAll(req.query.osversion)){
+    }else{
+        raw = req.query.osversion;
+        rawArr = raw.split(',');
+        for(var i=0;i<rawArr.length-1;i++){
+            dataArr.push(rawArr[i]);
+        }
+    }
+    data['osversion'] = dataArr;
+    data['start'] = req.query.datestart;
+    data['end'] = req.query.dateend;
+    request({ method: 'POST'
+            ,headers:{'content-type': 'application/json'}
+            , uri: 'https://honeyqa.io:8080/project/'+req.params.id+'/errors/filtered/latest'
+            ,body: JSON.stringify(data)
+        },
+        function (error, response, body) {
+            if (!error && response.statusCode == 200) {
+                console.log(body);
+                res.status(200);
+                res.json(body);
+            }else{
+                console.log(body);
+                res.status(500);
+                res.json('{}');
+            }
+        })
+});
+
 function checkAll(d){
     if(d == '' || d == 'all')
         return true;
