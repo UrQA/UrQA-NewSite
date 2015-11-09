@@ -142,59 +142,90 @@
                 error: function(jqXHR, textStatus, errorThrown) {
                 }
             });
-
-            // DONUT
-            var dataPie = [{
-                label: "Unhandle",
-                data: 4.59
-            },
-            {
-                label: "Critical",
-                data: 40.81
-            },
-            {
-                label: "Major",
-                data: 13.21
-            },
-            {
-                label: "Minor",
-                data: 16.24
-            },
-            {
-                label: "Native",
-                data: 20.43
-            }];
-
-            $.plot($(".sm-pie"), dataPie, {
-                series: {
-                    pie: {
-                        innerRadius: 0.5,
-                        show: true,
-                        stroke: {
-                            width: 0.1,
-                            color: '#ffffff'
-                        }
+            $.ajax({
+                url:'/api/project/'+urqaio.currentProject+'/weekly/rank',
+                success:function(data){
+                    var check = false;
+                    var dataPie = [];
+                    for(var i in data){
+                        check = true;
+                        var obj = {};
+                        obj["label"] = data[i].rank;
+                        obj["data"] = data[i].count;
+                        dataPie.push(obj)
                     }
+                    if(!check){
+                        dataPie = [{
+                            label: '<i class="fa fa-exclamation-triangle"></i>',
+                            data: 100
+                        }];
+                    }
+                    $.plot($(".sm-pie"), dataPie, {
+                        series: {
+                            pie: {
+                                innerRadius: 0.5,
+                                show: true,
+                                stroke: {
+                                    width: 0.1,
+                                    color: '#ffffff'
+                                }
+                            }
 
-                },
-                legend: {
-                    show: true,
-                    labelFormatter: function(text, series){ return text + " (" + series.percent.toFixed(2) + "%)"; },
-                    /*sorted: function(a, b){
-                        var a_var = parseFloat(a.label.split(" (")[1].split("%)")[0]);
-                        var b_var = parseFloat(b.label.split(" (")[1].split("%)")[0]);
+                        },
+                        legend: {
+                            show: true,
+                            labelFormatter: function(text, series){ return text + " (" + series.percent.toFixed(2) + "%)"; },
+                            /*sorted: function(a, b){
+                             var a_var = parseFloat(a.label.split(" (")[1].split("%)")[0]);
+                             var b_var = parseFloat(b.label.split(" (")[1].split("%)")[0]);
 
-                        return a_var == b_var ? 0 : (a_var < b_var ? 1 : -1);
-                    }*/
-                },
-                grid: {
-                    hoverable: true,
-                    clickable: true
-                },
+                             return a_var == b_var ? 0 : (a_var < b_var ? 1 : -1);
+                             }*/
+                        },
+                        grid: {
+                            hoverable: true,
+                            clickable: true
+                        },
 
-                colors: ["#E67A77", "#D9DD81", "#79D1CF", "#95D7BB", "#4D5360"]
+                        colors: ["#E67A77", "#D9DD81", "#79D1CF", "#95D7BB", "#4D5360"]
+                    });
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    var dataPie = [{
+                        label: '<i class="fa fa-exclamation-triangle"></i>',
+                        data: 100
+                    }];
+                    $.plot($(".sm-pie"), dataPie, {
+                        series: {
+                            pie: {
+                                innerRadius: 0.5,
+                                show: true,
+                                stroke: {
+                                    width: 0.1,
+                                    color: '#ffffff'
+                                }
+                            }
+
+                        },
+                        legend: {
+                            show: true,
+                            labelFormatter: function(text, series){ return text + " (" + series.percent.toFixed(2) + "%)"; },
+                            /*sorted: function(a, b){
+                             var a_var = parseFloat(a.label.split(" (")[1].split("%)")[0]);
+                             var b_var = parseFloat(b.label.split(" (")[1].split("%)")[0]);
+
+                             return a_var == b_var ? 0 : (a_var < b_var ? 1 : -1);
+                             }*/
+                        },
+                        grid: {
+                            hoverable: true,
+                            clickable: true
+                        },
+
+                        colors: ["#E67A77", "#D9DD81", "#79D1CF", "#95D7BB", "#4D5360"]
+                    });
+                }
             });
-
         }
 
         /*==Slim Scroll ==*/
