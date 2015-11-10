@@ -45,6 +45,20 @@
 {{:data}}
 </script>
 
+<script id="progressTmpl" type="text/x-jsrender">
+    <div class="content-row">
+        <p>{{:data}}</p>
+        <div>
+            <div class="progress progress-xs">
+                <div style="width: {{:p}}%" aria-valuemax="100" aria-valuemin="0" role="progressbar" class="progress-bar progress-bar-{{:c}}">
+                    <span class="sr-only">{{:p}}%</span>
+                </div>
+            </div>
+            <div>{{:p}}%</div>
+        </div>
+    </div>
+</script>
+
 <script id="callstackTmpl" type="text/x-jsrender">
     <tr>
     <td class="bold">{{:line}}</td>
@@ -54,8 +68,9 @@
 
 <script>
     var template = $.templates("#textDataTmpl");
-    var callstackTemplate = $.templates("#callstackTmpl");
     var plainTemplate = $.templates("#plainDataTmpl");
+    var progressTemplate = $.templates("#progressTmpl");
+    var callstackTemplate = $.templates("#callstackTmpl");
     $.ajax({
         url:'/api/project/<%= data.id %>',
         success:function(data){
@@ -149,6 +164,32 @@
             $("#load_status_callstack").attr('class','fa fa-exclamation-triangle');
         }
     });
+    $.ajax({
+        url:'/api/project/<%= data.id %>/error/<%= data.eid %>/statistics',
+        success:function(data){
+            var t;
+            for(var i in data.appversion_counts){
+                t = progressTemplate.render({data:data.appversion_counts[i].appversion, p:data.appversion_counts[i].count, c:getIndexStatus(i)});
+                $("#load_statistics_appv").append(t);
+            }
+            for(var i in data.sdkversion_counts){
+                t = progressTemplate.render({data:data.sdkversion_counts[i].osversion, p:data.sdkversion_counts[i].count, c:getIndexStatus(i)});
+                $("#load_statistics_osv").append(t);
+            }
+            for(var i in data.device_counts){
+                t = progressTemplate.render({data:data.device_counts[i].device, p:data.device_counts[i].count, c:getIndexStatus(i)});
+                $("#load_statistics_device").append(t);
+            }
+            for(var i in data.country_counts){
+                t = progressTemplate.render({data:data.country_counts[i].country, p:data.country_counts[i].count, c:getIndexStatus(i)});
+                $("#load_statistics_country").append(t);
+            }
+            $("#load_status_statistics").remove();
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            $("#load_status_statistics").attr('class','fa fa-exclamation-triangle');
+        }
+    });
     // Graph
     $(document).ready(function () {
         if ($.fn.plot) {
@@ -237,4 +278,13 @@
             });
         }
     });
+
+    function getIndexStatus(i){
+        if(i==0){
+            return 'danger';
+        }else if(i==1){
+            return 'warning';
+        }
+        return 'info';
+    }
 </script>
