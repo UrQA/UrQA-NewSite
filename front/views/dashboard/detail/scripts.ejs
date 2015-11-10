@@ -15,8 +15,7 @@
 <script src="<%= resourceUrl('/bower_components/Chart.js/Chart.min.js') %>"></script>
 <script src="<%= resourceUrl('/bower_components/d3/d3.min.js') %>"></script>
 <script src="<%= resourceUrl('/bower_components/c3/c3.min.js') %>"></script>
-<script src="<%= resourceUrl('/js/jvector-map/jqvmap/jquery.vmap.js') %>"></script>
-<script src="<%= resourceUrl('/js/jvector-map/jqvmap/maps/jquery.vmap.world.js')%>"></script>
+<script src="<%= resourceUrl('/bower_components/numeral/numeral.js') %>"></script>
 
 <!--iCheck-->
 <script src="<%= resourceUrl('/bower_components/iCheck/icheck.min.js') %>"></script>
@@ -43,13 +42,64 @@
     $.ajax({
         url:'/api/project/<%= data.id %>',
         success:function(data){
-            var htmlOutput = plainTemplate.render({data:JSON.parse(data).title});
+            var htmlOutput = plainTemplate.render({data:data.title});
             $("#load_title").html(htmlOutput);
         },
         error: function(jqXHR, textStatus, errorThrown) {
             var data = {data:'<i class="fa fa-exclamation-triangle"></i>'};
             var htmlOutput = plainTemplate.render(data);
             $("#load_title").html(htmlOutput);
+        }
+    });
+    $.ajax({
+        url:'/api/project/<%= data.id %>/error/<%= data.eid %>',
+        success:function(data){
+            var ec = data.numofinstances;
+            // update error status
+            $("#load_status").val(data.status);
+            // instancecount
+            var plain = plainTemplate.render({data:numeral(ec).format('0,0')});
+            $("#load_errorcount").replaceWith(plain);
+            // errorname
+            plain = plainTemplate.render({data:data.errorname});
+            $("#load_errorname").html(plain);
+            // errorclass
+            plain = plainTemplate.render({data:data.errorclassname+':'+data.linenum});
+            $("#load_errorclass").html(plain);
+            // errorcreated
+            plain = plainTemplate.render({data:data.create_date});
+            $("#load_errorcreated").html(plain);
+            // errorupdated
+            plain = plainTemplate.render({data:data.update_date});
+            $("#load_errorupdated").html(plain);
+            // memory
+            var t = template.render({data:numeral(data.totalmemusage*1000).format('0.00b')});
+            $("#load_memory").html(t);
+            // gps
+            t = template.render({data:numeral(data.gpson/ec).format('0.0%')});
+            $("#load_gps").html(t);
+            // wifi
+            t = template.render({data:numeral(data.wifion/ec).format('0.0%')});
+            $("#load_wifi").html(t);
+            // mobile
+            t = template.render({data:numeral(data.mobileon/ec).format('0.0%')});
+            $("#load_mobilenetwork").html(t);
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            // no dependency
+            $("#load_errorcount").attr('class','fa fa-exclamation-triangle');
+            // dependency
+            var data = {data:'<i class="fa fa-exclamation-triangle"></i>'};
+            var t1 = plainTemplate.render(data);
+            var t2 = template.render(data);
+            $("#load_memory").html(t1);
+            $("#load_gps").html(t1);
+            $("#load_wifi").html(t1);
+            $("#load_mobilenetwork").html(t1);
+            $("#load_errorname").html(t2);
+            $("#load_errorclass").html(t2);
+            $("#load_errorcreated").html(t2);
+            $("#load_errorupdated").html(t2);
         }
     });
 </script>

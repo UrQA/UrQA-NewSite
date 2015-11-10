@@ -7,7 +7,7 @@
                 <!--breadcrumbs start -->
                 <ul class="breadcrumb">
                     <li><a href="/projects"><i class="fa fa-home"></i> Home</a></li>
-                    <li><a id="load_title" href="/dashboard/<%= data.id%>"><i id="load_icon" class="fa fa-refresh fa-spin"></i></a></li>
+                    <li><a id="load_title" href="/dashboard/<%= data.id%>"><i class="fa fa-refresh fa-spin"></i></a></li>
                     <li><a href="/dashboard/<%= data.id%>/error">Errors</a></li>
                     <li class="active">Details</li>
                 </ul>
@@ -34,7 +34,9 @@
                 <div class="mini-stat clearfix">
                     <span class="mini-stat-icon orange"><i class="fa fa-rss"></i></span>
                     <div class="mini-stat-info">
-                        <span>100%</span>
+                        <div id="load_wifi">
+                            <span><i class="fa fa-refresh fa-spin"></i></span>
+                        </div>
                         WiFi
                     </div>
                 </div>
@@ -43,7 +45,9 @@
                 <div class="mini-stat clearfix">
                     <span class="mini-stat-icon tar"><i class="fa fa-signal"></i></span>
                     <div class="mini-stat-info">
-                        <span>0%</span>
+                        <div id="load_mobilenetwork">
+                            <span><i class="fa fa-refresh fa-spin"></i></span>
+                        </div>
                         Mobile Network
                     </div>
                 </div>
@@ -52,7 +56,9 @@
                 <div class="mini-stat clearfix">
                     <span class="mini-stat-icon pink"><i class="fa fa-location-arrow"></i></span>
                     <div class="mini-stat-info">
-                        <span>80%</span>
+                        <div id="load_gps">
+                            <span><i class="fa fa-refresh fa-spin"></i></span>
+                        </div>
                         GPS
                     </div>
                 </div>
@@ -61,8 +67,10 @@
                 <div class="mini-stat clearfix">
                     <span class="mini-stat-icon green"><i class="fa fa-hdd-o"></i></span>
                     <div class="mini-stat-info">
-                        <span>128.2MB</span>
-                        Memory
+                        <div id="load_memory">
+                            <span><i class="fa fa-refresh fa-spin"></i></span>
+                        </div>
+                        Memory Usage
                     </div>
                 </div>
             </div>
@@ -85,24 +93,24 @@
                                     <div class="form-group">
                                         <label class="col-sm-3 control-label">Name</label>
                                         <div class="col-sm-6">
-                                            <p class="form-control-static text-ellipsis">java.lang.RuntimeException: An error occured while executing doInBackground()</p>
+                                            <p id="load_errorname" class="form-control-static text-ellipsis"><i class="fa fa-refresh fa-spin"></i></p>
                                         </div>
                                         <div class="col-sm-3" style="max-width:200px;float:right">
-                                            <span class="label label-danger" style="display:inline-block;width:100%;margin-top:3px;margin-bottom:-4px;padding:6px;font-size:120%;font-weight:500"><b>5,604</b> Occurred</span>
+                                            <span class="label label-danger" style="display:inline-block;width:100%;margin-top:3px;margin-bottom:-4px;padding:6px;font-size:120%;font-weight:500"><b><i id="load_errorcount" class="fa fa-refresh fa-spin"></i></b> Occured</span>
                                         </div>
                                     </div>
 
                                     <div class="form-group">
-                                        <label class="col-sm-3 control-label"><i class="fa fa-thumb-tack"></i> Class</label>
+                                        <label class="col-sm-3 control-label">Class</label>
                                         <div class="col-sm-6">
-                                            <p class="form-control-static text-ellipsis">com.teletalkvi.core.BaseAsyncTask:62</p>
+                                            <p id="load_errorclass" class="form-control-static text-ellipsis"><i class="fa fa-refresh fa-spin"></i></p>
                                         </div>
                                         <div class="col-sm-3" style="max-width:200px;float:right">
-                                            <select data-index="1003" class="form-control" style="width:100%;margin-top:-4px;margin-bottom:-4px">
-                                                <option value="new">New</option>
-                                                <option value="open">Open</option>
-                                                <option value="fixed">Fixed</option>
-                                                <option value="ignore">Ignore</option>
+                                            <select id="load_status" data-index="1003" class="form-control" style="width:100%;margin-top:-4px;margin-bottom:-4px">
+                                                <option value="0">New</option>
+                                                <option value="1">Open</option>
+                                                <option value="2">Fixed</option>
+                                                <option value="3">Ignore</option>
                                             </select>
                                         </div>
                                     </div>
@@ -110,18 +118,20 @@
                                     <div class="form-group">
                                         <label class="col-sm-3 control-label"><i class="fa fa-clock-o"></i> First-seen</label>
                                         <div class="col-sm-3">
-                                            <p class="form-control-static text-ellipsis">2014.09.03</p>
+                                            <p id="load_errorcreated" class="form-control-static text-ellipsis"><i class="fa fa-refresh fa-spin"></i></p>
                                         </div>
                                         <label class="col-sm-3 control-label"><i class="fa fa-clock-o"></i> Last-seen</label>
                                         <div class="col-sm-3">
-                                            <p class="form-control-static text-ellipsis">2014.11.17</p>
+                                            <p id="load_errorupdated" class="form-control-static text-ellipsis"><i class="fa fa-refresh fa-spin"></i></p>
                                         </div>
                                     </div>
 
                                     <div class="form-group">
                                         <label class="col-sm-3 control-label"><i class="fa fa-tags"></i> Tags</label>
                                         <div class="col-sm-9">
-                                            <input id="tags_1" type="text" class="tags" value="php,ios,javascript,ruby,android,kindle" />
+                                            <span class="badge label-primary pull-right r-activity">0</span>
+                                            <span class="badge label-primary pull-right r-activity">0</span>
+                                            <input id="tags_1" type="text" class="tags" />
                                         </div>
                                     </div>
                                 </form>
@@ -446,375 +456,375 @@
                             <div id="callstacks" class="tab-pane active">
                                 <table class="table table-bordered table-striped">
                                     <tbody>
-                                        <tr>
-                                            <td class="bold">0</td>
-                                            <td class="table-text-ellipsis-1">
-                                                <div>java.lang.RuntimeException: An error occured while executing doInBackground()</div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="bold">1</td>
-                                            <td class="table-text-ellipsis-1">
-                                                <div>at android.os.AsyncTask$3.done (AsyncTask.java:300)</div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="bold">2</td>
-                                            <td class="table-text-ellipsis-1">
-                                                <div>at java.util.concurrent.FutureTask.finishCompletion (FutureTask.java:355)</div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="bold">3</td>
-                                            <td class="table-text-ellipsis-1">
-                                                <div>at java.util.concurrent.FutureTask.setException (FutureTask.java:222)</div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="bold">4</td>
-                                            <td class="table-text-ellipsis-1">
-                                                <div>at java.util.concurrent.FutureTask.run (FutureTask.java:242)</div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="bold">5</td>
-                                            <td class="table-text-ellipsis-1">
-                                                <div>at android.os.AsyncTask$SerialExecutor$1.run (AsyncTask.java:231)</div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="bold">6</td>
-                                            <td class="table-text-ellipsis-1">
-                                                <div>at java.util.concurrent.ThreadPoolExecutor.runWorker (ThreadPoolExecutor.java:1112)</div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="bold">7</td>
-                                            <td class="table-text-ellipsis-1">
-                                                <div>at java.util.concurrent.ThreadPoolExecutor$Worker.run (ThreadPoolExecutor.java:587)</div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="bold">8</td>
-                                            <td class="table-text-ellipsis-1">
-                                                <div>at java.lang.Thread.run Caused by: java.lang.NullPointerException (Thread.java:841)</div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="bold">9</td>
-                                            <td class="table-text-ellipsis-1">
-                                                <div>at com.teletalkvi.core.BaseAsyncTask.doInBackground (BaseAsyncTask.java:62)</div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="bold">10</td>
-                                            <td class="table-text-ellipsis-1">
-                                                <div>at com.teletalkvi.core.BaseAsyncTask.doInBackground (BaseAsyncTask.java:1)</div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="bold">11</td>
-                                            <td class="table-text-ellipsis-1">
-                                                <div>at android.os.AsyncTask$2.call (AsyncTask.java:288)</div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="bold">12</td>
-                                            <td class="table-text-ellipsis-1">
-                                                <div>at java.util.concurrent.FutureTask.run (FutureTask.java:237)</div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="bold">13</td>
-                                            <td class="table-text-ellipsis-1">
-                                                <div>... 4 more</div>
-                                            </td>
-                                        </tr>
+                                    <tr>
+                                        <td class="bold">0</td>
+                                        <td class="table-text-ellipsis-1">
+                                            <div>java.lang.RuntimeException: An error occured while executing doInBackground()</div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bold">1</td>
+                                        <td class="table-text-ellipsis-1">
+                                            <div>at android.os.AsyncTask$3.done (AsyncTask.java:300)</div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bold">2</td>
+                                        <td class="table-text-ellipsis-1">
+                                            <div>at java.util.concurrent.FutureTask.finishCompletion (FutureTask.java:355)</div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bold">3</td>
+                                        <td class="table-text-ellipsis-1">
+                                            <div>at java.util.concurrent.FutureTask.setException (FutureTask.java:222)</div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bold">4</td>
+                                        <td class="table-text-ellipsis-1">
+                                            <div>at java.util.concurrent.FutureTask.run (FutureTask.java:242)</div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bold">5</td>
+                                        <td class="table-text-ellipsis-1">
+                                            <div>at android.os.AsyncTask$SerialExecutor$1.run (AsyncTask.java:231)</div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bold">6</td>
+                                        <td class="table-text-ellipsis-1">
+                                            <div>at java.util.concurrent.ThreadPoolExecutor.runWorker (ThreadPoolExecutor.java:1112)</div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bold">7</td>
+                                        <td class="table-text-ellipsis-1">
+                                            <div>at java.util.concurrent.ThreadPoolExecutor$Worker.run (ThreadPoolExecutor.java:587)</div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bold">8</td>
+                                        <td class="table-text-ellipsis-1">
+                                            <div>at java.lang.Thread.run Caused by: java.lang.NullPointerException (Thread.java:841)</div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bold">9</td>
+                                        <td class="table-text-ellipsis-1">
+                                            <div>at com.teletalkvi.core.BaseAsyncTask.doInBackground (BaseAsyncTask.java:62)</div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bold">10</td>
+                                        <td class="table-text-ellipsis-1">
+                                            <div>at com.teletalkvi.core.BaseAsyncTask.doInBackground (BaseAsyncTask.java:1)</div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bold">11</td>
+                                        <td class="table-text-ellipsis-1">
+                                            <div>at android.os.AsyncTask$2.call (AsyncTask.java:288)</div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bold">12</td>
+                                        <td class="table-text-ellipsis-1">
+                                            <div>at java.util.concurrent.FutureTask.run (FutureTask.java:237)</div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bold">13</td>
+                                        <td class="table-text-ellipsis-1">
+                                            <div>... 4 more</div>
+                                        </td>
+                                    </tr>
                                     </tbody>
                                 </table>
                             </div>
                             <div id="instance" class="tab-pane">
                                 <table class="table table-striped">
                                     <thead>
-                                        <th data-label="APP Ver." data-mini="APP" style="width:18%"></th>
-                                        <th data-label="Country" data-mini="Area" style="widht:15%"></th>
-                                        <th data-label="Device" data-mini="Device"></th>
-                                        <th data-label="OS Ver." data-mini="OS" style="width:14%"></th>
-                                        <th data-label="Wifi" data-mini="Wifi" style="width:10%"></th>
-                                        <th data-label="Mobile" data-mini="Mobile" style="width:10%"></th>
-                                        <th data-label="Logs" data-mini="Logs" style="width:10%"></th>
-                                        <th data-label="Details" data-mini="Details" style="width:12%"></th>
+                                    <th data-label="APP Ver." data-mini="APP" style="width:18%"></th>
+                                    <th data-label="Country" data-mini="Area" style="widht:15%"></th>
+                                    <th data-label="Device" data-mini="Device"></th>
+                                    <th data-label="OS Ver." data-mini="OS" style="width:14%"></th>
+                                    <th data-label="Wifi" data-mini="Wifi" style="width:10%"></th>
+                                    <th data-label="Mobile" data-mini="Mobile" style="width:10%"></th>
+                                    <th data-label="Logs" data-mini="Logs" style="width:10%"></th>
+                                    <th data-label="Details" data-mini="Details" style="width:12%"></th>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>2.0.6</td>
-                                            <td>KR</td>
-                                            <td>LG-F200S</td>
-                                            <td>4.4.2</td>
-                                            <td><i class="fa fa-check-circle text-success" style="font-size:120%"></i></td>
-                                            <td><i class="fa fa-times-circle text-danger" style="font-size:120%"></i></td>
-                                            <td>View</td>
-                                            <td style="cursor:pointer" onclick="openDetails(this)"><i class="fa fa-chevron-down"></i></td>
-                                        </tr>
-                                        <tr style="display:none">
-                                            <td colspan="8">
-                                                <form class="form-horizontal bucket-form" method="get">
-                                                    <div class="form-group">
-                                                        <label class="col-xs-3 col-sm-3 control-label">
-                                                            App Version
-                                                        </label>
-                                                        <div class="col-xs-3 col-sm-3">
-                                                            <p class="form-control-static text-ellipsis">
-                                                                1.1
-                                                            </p>
-                                                        </div>
+                                    <tr>
+                                        <td>2.0.6</td>
+                                        <td>KR</td>
+                                        <td>LG-F200S</td>
+                                        <td>4.4.2</td>
+                                        <td><i class="fa fa-check-circle text-success" style="font-size:120%"></i></td>
+                                        <td><i class="fa fa-times-circle text-danger" style="font-size:120%"></i></td>
+                                        <td>View</td>
+                                        <td style="cursor:pointer" onclick="openDetails(this)"><i class="fa fa-chevron-down"></i></td>
+                                    </tr>
+                                    <tr style="display:none">
+                                        <td colspan="8">
+                                            <form class="form-horizontal bucket-form" method="get">
+                                                <div class="form-group">
+                                                    <label class="col-xs-3 col-sm-3 control-label">
+                                                        App Version
+                                                    </label>
+                                                    <div class="col-xs-3 col-sm-3">
+                                                        <p class="form-control-static text-ellipsis">
+                                                            1.1
+                                                        </p>
+                                                    </div>
 
-                                                        <label class="col-xs-3 col-sm-3 control-label">
-                                                            OS Version
-                                                        </label>
-                                                        <div class="col-xs-3 col-sm-3">
-                                                            <p class="form-control-static text-ellipsis">
-                                                                4.4.2
-                                                            </p>
-                                                        </div>
+                                                    <label class="col-xs-3 col-sm-3 control-label">
+                                                        OS Version
+                                                    </label>
+                                                    <div class="col-xs-3 col-sm-3">
+                                                        <p class="form-control-static text-ellipsis">
+                                                            4.4.2
+                                                        </p>
                                                     </div>
-                                                    <div class="form-group">
-                                                        <label class="col-xs-3 col-sm-3 control-label">
-                                                            Device
-                                                        </label>
-                                                        <div class="col-xs-3 col-sm-3">
-                                                            <p class="form-control-static text-ellipsis">
-                                                                SHV-E250L
-                                                            </p>
-                                                        </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-xs-3 col-sm-3 control-label">
+                                                        Device
+                                                    </label>
+                                                    <div class="col-xs-3 col-sm-3">
+                                                        <p class="form-control-static text-ellipsis">
+                                                            SHV-E250L
+                                                        </p>
+                                                    </div>
 
-                                                        <label class="col-xs-3 col-sm-3 control-label">
-                                                            Brand
-                                                        </label>
-                                                        <div class="col-xs-3 col-sm-3">
-                                                            <p class="form-control-static text-ellipsis">
-                                                                SANSUMG
-                                                            </p>
-                                                        </div>
+                                                    <label class="col-xs-3 col-sm-3 control-label">
+                                                        Brand
+                                                    </label>
+                                                    <div class="col-xs-3 col-sm-3">
+                                                        <p class="form-control-static text-ellipsis">
+                                                            SANSUMG
+                                                        </p>
                                                     </div>
-                                                    <div class="form-group">
-                                                        <label class="col-xs-3 col-sm-3 control-label">
-                                                            Apps Running
-                                                        </label>
-                                                        <div class="col-xs-3 col-sm-3">
-                                                            <p class="form-control-static text-ellipsis">
-                                                                40
-                                                            </p>
-                                                        </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-xs-3 col-sm-3 control-label">
+                                                        Apps Running
+                                                    </label>
+                                                    <div class="col-xs-3 col-sm-3">
+                                                        <p class="form-control-static text-ellipsis">
+                                                            40
+                                                        </p>
+                                                    </div>
 
-                                                        <label class="col-xs-3 col-sm-3 control-label">
-                                                            Ms From Start
-                                                        </label>
-                                                        <div class="col-xs-3 col-sm-3">
-                                                            <p class="form-control-static text-ellipsis">
-                                                                4502
-                                                            </p>
-                                                        </div>
+                                                    <label class="col-xs-3 col-sm-3 control-label">
+                                                        Ms From Start
+                                                    </label>
+                                                    <div class="col-xs-3 col-sm-3">
+                                                        <p class="form-control-static text-ellipsis">
+                                                            4502
+                                                        </p>
                                                     </div>
-                                                    <div class="form-group">
-                                                        <label class="col-xs-3 col-sm-3 control-label">
-                                                            Country
-                                                        </label>
-                                                        <div class="col-xs-3 col-sm-3">
-                                                            <p class="form-control-static text-ellipsis">
-                                                                KR
-                                                            </p>
-                                                        </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-xs-3 col-sm-3 control-label">
+                                                        Country
+                                                    </label>
+                                                    <div class="col-xs-3 col-sm-3">
+                                                        <p class="form-control-static text-ellipsis">
+                                                            KR
+                                                        </p>
+                                                    </div>
 
-                                                        <label class="col-xs-3 col-sm-3 control-label">
-                                                            Locale
-                                                        </label>
-                                                        <div class="col-xs-3 col-sm-3">
-                                                            <p class="form-control-static text-ellipsis">
-                                                                한국어
-                                                            </p>
-                                                        </div>
+                                                    <label class="col-xs-3 col-sm-3 control-label">
+                                                        Locale
+                                                    </label>
+                                                    <div class="col-xs-3 col-sm-3">
+                                                        <p class="form-control-static text-ellipsis">
+                                                            한국어
+                                                        </p>
                                                     </div>
-                                                    <div class="form-group">
-                                                        <label class="col-xs-3 col-sm-3 control-label">
-                                                            GPS
-                                                        </label>
-                                                        <div class="col-xs-3 col-sm-3">
-                                                            <p class="form-control-static text-ellipsis">
-                                                                <i class="fa fa-times-circle text-danger" style="font-size:120%"></i>
-                                                            </p>
-                                                        </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-xs-3 col-sm-3 control-label">
+                                                        GPS
+                                                    </label>
+                                                    <div class="col-xs-3 col-sm-3">
+                                                        <p class="form-control-static text-ellipsis">
+                                                            <i class="fa fa-times-circle text-danger" style="font-size:120%"></i>
+                                                        </p>
+                                                    </div>
 
-                                                        <label class="col-xs-3 col-sm-3 control-label">
-                                                            Battery
-                                                        </label>
-                                                        <div class="col-xs-3 col-sm-3">
-                                                            <p class="form-control-static text-ellipsis">
-                                                                66%
-                                                            </p>
-                                                        </div>
+                                                    <label class="col-xs-3 col-sm-3 control-label">
+                                                        Battery
+                                                    </label>
+                                                    <div class="col-xs-3 col-sm-3">
+                                                        <p class="form-control-static text-ellipsis">
+                                                            66%
+                                                        </p>
                                                     </div>
-                                                    <div class="form-group">
-                                                        <label class="col-xs-3 col-sm-3 control-label">
-                                                            Wifi
-                                                        </label>
-                                                        <div class="col-xs-3 col-sm-3">
-                                                            <p class="form-control-static text-ellipsis">
-                                                                <i class="fa fa-check-circle text-success" style="font-size:120%"></i>
-                                                            </p>
-                                                        </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-xs-3 col-sm-3 control-label">
+                                                        Wifi
+                                                    </label>
+                                                    <div class="col-xs-3 col-sm-3">
+                                                        <p class="form-control-static text-ellipsis">
+                                                            <i class="fa fa-check-circle text-success" style="font-size:120%"></i>
+                                                        </p>
+                                                    </div>
 
-                                                        <label class="col-xs-3 col-sm-3 control-label">
-                                                            Mobile Network
-                                                        </label>
-                                                        <div class="col-xs-3 col-sm-3">
-                                                            <p class="form-control-static text-ellipsis">
-                                                                <i class="fa fa-times-circle text-danger" style="font-size:120%"></i>
-                                                            </p>
-                                                        </div>
+                                                    <label class="col-xs-3 col-sm-3 control-label">
+                                                        Mobile Network
+                                                    </label>
+                                                    <div class="col-xs-3 col-sm-3">
+                                                        <p class="form-control-static text-ellipsis">
+                                                            <i class="fa fa-times-circle text-danger" style="font-size:120%"></i>
+                                                        </p>
                                                     </div>
-                                                    <div class="form-group">
-                                                        <label class="col-xs-3 col-sm-3 control-label">
-                                                            Screen
-                                                        </label>
-                                                        <div class="col-xs-3 col-sm-3">
-                                                            <p class="form-control-static text-ellipsis">
-                                                                720 X 1280
-                                                            </p>
-                                                        </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-xs-3 col-sm-3 control-label">
+                                                        Screen
+                                                    </label>
+                                                    <div class="col-xs-3 col-sm-3">
+                                                        <p class="form-control-static text-ellipsis">
+                                                            720 X 1280
+                                                        </p>
+                                                    </div>
 
-                                                        <label class="col-xs-3 col-sm-3 control-label">
-                                                            DPI
-                                                        </label>
-                                                        <div class="col-xs-3 col-sm-3">
-                                                            <p class="form-control-static text-ellipsis">
-                                                                142x124
-                                                            </p>
-                                                        </div>
+                                                    <label class="col-xs-3 col-sm-3 control-label">
+                                                        DPI
+                                                    </label>
+                                                    <div class="col-xs-3 col-sm-3">
+                                                        <p class="form-control-static text-ellipsis">
+                                                            142x124
+                                                        </p>
                                                     </div>
-                                                    <div class="form-group">
-                                                        <label class="col-xs-3 col-sm-3 control-label">
-                                                            Created Date
-                                                        </label>
-                                                        <div class="col-xs-3 col-sm-3">
-                                                            <p class="form-control-static text-ellipsis">
-                                                                2014-11-19 18:05:03
-                                                            </p>
-                                                        </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-xs-3 col-sm-3 control-label">
+                                                        Created Date
+                                                    </label>
+                                                    <div class="col-xs-3 col-sm-3">
+                                                        <p class="form-control-static text-ellipsis">
+                                                            2014-11-19 18:05:03
+                                                        </p>
+                                                    </div>
 
-                                                        <label class="col-xs-3 col-sm-3 control-label">
-                                                            Memory Avail
-                                                        </label>
-                                                        <div class="col-xs-3 col-sm-3">
-                                                            <p class="form-control-static text-ellipsis">
-                                                                4
-                                                            </p>
-                                                        </div>
+                                                    <label class="col-xs-3 col-sm-3 control-label">
+                                                        Memory Avail
+                                                    </label>
+                                                    <div class="col-xs-3 col-sm-3">
+                                                        <p class="form-control-static text-ellipsis">
+                                                            4
+                                                        </p>
                                                     </div>
-                                                    <div class="form-group">
-                                                        <label class="col-xs-3 col-sm-3 control-label">
-                                                            Memory Total
-                                                        </label>
-                                                        <div class="col-xs-3 col-sm-3">
-                                                            <p class="form-control-static text-ellipsis">
-                                                                Xx
-                                                            </p>
-                                                        </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-xs-3 col-sm-3 control-label">
+                                                        Memory Total
+                                                    </label>
+                                                    <div class="col-xs-3 col-sm-3">
+                                                        <p class="form-control-static text-ellipsis">
+                                                            Xx
+                                                        </p>
+                                                    </div>
 
-                                                        <label class="col-xs-3 col-sm-3 control-label">
-                                                            Memory Max
-                                                        </label>
-                                                        <div class="col-xs-3 col-sm-3">
-                                                            <p class="form-control-static text-ellipsis">
-                                                                xX
-                                                            </p>
-                                                        </div>
+                                                    <label class="col-xs-3 col-sm-3 control-label">
+                                                        Memory Max
+                                                    </label>
+                                                    <div class="col-xs-3 col-sm-3">
+                                                        <p class="form-control-static text-ellipsis">
+                                                            xX
+                                                        </p>
                                                     </div>
-                                                    <div class="form-group">
-                                                        <label class="col-xs-3 col-sm-3 control-label">
-                                                            Instance ID
-                                                        </label>
-                                                        <div class="col-xs-3 col-sm-3">
-                                                            <p class="form-control-static text-ellipsis">
-                                                                #1736422
-                                                            </p>
-                                                        </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-xs-3 col-sm-3 control-label">
+                                                        Instance ID
+                                                    </label>
+                                                    <div class="col-xs-3 col-sm-3">
+                                                        <p class="form-control-static text-ellipsis">
+                                                            #1736422
+                                                        </p>
+                                                    </div>
 
-                                                        <label class="col-xs-3 col-sm-3 control-label">
-                                                            SDK Version
-                                                        </label>
-                                                        <div class="col-xs-3 col-sm-3">
-                                                            <p class="form-control-static text-ellipsis">
-                                                                0.95
-                                                            </p>
-                                                        </div>
+                                                    <label class="col-xs-3 col-sm-3 control-label">
+                                                        SDK Version
+                                                    </label>
+                                                    <div class="col-xs-3 col-sm-3">
+                                                        <p class="form-control-static text-ellipsis">
+                                                            0.95
+                                                        </p>
                                                     </div>
-                                                    <div class="form-group">
-                                                        <label class="col-xs-3 col-sm-3 control-label">
-                                                            Screen Orientation
-                                                        </label>
-                                                        <div class="col-xs-3 col-sm-3">
-                                                            <p class="form-control-static text-ellipsis">
-                                                                Horizon
-                                                            </p>
-                                                        </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-xs-3 col-sm-3 control-label">
+                                                        Screen Orientation
+                                                    </label>
+                                                    <div class="col-xs-3 col-sm-3">
+                                                        <p class="form-control-static text-ellipsis">
+                                                            Horizon
+                                                        </p>
+                                                    </div>
 
-                                                        <label class="col-xs-3 col-sm-3 control-label">
-                                                            Rooted
-                                                        </label>
-                                                        <div class="col-xs-3 col-sm-3">
-                                                            <p class="form-control-static text-ellipsis">
-                                                                <i class="fa fa-times-circle text-danger" style="font-size:120%"></i>
-                                                            </p>
-                                                        </div>
+                                                    <label class="col-xs-3 col-sm-3 control-label">
+                                                        Rooted
+                                                    </label>
+                                                    <div class="col-xs-3 col-sm-3">
+                                                        <p class="form-control-static text-ellipsis">
+                                                            <i class="fa fa-times-circle text-danger" style="font-size:120%"></i>
+                                                        </p>
                                                     </div>
-                                                    <div class="form-group">
-                                                        <label class="col-xs-3 col-sm-3 control-label">
-                                                            Build ID
-                                                        </label>
-                                                        <div class="col-xs-9 col-sm-9">
-                                                            <p class="form-control-static text-ellipsis">
-                                                                0000-00000000-000000
-                                                            </p>
-                                                        </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-xs-3 col-sm-3 control-label">
+                                                        Build ID
+                                                    </label>
+                                                    <div class="col-xs-9 col-sm-9">
+                                                        <p class="form-control-static text-ellipsis">
+                                                            0000-00000000-000000
+                                                        </p>
                                                     </div>
-                                                </form>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>2.0.6</td>
-                                            <td>KR</td>
-                                            <td>LG-F350S</td>
-                                            <td>4.4.2</td>
-                                            <td><i class="fa fa-check-circle text-success" style="font-size:120%"></i></td>
-                                            <td><i class="fa fa-check-circle text-success" style="font-size:120%"></i></td>
-                                            <td>View</td>
-                                            <td style="cursor:pointer" onclick="openDetails(this)"><i class="fa fa-chevron-down"></i></td>
-                                        </tr>
-                                        <tr style="display:none">
-                                            <td colspan="8">
-                                                <form class="form-horizontal bucket-form" method="get">
-                                                    2.0.6
-                                                </form>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>2.0.6</td>
-                                            <td>KR</td>
-                                            <td>SHV-E250L</td>
-                                            <td>4.4.2</td>
-                                            <td><i class="fa fa-check-circle text-success" style="font-size:120%"></i></td>
-                                            <td><i class="fa fa-circle text-danger" style="font-size:120%"></i></td>
-                                            <td>View</td>
-                                            <td style="cursor:pointer" onclick="openDetails(this)"><i class="fa fa-chevron-down"></i></td>
-                                        </tr>
-                                        <tr style="display:none">
-                                            <td colspan="8">
-                                                <form class="form-horizontal bucket-form" method="get">
-                                                    2.0.6
-                                                </form>
-                                            </td>
-                                        </tr>
+                                                </div>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>2.0.6</td>
+                                        <td>KR</td>
+                                        <td>LG-F350S</td>
+                                        <td>4.4.2</td>
+                                        <td><i class="fa fa-check-circle text-success" style="font-size:120%"></i></td>
+                                        <td><i class="fa fa-check-circle text-success" style="font-size:120%"></i></td>
+                                        <td>View</td>
+                                        <td style="cursor:pointer" onclick="openDetails(this)"><i class="fa fa-chevron-down"></i></td>
+                                    </tr>
+                                    <tr style="display:none">
+                                        <td colspan="8">
+                                            <form class="form-horizontal bucket-form" method="get">
+                                                2.0.6
+                                            </form>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>2.0.6</td>
+                                        <td>KR</td>
+                                        <td>SHV-E250L</td>
+                                        <td>4.4.2</td>
+                                        <td><i class="fa fa-check-circle text-success" style="font-size:120%"></i></td>
+                                        <td><i class="fa fa-circle text-danger" style="font-size:120%"></i></td>
+                                        <td>View</td>
+                                        <td style="cursor:pointer" onclick="openDetails(this)"><i class="fa fa-chevron-down"></i></td>
+                                    </tr>
+                                    <tr style="display:none">
+                                        <td colspan="8">
+                                            <form class="form-horizontal bucket-form" method="get">
+                                                2.0.6
+                                            </form>
+                                        </td>
+                                    </tr>
                                     </tbody>
                                 </table>
                             </div>

@@ -49,9 +49,8 @@ router.post('/project/add', function(req, res, next) {
                 if (!error && response.statusCode == 200) {
                     res.status(200);
                     req.user.project[JSON.parse(body).insertId] = true;
-                    res.json(body);
+                    res.json(JSON.parse(body));
                 }else{
-                    console.log(body);
                     res.status(500);
                     res.json({});
                 }
@@ -71,7 +70,7 @@ router.get('/project/:id', function(req, res, next) {
         request('https://honeyqa.io:8080/project/'+req.params.id, function (error, response, body) {
             if (!error && response.statusCode == 200) {
                 res.status(200);
-                res.json(body);
+                res.json(JSON.parse(body));
             }else{
                 res.status(500);
                 res.json({});
@@ -156,10 +155,10 @@ router.get('/project/:id/daily/error', function(req, res, next) {
 
 router.get('/project/:id/error/:idx', function(req, res, next) {
     if(req.user){
-        request('https://honeyqa.io:8080/error/'+req.params.id+'/filters', function (error, response, body) {
+        request('https://honeyqa.io:8080/error/'+req.params.idx, function (error, response, body) {
             if (!error && response.statusCode == 200) {
                 res.status(200);
-                res.json(body);
+                res.json(JSON.parse(body));
             }else{
                 res.status(500);
                 res.json({});
@@ -217,7 +216,7 @@ router.get('/project/:id/errors', function(req, res, next) {
             function (error, response, body) {
                 if (!error && response.statusCode == 200) {
                     res.status(200);
-                    res.json(body);
+                    res.json(JSON.parse(body));
                 }else{
                     res.status(500);
                     res.json({});
@@ -234,7 +233,7 @@ router.get('/project/:id/errors/filter', function(req, res, next) {
         request('https://honeyqa.io:8080/project/'+req.params.id+'/filters', function (error, response, body) {
             if (!error && response.statusCode == 200) {
                 res.status(200);
-                res.json(body);
+                res.json(JSON.parse(body));
             }else{
                 res.status(500);
                 res.json({});
@@ -368,7 +367,7 @@ router.get('/project/:id/errors/latest/filtered', function(req, res, next) {
             function (error, response, body) {
                 if (!error && response.statusCode == 200) {
                     res.status(200);
-                    res.json(body);
+                    res.json(JSON.parse(body));
                 }else{
                     res.status(500);
                     res.json({});
