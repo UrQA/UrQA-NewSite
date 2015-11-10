@@ -30,7 +30,7 @@ router.get('/:id/error', function(req, res) {
     }
 });
 
-router.get('/:id/error/:idx?', function(req, res) {
+router.get('/:id/error/:idx', function(req, res) {
     if(req.user){
         var id = req.params.id;
         var data = {id:id, section:1};

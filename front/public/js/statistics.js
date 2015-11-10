@@ -9,7 +9,6 @@ $(document).ready(function()
 		async: false,
 		success:function(data){
 			total_errorcount = data.data;
-			console.log(total_errorcount);
 		}
 	});
 

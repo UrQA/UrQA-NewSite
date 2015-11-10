@@ -2,7 +2,7 @@
     "use strict";
     $(document).ready(function () {
         /// Data Table
-        var _dataTable = $('#dynamic-table').dataTable( {
+        var _dataTable = $('#dynamic-table').DataTable( {
             "bJQueryUI": true,
             "bStateSave": true,
             "bProcessing": true,
@@ -52,13 +52,17 @@
             "fnDrawCallback":function() {
                 $('div.dataTables_paginate')[0].style.display = "none";
             }
-        } );
+        });
+        $('#dynamic-table tbody').on('click', 'tr', function () {
+            var data = _dataTable.row(this).data();
+            location.href = '/dashboard/' + urqaio.currentProject + '/error/' + data['ID'];
+        });
         $('#btnTranding').click(function() {
             _dataTable.api().ajax.url('/api/project/'+urqaio.currentProject+'/errors/tranding').load();
-        } );
+        });
         $('#btnLatest').click(function() {
             _dataTable.api().ajax.url('/api/project/'+urqaio.currentProject+'/errors/latest').load();
-        } );
+        });
 
         if ($.fn.plot) {
             var options = {
@@ -204,12 +208,6 @@
                         legend: {
                             show: true,
                             labelFormatter: function(text, series){ return text + " (" + series.percent.toFixed(2) + "%)"; },
-                            /*sorted: function(a, b){
-                             var a_var = parseFloat(a.label.split(" (")[1].split("%)")[0]);
-                             var b_var = parseFloat(b.label.split(" (")[1].split("%)")[0]);
-
-                             return a_var == b_var ? 0 : (a_var < b_var ? 1 : -1);
-                             }*/
                         },
                         grid: {
                             hoverable: true,
