@@ -5,7 +5,7 @@ $(document).ready(function()
 	var baseurl = 'https://honeyqa.io:8080';
 
 	$.ajax({
-		url:'/api/project/'+project_id+'/weekly/error',
+		url:'/api/project/'+urqaio.currentProject+'/weekly/error',
 		async: false,
 		success:function(data){
 			total_errorcount = data.data;
@@ -15,7 +15,7 @@ $(document).ready(function()
 
 	// daily error count area graph
 	$.ajax({
-		url:'https://honeyqa.io:8080/project/'+project_id+'/weekly_appruncount2',
+		url:'https://honeyqa.io:8080/project/'+urqaio.currentProject+'/weekly_appruncount2',
 		success:function(data){
 			var chart_data =[];
 			
@@ -45,7 +45,7 @@ $(document).ready(function()
 
 	// error rank rate donut graph
 	$.ajax({
-		url:'/api/project/' + project_id + '/weekly/rank',
+		url:'/api/project/' + urqaio.currentProject + '/weekly/rank',
 		success:function(data){
 			var chart_data =[];
 			for(var i = 0; i < data.length; i++){
@@ -65,12 +65,30 @@ $(document).ready(function()
 				],
 				formatter: function (x, data) { return data.formatted; }
 			});
-		} // error 처리
+		},
+		error: function(jqXHR, textStatus, errorThrown) {
+			var chart_data = [{
+				value: 100,
+				label: 'unknown',
+				formatted: 0+'%'
+			}];
+
+			Morris.Donut({
+				element: 'graph-donut-rank',
+				data: chart_data,
+				backgroundColor: '#fff',
+				labelColor: '#1fb5ac',
+				colors: [
+					'#E67A77','#D9DD81','#79D1CF','#95D7BB'
+				],
+				formatter: function (x, data) { return data.formatted; }
+			});
+		}
 	});
 
 	// error osversion rate donut graph
 	$.ajax({
-		url: baseurl + '/statistics/' + project_id + '/osversion',
+		url: baseurl + '/statistics/' + urqaio.currentProject + '/osversion',
 		success:function(data){
 
 			var chart_data =[];
@@ -92,12 +110,30 @@ $(document).ready(function()
 				],
 				formatter: function (x, data) { return data.formatted; }
 			});
-		} // error 처리
+		},
+		error: function(jqXHR, textStatus, errorThrown) {
+			var chart_data = [{
+				value: 100,
+				label: 'unknown',
+				formatted: 0+'%'
+			}];
+
+			Morris.Donut({
+				element: 'graph-donut-sdk',
+				data: chart_data,
+				backgroundColor: '#fff',
+				labelColor: '#1fb5ac',
+				colors: [
+					'#E67A77','#D9DD81','#79D1CF','#95D7BB'
+				],
+				formatter: function (x, data) { return data.formatted; }
+			});
+		}
 	});
 
 	// error country rate donut graph
 	$.ajax({
-		url: baseurl + '/statistics/' + project_id + '/country',
+		url: baseurl + '/statistics/' + urqaio.currentProject + '/country',
 		success:function(data){
 
 			var chart_data =[];
@@ -119,12 +155,30 @@ $(document).ready(function()
 				],
 				formatter: function (x, data) { return data.formatted; }
 			});
-		} // error 처리
+		},
+		error: function(jqXHR, textStatus, errorThrown) {
+			var chart_data = [{
+				value: 100,
+				label: 'unknown',
+				formatted: 0+'%'
+			}];
+
+			Morris.Donut({
+				element: 'graph-donut-country',
+				data: chart_data,
+				backgroundColor: '#fff',
+				labelColor: '#1fb5ac',
+				colors: [
+					'#E67A77','#D9DD81','#79D1CF','#95D7BB'
+				],
+				formatter: function (x, data) { return data.formatted; }
+			});
+		}
 	});
 
 	// error device line graph
 	$.ajax({
-		url: baseurl + '/statistics/' + project_id + '/device',
+		url: baseurl + '/statistics/' + urqaio.currentProject + '/device',
 		success:function(data){
 			var labels = [];
 			var chart_data = [];
@@ -182,66 +236,124 @@ $(document).ready(function()
 				}
 				size(true);
 			}());
-		} // error 처리
-	});
+		},
+		error: function(jqXHR, textStatus, errorThrown) {
+			var labels = [];
+			var chart_data = [];
 
-	// class error line graph
-	$.ajax({
-		url: baseurl + '/statistics/' + project_id + '/country',
-		success:function(data){
-
-			var chart_data =[];
-			for(var i = 0; i < data.length; i++){
-				var element = new Object();
-				element.value =  data[i].count;
-				element.label = data[i].country;
-				element.formatted = ((data[i].count/total_errorcount) * 100).toFixed(1) + '%';
-				chart_data.push(element);
+			for(var i = 0; i < 10; i++){
+				labels.push('unknown');
+				chart_data.push(i);
 			}
 
-			Morris.Donut({
-				element: 'graph-donut-country',
-				data: chart_data,
-				backgroundColor: '#fff',
-				labelColor: '#1fb5ac',
-				colors: [
-					'#E67A77','#D9DD81','#79D1CF','#95D7BB'
-				],
-				formatter: function (x, data) { return data.formatted; }
-			});
-		} // error 처리
+			(function(){
+				var t;
+				function size(animate){
+					if (animate == undefined){
+						animate = false;
+					}
+					clearTimeout(t);
+					t = setTimeout(function(){
+						$("canvas").each(function(i,el){
+							$(el).attr({
+								"width":$(el).parent().width(),
+								"height":$(el).parent().outerHeight()
+							});
+						});
+						redraw(animate);
+						var m = 0;
+						$(".chartJS").height("");
+						$(".chartJS").each(function(i,el){ m = Math.max(m,$(el).height()); });
+						$(".chartJS").height(m);
+					}, 30);
+				}
+				$(window).on('resize', function(){ size(false); });
+
+				function redraw(animation){
+					var options = {};
+					if (!animation){
+						options.animation = false;
+					} else {
+						options.animation = true;
+					}
+
+					(function(){
+						var barChartData = {
+							labels: labels,
+							datasets: [
+								{
+									fillColor: "#79d1cf",
+									strokeColor: "#79d1cf",
+									data: chart_data
+								}
+							]
+						}
+
+						var myLine = new Chart(document.getElementById("device-errorrate").getContext("2d")).Bar(barChartData);
+					})();
+				}
+				size(true);
+			}());
+		}
 	});
 
-	// error activity line graph
-	$.ajax({
-		url: baseurl + '/statistics/' + project_id + '/country',
-		success:function(data){
-
-			var chart_data =[];
-			for(var i = 0; i < data.length; i++){
-				var element = new Object();
-				element.value =  data[i].count;
-				element.label = data[i].country;
-				element.formatted = ((data[i].count/total_errorcount) * 100).toFixed(1) + '%';
-				chart_data.push(element);
-			}
-
-			Morris.Donut({
-				element: 'graph-donut-country',
-				data: chart_data,
-				backgroundColor: '#fff',
-				labelColor: '#1fb5ac',
-				colors: [
-					'#E67A77','#D9DD81','#79D1CF','#95D7BB'
-				],
-				formatter: function (x, data) { return data.formatted; }
-			});
-		} // error 처리
-	});
+	//// class error line graph
+	//$.ajax({
+	//	url: baseurl + '/statistics/' + project_id + '/country',
+	//	success:function(data){
+    //
+	//		var chart_data =[];
+	//		for(var i = 0; i < data.length; i++){
+	//			var element = new Object();
+	//			element.value =  data[i].count;
+	//			element.label = data[i].country;
+	//			element.formatted = ((data[i].count/total_errorcount) * 100).toFixed(1) + '%';
+	//			chart_data.push(element);
+	//		}
+    //
+	//		Morris.Donut({
+	//			element: 'graph-donut-country',
+	//			data: chart_data,
+	//			backgroundColor: '#fff',
+	//			labelColor: '#1fb5ac',
+	//			colors: [
+	//				'#E67A77','#D9DD81','#79D1CF','#95D7BB'
+	//			],
+	//			formatter: function (x, data) { return data.formatted; }
+	//		});
+	//	} // error 처리
+	//});
+    //
+	//// error activity line graph
+	//$.ajax({
+	//	url: baseurl + '/statistics/' + project_id + '/country',
+	//	success:function(data){
+    //
+	//		var chart_data =[];
+	//		for(var i = 0; i < data.length; i++){
+	//			var element = new Object();
+	//			element.value =  data[i].count;
+	//			element.label = data[i].country;
+	//			element.formatted = ((data[i].count/total_errorcount) * 100).toFixed(1) + '%';
+	//			chart_data.push(element);
+	//		}
+    //
+	//		Morris.Donut({
+	//			element: 'graph-donut-country',
+	//			data: chart_data,
+	//			backgroundColor: '#fff',
+	//			labelColor: '#1fb5ac',
+	//			colors: [
+	//				'#E67A77','#D9DD81','#79D1CF','#95D7BB'
+	//			],
+	//			formatter: function (x, data) { return data.formatted; }
+	//		});
+	//	} // error 처리
+	//});
 
 	// version error rate multi line graph
 	$.ajax({
-		url: baseurl + '/statistics/' + project_id + '/country',
+		url: baseurl + '/statistics/' + urqaio.currentProject + '/country',
 		success:function(data){
 
 			var chart_data =[];
