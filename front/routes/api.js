@@ -32,8 +32,38 @@ router.get('/projects/list', function(req, res, next) {
 });
 
 router.post('/project/add', function(req, res, next) {
-    console.log(req.body);
-    res.send(req.body);
+    if(req.user){
+        if(req.body.appname && req.body.platform && req.body.category && req.body.stage){
+            var requestData = {};
+            requestData['appname'] = req.body.appname;
+            requestData['platform'] = Number(req.body.platform);
+            requestData['category'] = Number(req.body.category);
+            requestData['stage'] = Number(req.body.stage);
+            requestData['user_id'] = req.user.id;
+            request({
+                method: 'POST',
+                headers:{'content-type': 'application/json'},
+                uri:'https://honeyqa.io:8080/project/add',
+                body:JSON.stringify(requestData)
+            }, function (error, response, body) {
+                if (!error && response.statusCode == 200) {
+                    res.status(200);
+                    req.user.project[JSON.parse(body).insertId] = true;
+                    res.json(body);
+                }else{
+                    console.log(body);
+                    res.status(500);
+                    res.json('{}');
+                }
+            });
+        }else{
+            res.status(400);
+            res.json('{}');
+        }
+    }else{
+        res.status(401);
+        res.json('{}');
+    }
 });
 
 router.get('/project/:id', function(req, res, next) {

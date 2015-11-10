@@ -2,7 +2,13 @@ var express = require('express');
 var router = express.Router();
 
 router.get('/', function(req, res, next) {
-    res.render('projects/index');
+    if(req.user){
+        var data = {'user_id':req.user.id,'user_name':req.user.nickname};
+        res.render('projects/index', data);
+    }
+    else{
+        res.redirect('/users/login');
+    }
 });
 
 module.exports = router;

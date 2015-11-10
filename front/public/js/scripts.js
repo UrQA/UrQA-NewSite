@@ -125,7 +125,6 @@ $(document).ready(function () {
                 scaleColor:"#cccccc"
 
             });
-
         }
 
         /*== SPARKLINE==*/
@@ -137,8 +136,6 @@ $(document).ready(function () {
                 height: '40',
                 sliceColors: ['#e1e1e1', '#8175c9']
             });
-
-
 
             var sparkLine = function () {
                 $(".sparkline").each(function () {
@@ -172,15 +169,11 @@ $(document).ready(function () {
                 }, 500);
             });
             sparkLine(false);
-
-
-
         }
 
         /*==Collapsible==*/
         $('.widget-head').click(function (e) {
             var widgetElem = $(this).children('.widget-collapse').children('i');
-
             $(this)
                 .next('.widget-container')
                 .slideToggle('slow');
@@ -206,14 +199,12 @@ $(document).ready(function () {
         });
 
         $('.sidebar-toggle-box .fa-bars').click(function (e) {
-
             $(".leftside-navigation").niceScroll({
                 cursorcolor: "#1FB5AD",
                 cursorborder: "0px solid #fff",
                 cursorborderradius: "0px",
                 cursorwidth: "3px"
             });
-
             $('#sidebar').toggleClass('hide-left-bar');
             if ($('#sidebar').hasClass('hide-left-bar')) {
                 $(".leftside-navigation").getNiceScroll().hide();
@@ -227,18 +218,14 @@ $(document).ready(function () {
             if ($('.right-sidebar').hasClass('open-right-bar')) {
                 $('.right-sidebar').removeClass('open-right-bar')
             }
-
             if ($('.header').hasClass('merge-header')) {
                 $('.header').removeClass('merge-header')
             }
-
-
         });
         $('.toggle-right-box .fa-bars').click(function (e) {
             $('#container').toggleClass('open-right-panel');
             $('.right-sidebar').toggleClass('open-right-bar');
             $('.header').toggleClass('merge-header');
-
             e.stopPropagation();
         });
 
@@ -249,11 +236,9 @@ $(document).ready(function () {
             if ($('.right-sidebar').hasClass('open-right-bar')) {
                 $('.right-sidebar').removeClass('open-right-bar')
             }
-
             if ($('.header').hasClass('merge-header')) {
                 $('.header').removeClass('merge-header')
             }
-
         });
 
 
@@ -266,22 +251,13 @@ $(document).ready(function () {
                 $(this).removeClass("fa-chevron-up").addClass("fa-chevron-down");
                 el.slideDown(200); }
         });
-
-
-
         $('.panel .tools .fa-times').click(function () {
             $(this).parents(".panel").parent().remove();
         });
-
         // tool tips
-
         $('.tooltips').tooltip();
-
         // popovers
-
         $('.popovers').popover();
-
-
     });
 
     if ($("#timezone").length > 0)
