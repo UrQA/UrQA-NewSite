@@ -46,6 +46,7 @@
     "bootstrap-switch": "2.0.0",
     "select2": "3.4.5",
     "Chart.js": "1.0.1",
-    "jsrender": "~1.0.0-rc.70"
+    "jsrender": "~1.0.0-rc.70",
+    "numeral": "~1.5.3"
   }
 }
