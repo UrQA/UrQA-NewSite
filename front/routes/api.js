@@ -4,21 +4,31 @@ var locale = require('../public/app/locale/en.json')
 var router = express.Router();
 
 router.get('/projects/list', function(req, res, next) {
-    request('https://honeyqa.io:8080/projects/2', function (error, response, body) {
-        if (!error && response.statusCode == 200) {
-            res.status(200);
-            var projects = JSON.parse(body).projects;
-            for(var i in projects){
-                projects[i].platform_icon = locale.PLATFORM_ICON[projects[i].platform];
-                projects[i].platform = locale.PLATFORM[projects[i].platform];
-                projects[i].stage = locale.STAGE[projects[i].stage];
+    if(req.user){
+        request('https://honeyqa.io:8080/projects/' + req.user.id, function (error, response, body) {
+            if (!error && response.statusCode == 200) {
+                res.status(200);
+                var data = JSON.parse(body);
+                if(data['projects']){
+                    var projects = data.projects;
+                    for(var i in projects){
+                        projects[i].platform_icon = locale.PLATFORM_ICON[projects[i].platform];
+                        projects[i].platform = locale.PLATFORM[projects[i].platform];
+                        projects[i].stage = locale.STAGE[projects[i].stage];
+                    }
+                    res.json(projects);
+                }else{
+                    res.json('[]');
+                }
+            }else{
+                res.status(500);
+                res.json('{}');
             }
-            res.json(projects);
-        }else{
-            res.status(500);
-            res.json('{}');
-        }
-    })
+        })
+    }else{
+        res.status(401);
+        res.json('{}');
+    }
 });
 
 router.get('/project/:id', function(req, res, next) {

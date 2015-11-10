@@ -93,7 +93,7 @@ a,a:hover,a:focus {
 .form-signin .form-control:focus {
     z-index:2;
 }
-.form-signin input[type="text"],.form-signin input[type="password"] {
+.form-signin input[type="text"],.form-signin input[type="email"],.form-signin input[type="password"] {
     margin-bottom:15px;
     border-radius:5px;
     -webkit-border-radius:5px;
@@ -2048,7 +2048,6 @@ ul.labels-info li a i {
 
 ul.inbox-pagination {
     float:right;
-    li
 }
 ul.inbox-pagination li {
     float:left;

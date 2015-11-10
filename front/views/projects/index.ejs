@@ -166,11 +166,14 @@
     $.ajax({
         url:'/api/projects/list',
         success:function(data){
-            var htmlOutput = template.render(data);
-            $("#projects").html(htmlOutput);
+            if(data.length == 0){
+                var htmlOutput = template.render(data);
+                $("#projects").html(htmlOutput);
+            }
             $('#load').remove();
         },
         error: function(jqXHR, textStatus, errorThrown) {
+            console.log(textStatus);
             $('#load_icon').attr('class','fa fa-exclamation-triangle');
         }
     })

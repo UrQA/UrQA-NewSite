@@ -4,39 +4,28 @@
     <% include ../layout/header %>
 </head>
   <body class="login-body">
-
     <div class="container">
-
-      <form class="form-signin" action="index.html">
+      <form class="form-signin" action="/users/join" method="post">
         <h2 class="form-signin-heading">REGISTER NOW</h2>
         <div class="login-wrap">
-            <p>Enter your personal details below</p>
-            <input type="text" class="form-control" placeholder="Email" autofocus>
-            <input type="text" class="form-control" placeholder="User Name" autofocus>
-            <input type="password" class="form-control" placeholder="Password">
-            <input type="password" class="form-control" placeholder="Re-type Password">
+            <p>Enter account</p>
+            <input name="join_email" type="email" class="form-control" placeholder="Email" autofocus required>
+            <input name="join_name" type="text" class="form-control" placeholder="User Name" autofocus required>
+            <input type="password" class="form-control" placeholder="Password" required>
+            <input name="join_password" type="password" class="form-control" placeholder="Re-type Password" required>
             <label class="checkbox">
                 <input type="checkbox" value="agree this condition"> I agree to the Terms of Service and Privacy Policy
             </label>
             <button class="btn btn-lg btn-login btn-block" type="submit">Submit</button>
-
             <div class="registration">
                 Already Registered?
-                <a class="" href="/">
+                <a class="" href="/users/login">
                     Login
                 </a>
             </div>
-
         </div>
-
       </form>
-
     </div>
-
-
-    <!-- Placed js at the end of the document so the pages load faster -->
-
     <% include ../layout/script %>
-
   </body>
 </html>

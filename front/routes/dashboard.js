@@ -8,7 +8,6 @@ var getViewContainer = function(defaultPath, data) {
     };
 };
 
-/* GET users listing. */
 router.get('/:id', function(req, res) {
     var id = req.params.id;
     var data = {id:id, section:0};

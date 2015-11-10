@@ -1,16 +1,31 @@
 var express = require('express');
 var router = express.Router();
 
-router.get('/login', function(req, res, next) {
-    res.render('user/login');
-});
+module.exports = function(passport){
 
-router.post('/login', function(req, res, next) {
-    res.redirect('/projects');
-});
+    router.get('/login', function(req, res, next) {
+        res.render('user/login');
+    });
 
-router.get('/join', function(req, res, next) {
-    res.render('user/join');
-});
+    router.post('/login', passport.authenticate('login', { successRedirect: '/projects',
+        failureRedirect: '/users/login',
+        failureFlash: true })
+    );
 
-module.exports = router;
+    router.get('/logout', function(req, res, next){
+        req.logout();
+        res.redirect('/');
+    });
+
+    router.get('/join', function(req, res, next) {
+        res.render('user/join');
+    });
+
+    router.post('/join', passport.authenticate('join', { successRedirect: '/projects',
+        failureRedirect: '/users/join',
+        failureFlash: true })
+    );
+
+    return router;
+}
+

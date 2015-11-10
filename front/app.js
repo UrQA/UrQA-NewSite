@@ -3,23 +3,26 @@ global.rootRequire = function(name) {
     return require(__dirname + '/' + name);
 }
 
-var express = require('express');
-var path = require('path');
-var favicon = require('serve-favicon');
-var logger = require('morgan');
-var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var cookieParser = require('cookie-parser');
+var express = require('express');
+var favicon = require('serve-favicon');
+var flash = require('express-flash');
+var local = require('./config/local');
+var logger = require('morgan');
+var passport = require('passport');
+require('./config/passport')(passport);
+var path = require('path');
+var session  = require('express-session');
 
-var routes = rootRequire('routes/index')
-var sampleAjaxRoutes = rootRequire('routes/sample/ajax');;
-var users = rootRequire('routes/users');
-// var login = rootRequire('routes/login');
-var projectsRoutes = rootRequire('routes/projects');
-
-var dashboardRoutes = rootRequire('routes/dashboard');
+var routes = rootRequire('routes/index');
 var apiRoutes = rootRequire('routes/api');
+var dashboardRoutes = rootRequire('routes/dashboard');
+var projectsRoutes = rootRequire('routes/projects');
+var users = rootRequire('routes/users');
 
 var app = express();
+
 app.use(function(req, res, next) {
     res.locals.baseUrl = req.protocol + '://' + req.get('host');
     res.locals.resourceUrl = function(path) {
@@ -42,15 +45,24 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+// required for passport
+app.use(session({
+    secret: local.passport_secret,
+    resave: true,
+    saveUninitialized: true
+} )); // session secret
+app.use(passport.initialize());
+app.use(passport.session()); // persistent login sessions
+app.use(flash()); // use connect-flash for flash messages stored in session
+
 app.use('/static', express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
-// app.use('/login', login);
-app.use('/users', users);
-app.use('/projects', projectsRoutes);
-app.use('/dashboard', dashboardRoutes);
-app.use('/ajax', sampleAjaxRoutes);
 app.use('/api', apiRoutes);
+app.use('/dashboard', dashboardRoutes);
+app.use('/projects', projectsRoutes);
+app.use('/users', users(passport));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -5,12 +5,12 @@
   </head>
   <body class="login-body">
     <div class="container">
-      <form action="<%= getUrl('/users/login') %>" method="post" class="form-signin">
+      <form action="/users/login" method="post" class="form-signin">
         <h2 class="form-signin-heading">HONEYQA PORTAL</h2>
         <div class="login-wrap">
           <div class="user-login-info">
-            <input type="text" placeholder="User ID" autofocus="" class="form-control">
-            <input type="password" placeholder="Password" class="form-control">
+            <input name="login_email" type="email" placeholder="email" autofocus="" class="form-control" required>
+            <input name="login_password" type="password" placeholder="password" class="form-control" required>
           </div>
           <button type="submit" class="btn btn-lg btn-login btn-block">Sign in</button>
           <div class="btn btn-lg btn-google btn-block">
@@ -19,7 +19,7 @@
             </span>
           </div>
 
-          <div class="registration">Don't have an account yet?<a href="<%= getUrl('/users/join')%>">  Create account</a></div>
+          <div class="registration">Don't have an account yet?<a href="/users/join">  Create account</a></div>
         </div>
         <!-- Modal-->
         <div id="myModal" aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" class="modal fade">
