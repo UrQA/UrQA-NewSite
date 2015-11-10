@@ -53,17 +53,17 @@
                 $('div.dataTables_paginate')[0].style.display = "none";
             }
         });
+        $('#btnTranding').click(function() {
+            _dataTable.ajax.url('/api/project/'+urqaio.currentProject+'/errors/tranding').load();
+        });
+        $('#btnLatest').click(function() {
+            _dataTable.ajax.url('/api/project/'+urqaio.currentProject+'/errors/latest').load();
+        });
+
         $('#dynamic-table tbody').on('click', 'tr', function () {
             var data = _dataTable.row(this).data();
             location.href = '/dashboard/' + urqaio.currentProject + '/error/' + data['ID'];
         });
-        $('#btnTranding').click(function() {
-            _dataTable.api().ajax.url('/api/project/'+urqaio.currentProject+'/errors/tranding').load();
-        });
-        $('#btnLatest').click(function() {
-            _dataTable.api().ajax.url('/api/project/'+urqaio.currentProject+'/errors/latest').load();
-        });
-
         if ($.fn.plot) {
             var options = {
                 grid: {
