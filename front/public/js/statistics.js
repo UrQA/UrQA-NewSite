@@ -17,7 +17,7 @@ $(document).ready(function()
 		url:'https://honeyqa.io:8080/project/'+urqaio.currentProject+'/weekly_appruncount2',
 		success:function(data){
 			var chart_data =[];
-			
+
 			for(var i = 0; i < data.data.length; i++){
 				var datetime = new Date(data.data[i][0]);
 				var mm = (datetime.getMonth()+1).toString();
@@ -350,6 +350,108 @@ $(document).ready(function()
 	//	} // error 처리
 	//});
 
+	var totals;
+
+	function set_exists(x){
+    totals = x;
+    console.log("s:"+totals);
+	}
+
+	function t_exists(){
+
+    console.log("g:"+totals);
+		return totals;
+	}
+
+	$.ajax({
+	 url:'https://honeyqa.io:8080/project/'+urqaio.currentProject+'/weekly_errorcount', async: false,
+	 success:function(data){
+
+		 var chart_data =[];
+
+		 for(var i = 0; i < data.length; i++){
+			 var element = new Object();
+			// chart_data.push(element);
+			 var tot=data[i].weekly_instancecount;
+       set_exists(tot);
+		// $( "#erate" ).append( '<div class="content-row"><p class="text-ellipsis">'+data[i].errorclassname+'</p><div><div class="progress progress-xs"><div style="width: '+data[i].count+'%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="20" role="progressbar" class="progress-bar progress-bar-info"><span class="sr-only">'+data[i].count+'% Complete</span></div></div><div>'+data[i].count+'</div></div></div>' );
+
+	}
+
+
+	 } // error 처리
+	});
+
+   $.ajax({
+		url:'https://honeyqa.io:8080/statistics/'+urqaio.currentProject+'/errorclassname',
+		success:function(data){
+			var chart_data =[];
+
+			for(var i = 0; i < data.length; i++){
+				var gax='progress-bar progress-bar-danger';
+				var element = new Object();
+				element.value =  data[i].errorclassname;
+				element.label = data[i].count;
+				chart_data.push(element);
+				if(data[i].count>100){
+					var gq=t_exists();
+					data[i].count=Math.round((data[i].count/gq)*100);
+				}
+				// 색칠
+				if(i==0){
+				 gax='progress-bar progress-bar-danger';
+				}
+				else if(i==1){
+					gax='progress-bar progress-bar-warning';
+				}else{
+				 gax='progress-bar progress-bar-info';
+				}
+
+			$( "#erate" ).append( '<div class="content-row"><p class="text-ellipsis">'+data[i].errorclassname+'</p><div><div class="progress progress-xs"><div style="width: '+data[i].count+'%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="20" role="progressbar" class="'+gax+'"><span class="sr-only">'+data[i].count+'% Complete</span></div></div><div>'+data[i].count+'</div></div></div>' );
+
+}
+			chart_data.push(element);
+		
+
+		} // error 처리
+	});
+
+
+   $.ajax({
+		url:'https://honeyqa.io:8080/statistics/'+urqaio.currentProject+'/lastactivity',async: false,
+		success:function(data){
+			var chart_data =[];
+			console.log("to;"+totals);
+			for(var i = 0; i < data.length; i++){
+					var gax='progress-bar progress-bar-danger';
+				var element = new Object();
+				element.value =  data[i].lastactivity;
+				if(data[i].count>100){
+					var gq=t_exists();
+					data[i].count=Math.round((data[i].count/gq)*100);
+				}
+				element.label = data[i].count;
+
+				chart_data.push(element);
+				if(i==0){
+				 gax='progress-bar progress-bar-danger';
+				}
+				else if(i==1){
+					gax='progress-bar progress-bar-warning';
+				}else{
+				 gax='progress-bar progress-bar-info';
+				}
+
+			$( "#eact" ).append('<div class="content-row"><p class="text-ellipsis">'+data[i].lastactivity+'</p><div><div class="progress progress-xs"><div style="width: '+data[i].count+'%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="20" role="progressbar" class="'+gax+'"><span class="sr-only">'+data[i].count+'% Complete</span></div></div><div>'+data[i].count+'</div></div></div>');
+}
+
+			chart_data.push(element);
+
+			console.log(chart_data);
+
+		} // error 처리
+	});
+
 	// version error rate multi line graph
 	$.ajax({
 		url: baseurl + '/statistics/' + urqaio.currentProject + '/country',
@@ -398,5 +500,3 @@ $(document).ready(function()
 		} // error 처리
 	});
 });
-
-
