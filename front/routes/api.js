@@ -18,16 +18,16 @@ router.get('/projects/list', function(req, res, next) {
                     }
                     res.json(projects);
                 }else{
-                    res.json('[]');
+                    res.json([]);
                 }
             }else{
                 res.status(500);
-                res.json('{}');
+                res.json({});
             }
         })
     }else{
         res.status(401);
-        res.json('{}');
+        res.json({});
     }
 });
 
@@ -53,16 +53,16 @@ router.post('/project/add', function(req, res, next) {
                 }else{
                     console.log(body);
                     res.status(500);
-                    res.json('{}');
+                    res.json({});
                 }
             });
         }else{
             res.status(400);
-            res.json('{}');
+            res.json({});
         }
     }else{
         res.status(401);
-        res.json('{}');
+        res.json({});
     }
 });
 
@@ -74,12 +74,12 @@ router.get('/project/:id', function(req, res, next) {
                 res.json(body);
             }else{
                 res.status(500);
-                res.json('{}');
+                res.json({});
             }
         })
     }else{
         res.status(401);
-        res.json('{}');
+        res.json({});
     }
 });
 
@@ -92,12 +92,12 @@ router.get('/project/:id/sdk', function(req, res, next) {
                 res.json(data);
             }else{
                 res.status(500);
-                res.json('{}');
+                res.json({});
             }
         })
     }else{
         res.status(401);
-        res.json('{}');
+        res.json({});
     }
 });
 
@@ -110,12 +110,12 @@ router.get('/project/:id/weekly/error', function(req, res, next) {
                 res.json(data);
             }else{
                 res.status(500);
-                res.json('{}');
+                res.json({});
             }
         })
     }else{
         res.status(401);
-        res.json('{}');
+        res.json({});
     }
 });
 
@@ -128,12 +128,12 @@ router.get('/project/:id/weekly/session', function(req, res, next) {
                 res.json(data);
             }else{
                 res.status(500);
-                res.json('{}');
+                res.json({});
             }
         })
     }else{
         res.status(401);
-        res.json('{}');
+        res.json({});
     }
 });
 
@@ -145,105 +145,29 @@ router.get('/project/:id/daily/error', function(req, res, next) {
                 res.json(JSON.parse(body).data);
             }else{
                 res.status(500);
-                res.json('{}');
+                res.json({});
             }
         })
     }else{
         res.status(401);
-        res.json('{}');
+        res.json({});
     }
 });
 
-router.get('/project/:id/errors/tranding', function(req, res, next) {
+router.get('/project/:id/error/:idx', function(req, res, next) {
     if(req.user){
-        request('https://honeyqa.io:8080/project/'+req.params.id+'/errors_tranding', function (error, response, body) {
-            if (!error && response.statusCode == 200) {
-                res.status(200);
-                var result = [];
-                var errors = JSON.parse(body).errors;
-                var size = 0;
-                for(var i in errors){
-                    var data = {};
-                    data["ID"] = errors[i].id;
-                    data["0"] = locale.RANK[errors[i].rank];
-                    data["1"] = errors[i].numofinstance;
-                    data["2"] = errors[i].errorname + '<br>' + errors[i].errorclassname + ':' + errors[i].linenum;
-                    var str = "";
-                    for(var j in errors[i].tags){
-                        if(j!=0){
-                            str += ',';
-                        }
-                        str += errors[i].tags[j].tag;
-                    }
-                    data["3"] = str;
-                    data["4"] = errors[i].update_date;
-                    result.push(data);
-                    size++;
-                }
-                res.json({sEcho:0, iTotalRecords: 60, iTotalDisplayRecords: size, errorData:result});
-            }else{
-                res.status(500);
-                res.json('{}');
-            }
-        })
-    }else{
-        res.status(401);
-        res.json('{}');
-    }
-});
-
-router.get('/project/:id/errors/latest', function(req, res, next) {
-    if(req.user){
-        request('https://honeyqa.io:8080/project/'+req.params.id+'/errors_latest', function (error, response, body) {
-            if (!error && response.statusCode == 200) {
-                res.status(200);
-                var result = [];
-                var errors = JSON.parse(body).errors;
-                var size = 0;
-                for(var i in errors){
-                    var data = {};
-                    data["ID"] = errors[i].id;
-                    data["0"] = locale.RANK[errors[i].rank];
-                    data["1"] = errors[i].numofinstance;
-                    data["2"] = errors[i].errorname + '<br>' + errors[i].errorclassname + ':' + errors[i].linenum;
-                    var str = "";
-                    for(var j in errors[i].tags){
-                        if(j!=0){
-                            str += ',';
-                        }
-                        str += errors[i].tags[j].tag;
-                    }
-                    data["3"] = str;
-                    data["4"] = errors[i].update_date;
-                    result.push(data);
-                    size++;
-                }
-                res.json({sEcho:0, iTotalRecords: 60, iTotalDisplayRecords: size, errorData:result});
-            }else{
-                res.status(500);
-                res.json('{}');
-            }
-        })
-    }else{
-        res.status(401);
-        res.json('{}');
-    }
-});
-
-router.get('/project/:id/errors/filter', function(req, res, next) {
-    if(req.user){
-        request('https://honeyqa.io:8080/project/'+req.params.id+'/filters', function (error, response, body) {
+        request('https://honeyqa.io:8080/error/'+req.params.id+'/filters', function (error, response, body) {
             if (!error && response.statusCode == 200) {
                 res.status(200);
                 res.json(body);
             }else{
                 res.status(500);
-                res.json('{}');
+                res.json({});
             }
         })
     }else{
         res.status(401);
-        res.json('{}');
+        res.json({});
     }
 });
 
@@ -296,16 +220,109 @@ router.get('/project/:id/errors', function(req, res, next) {
                     res.json(body);
                 }else{
                     res.status(500);
-                    res.json('{}');
+                    res.json({});
                 }
             })
     }else{
         res.status(401);
-        res.json('{}');
+        res.json({});
+    }
+});
+
+router.get('/project/:id/errors/filter', function(req, res, next) {
+    if(req.user){
+        request('https://honeyqa.io:8080/project/'+req.params.id+'/filters', function (error, response, body) {
+            if (!error && response.statusCode == 200) {
+                res.status(200);
+                res.json(body);
+            }else{
+                res.status(500);
+                res.json({});
+            }
+        })
+    }else{
+        res.status(401);
+        res.json({});
     }
 });
 
 router.get('/project/:id/errors/latest', function(req, res, next) {
+    if(req.user){
+        request('https://honeyqa.io:8080/project/'+req.params.id+'/errors_latest', function (error, response, body) {
+            if (!error && response.statusCode == 200) {
+                res.status(200);
+                var result = [];
+                var errors = JSON.parse(body).errors;
+                var size = 0;
+                for(var i in errors){
+                    var data = {};
+                    data["ID"] = errors[i].id;
+                    data["0"] = locale.RANK[errors[i].rank];
+                    data["1"] = errors[i].numofinstance;
+                    data["2"] = errors[i].errorname + '<br>' + errors[i].errorclassname + ':' + errors[i].linenum;
+                    var str = "";
+                    for(var j in errors[i].tags){
+                        if(j!=0){
+                            str += ',';
+                        }
+                        str += errors[i].tags[j].tag;
+                    }
+                    data["3"] = str;
+                    data["4"] = errors[i].update_date;
+                    result.push(data);
+                    size++;
+                }
+                res.json({sEcho:0, iTotalRecords: 60, iTotalDisplayRecords: size, errorData:result});
+            }else{
+                res.status(500);
+                res.json({});
+            }
+        })
+    }else{
+        res.status(401);
+        res.json({});
+    }
+});
+
+router.get('/project/:id/errors/tranding', function(req, res, next) {
+    if(req.user){
+        request('https://honeyqa.io:8080/project/'+req.params.id+'/errors_tranding', function (error, response, body) {
+            if (!error && response.statusCode == 200) {
+                res.status(200);
+                var result = [];
+                var errors = JSON.parse(body).errors;
+                var size = 0;
+                for(var i in errors){
+                    var data = {};
+                    data["ID"] = errors[i].id;
+                    data["0"] = locale.RANK[errors[i].rank];
+                    data["1"] = errors[i].numofinstance;
+                    data["2"] = errors[i].errorname + '<br>' + errors[i].errorclassname + ':' + errors[i].linenum;
+                    var str = "";
+                    for(var j in errors[i].tags){
+                        if(j!=0){
+                            str += ',';
+                        }
+                        str += errors[i].tags[j].tag;
+                    }
+                    data["3"] = str;
+                    data["4"] = errors[i].update_date;
+                    result.push(data);
+                    size++;
+                }
+                res.json({sEcho:0, iTotalRecords: 60, iTotalDisplayRecords: size, errorData:result});
+            }else{
+                res.status(500);
+                res.json({});
+            }
+        })
+    }else{
+        res.status(401);
+        res.json({});
+    }
+});
+
+router.get('/project/:id/errors/latest/filtered', function(req, res, next) {
     if(req.user){
         // appversion / osversion / country
         var data = {};
@@ -354,12 +371,12 @@ router.get('/project/:id/errors/latest', function(req, res, next) {
                     res.json(body);
                 }else{
                     res.status(500);
-                    res.json('{}');
+                    res.json({});
                 }
             })
     }else{
         res.status(401);
-        res.json('{}');
+        res.json({});
     }
 });
 
@@ -375,12 +392,12 @@ router.get('/project/:id/weekly/rank', function(req, res, next) {
                 res.json(ranks);
             }else{
                 res.status(500);
-                res.json('{}');
+                res.json({});
             }
         })
     }else{
         res.status(401);
-        res.json('{}');
+        res.json({});
     }
 });
 
