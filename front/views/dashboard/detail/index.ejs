@@ -2,14 +2,13 @@
 <section id="main-content">
     <section id="errors" class="wrapper">
         <!-- page start -->
-
         <div class="row">
             <div class="col-md-12">
                 <!--breadcrumbs start -->
                 <ul class="breadcrumb">
                     <li><a href="/projects"><i class="fa fa-home"></i> Home</a></li>
-                    <li><a href="<%= getUrl('/dashboard') %>">텔레톡비-v2</a></li>
-                    <li><a href="errors.html">Errors</a></li>
+                    <li><a id="load_title" href="/dashboard/<%= data.id%>"><i id="load_icon" class="fa fa-refresh fa-spin"></i></a></li>
+                    <li><a href="/dashboard/<%= data.id%>/error">Errors</a></li>
                     <li class="active">Details</li>
                 </ul>
                 <!--breadcrumbs end -->
@@ -874,4 +873,3 @@
         </div>
     </section>
 </section>
-<!--main content end-->
