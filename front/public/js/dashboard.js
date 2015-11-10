@@ -175,12 +175,6 @@
                         legend: {
                             show: true,
                             labelFormatter: function(text, series){ return text + " (" + series.percent.toFixed(2) + "%)"; },
-                            /*sorted: function(a, b){
-                             var a_var = parseFloat(a.label.split(" (")[1].split("%)")[0]);
-                             var b_var = parseFloat(b.label.split(" (")[1].split("%)")[0]);
-
-                             return a_var == b_var ? 0 : (a_var < b_var ? 1 : -1);
-                             }*/
                         },
                         grid: {
                             hoverable: true,

@@ -365,7 +365,7 @@ router.get('/project/:id/errors/latest', function(req, res, next) {
 
 router.get('/project/:id/weekly/rank', function(req, res, next) {
     if(req.user){
-        request('https://honeyqa.io:8080/project/'+req.params.id+'/rank_rate', function (error, response, body) {
+        request('https://honeyqa.io:8080/statistics/'+req.params.id+'/rank_rate', function (error, response, body) {
             if (!error && response.statusCode == 200) {
                 res.status(200);
                 var ranks = JSON.parse(body);

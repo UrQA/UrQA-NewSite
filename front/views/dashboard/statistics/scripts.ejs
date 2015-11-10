@@ -1,6 +1,7 @@
 <!-- Core js-->
 <script src="<%= resourceUrl('/bower_components/jquery/dist/jquery.js') %>"></script>
 <script src="<%= resourceUrl('/js/jquery-ui/jquery-ui-1.10.1.custom.min.js') %>"></script>
+<script src="<%= resourceUrl('/bower_components/jsrender/jsrender.js') %>"></script>
 <script src="<%= resourceUrl('/bower_components/bootstrap/dist/js/bootstrap.min.js') %>"></script>
 
 <script src="<%= resourceUrl('/bower_components/jquery.scrollTo/jquery.scrollTo.min.js') %>"></script>
@@ -18,3 +19,23 @@
 
 <script src="<%= resourceUrl('/js/statistics.js') %>"></script>
 <script src="<%= resourceUrl('/js/scripts.js') %>"></script>
+
+<script id="plainDataTmpl" type="text/x-jsrender">
+{{:data}}
+</script>
+
+<script>
+    var plainTemplate = $.templates("#plainDataTmpl");
+    $.ajax({
+        url:'/api/project/<%= data.id %>',
+        success:function(data){
+            var htmlOutput = plainTemplate.render({data:JSON.parse(data).title});
+            $("#load_title").html(htmlOutput);
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            var data = {data:'<i class="fa fa-exclamation-triangle"></i>'};
+            var htmlOutput = plainTemplate.render(data);
+            $("#load_title").html(htmlOutput);
+        }
+    });
+</script>

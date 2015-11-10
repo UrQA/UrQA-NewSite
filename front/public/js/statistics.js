@@ -23,12 +23,9 @@ $(document).ready(function()
 				var datetime = new Date(data.data[i][0]);
 				var mm = (datetime.getMonth()+1).toString();
 				var dd = datetime.getDate().toString();
-
 				var elapsed = (mm[1] ? mm : '0' + mm[0])+'/'+(dd[1] ? dd : '0' + dd[0]);
 				var value = data.data[i][1];
-
 				var element = new Object();
-
 				element.elapsed =  elapsed;
 				element.value = value;
 				chart_data.push(element);
@@ -58,7 +55,6 @@ $(document).ready(function()
 				element.formatted = ((data[i].count/total_errorcount) * 100).toFixed(1) + '%';
 				chart_data.push(element);
 			}
-
 			Morris.Donut({
 				element: 'graph-donut-rank',
 				data: chart_data,
@@ -69,7 +65,6 @@ $(document).ready(function()
 				],
 				formatter: function (x, data) { return data.formatted; }
 			});
-
 		} // error 처리
 	});
 
