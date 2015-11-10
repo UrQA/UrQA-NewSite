@@ -22,17 +22,3 @@
 
 
 <script src="<%= resourceUrl('/js/scripts.js') %>"></script>
-<script>
-    $(document).ready(function() {
-        $(".openModal").click(function(){
-            $("#uploadModal").modal();
-        });
-        $("#up").click(function(){
-            $("#form_upload").submit();
-        });
-        $(".submits").click(function(){
-            alert("Uploaded.");
-            //).submit();
-        });
-    });
-</script>

@@ -1,0 +1,61 @@
+<section id="main-content">
+    <section id="errors" class="wrapper">
+        <!-- page start -->
+
+        <div class="row">
+            <div class="col-md-12">
+                <!--breadcrumbs start -->
+                <ul class="breadcrumb">
+                    <li><a href="<%= getUrl('/projects') %>"><i class="fa fa-home"></i> Home</a></li>
+                    <li><a href="<%= getUrl('/dashboard') %>">텔레톡비-v2</a></li>
+                    <li><a href="setting-general.html">Settings</a></li>
+                    <li class="active">Proguard</li>
+                </ul>
+                <!--breadcrumbs end -->
+            </div>
+        </div>
+
+        <!-- Error Information -->
+        <div class="row">
+            <div class="col-lg-12">
+                <section class="panel">
+                    <header class="panel-heading">
+                        Proguard Setting
+                        <span class="tools pull-right">
+                            <a href="javascript:;" class="fa fa-chevron-down"></a>
+                        </span>
+                    </header>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-horizontal bucket-form">
+                                    <div id="errors-table" class="adv-table">
+                                        <div id="dynamic-table_wrapper" class="dataTables_wrapper no-footer"><div class="row-fluid"><div class="span6"></div><div class="span6"></div><div id="dynamic-table_processing" class="dataTables_processing" style="display: none;">Processing...</div></div><div id="dynamic-table_wrapper" class="dataTables_wrapper no-footer"><div class="row-fluid"><div class="span6"></div><div class="span6"></div><div id="dynamic-table_processing" class="dataTables_processing" style="display: none;">Processing...</div></div><table class="table table-hover table-striped dataTable no-footer" id="dynamic-table" role="grid" style="width: 1903px;">
+                                                    <thead>
+                                                    <tr role="row"><th style="width:50px" class="ui-state-default sorting_disabled" rowspan="1" colspan="1"><div class="DataTables_sort_wrapper"><div class="DataTables_sort_wrapper">File<span class="DataTables_sort_icon"></span></div><span class="DataTables_sort_icon"></span></div></th><th style="width:60px" class="ui-state-default sorting_disabled" rowspan="1" colspan="1"><div class="DataTables_sort_wrapper"><div class="DataTables_sort_wrapper"><span class="DataTables_sort_icon"></span></div><span class="DataTables_sort_icon"></span></div></th><th class="ui-state-default sorting_disabled" rowspan="1" colspan="1" style="width: 10px;"><div class="DataTables_sort_wrapper"><div class="DataTables_sort_wrapper">App Version<span class="DataTables_sort_icon"></span></div><span class="DataTables_sort_icon"></span></div></th><th style="width:180px" class="ui-state-default sorting_disabled" rowspan="1" colspan="1"><div class="DataTables_sort_wrapper"><div class="DataTables_sort_wrapper">Tags<span class="DataTables_sort_icon"></span></div><span class="DataTables_sort_icon"></span></div></th><th style="width:60px" class="res-hidden ui-state-default sorting_disabled" rowspan="1" colspan="1"><div class="DataTables_sort_wrapper"><div class="DataTables_sort_wrapper">Time<span class="DataTables_sort_icon"></span></div><span class="DataTables_sort_icon"></span></div></th></tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    <tr class="odd"><td valign="top" colspan="5" class="dataTables_empty">No matching records found</td></tr></tbody>
+                                                </table><div class="row-fluid"><div class="span6"></div><div class="span6"><div class="dataTables_paginate fg-buttonset ui-buttonset fg-buttonset-multi ui-buttonset-multi paging_bootstrap pagination" id="dynamic-table_paginate" style="display: none;"><ul><li class="prev disabled"><a href="#">← Previous</a></li><li class="next disabled"><a href="#">Next → </a></li></ul></div></div></div></div><div class="row-fluid"><div class="span6"></div><div class="span6"><div class="dataTables_paginate fg-buttonset ui-buttonset fg-buttonset-multi ui-buttonset-multi paging_bootstrap pagination" id="dynamic-table_paginate"><ul><li class="prev disabled"><a href="#">← Previous</a></li><li class="next disabled"><a href="#">Next → </a></li></ul></div></div></div></div>
+                                    </div>
+                                    <div class="form-group">
+
+                                        <div class="Form-group">
+                                            <form id="upload" method="post" action="upload" enctype="multipart/form-data">
+                                                <div id="drop">
+                                                    Drop Here
+                                                    <a>Browse</a>
+                                                    <input type="file" name="upl" multiple />
+                                                </div>
+                                                <ul></ul>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                </section>
+            </div>
+        </div>
+    </section>
+</section>
