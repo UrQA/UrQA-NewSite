@@ -80,4 +80,10 @@ router.get('/:id/setting/symbolicate', function(req, res) {
     }
 });
 
+router.get('/:id/setting/proguard', function(req, res) {
+    var id = req.params.id;
+    var data = {id:id, section:5};
+    res.render('layout/dashboard/layout', getViewContainer("../../dashboard/setting/proguard", data));
+});
+
 module.exports = router;
