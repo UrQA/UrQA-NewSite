@@ -170,6 +170,36 @@ router.get('/project/:id/error/:idx', function(req, res, next) {
     }
 });
 
+router.get('/project/:id/error/:idx/callstack', function(req, res, next) {
+    if(req.user){
+        request('https://honeyqa.io:8080/error/'+req.params.idx+'/callstack', function (error, response, body) {
+            if (!error && response.statusCode == 200) {
+                var parsed = JSON.parse(body);
+                var data = {};
+                if(parsed.callstack){
+                    var rawArr = parsed.callstack.replace(/\n\t/g,'\n    ').split('\n');
+                    var count = 0;
+                    for(var i in rawArr){
+                        data[i] = rawArr[i];
+                        count++;
+                    }
+                    data['length'] = count;
+                }else{
+                    data['length'] = 0;
+                }
+                res.status(200);
+                res.json(data);
+            }else{
+                res.status(500);
+                res.json({});
+            }
+        })
+    }else{
+        res.status(401);
+        res.json({});
+    }
+});
+
 router.get('/project/:id/errors', function(req, res, next) {
     if(req.user){
         // appversion / osversion / country

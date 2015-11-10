@@ -129,8 +129,6 @@
                                     <div class="form-group">
                                         <label class="col-sm-3 control-label"><i class="fa fa-tags"></i> Tags</label>
                                         <div class="col-sm-9">
-                                            <span class="badge label-primary pull-right r-activity">0</span>
-                                            <span class="badge label-primary pull-right r-activity">0</span>
                                             <input id="tags_1" type="text" class="tags" />
                                         </div>
                                     </div>
@@ -434,16 +432,13 @@
                     <header class="panel-heading tab-bg-dark-navy-blue" style="background:#e6e7ec !important">
                         <ul class="nav nav-tabs">
                             <li class="active">
-                                <a data-toggle="tab" href="#callstacks">Callstacks</a>
+                                <a data-toggle="tab" href="#callstacks">Callstacks  <i id="load_status_callstack" class="fa fa-refresh fa-spin"></i></a>
                             </li>
                             <li class="">
-                                <a data-toggle="tab" href="#instance">Instance</a>
+                                <a data-toggle="tab" href="#instance">Instance  <i id="load_status_instance" class="fa fa-refresh fa-spin"></i></a>
                             </li>
                             <li class="">
-                                <a data-toggle="tab" href="#breadcrumb">Breadcrumb</a>
-                            </li>
-                            <li class="">
-                                <a data-toggle="tab" href="#comments">Comments</a>
+                                <a data-toggle="tab" href="#breadcrumb">Breadcrumb  <i id="load_status_breadcrumb" class="fa fa-refresh fa-spin"></i></a>
                             </li>
                         </ul>
                         <span class="tools pull-right" style="margin-top:-18px">
@@ -455,91 +450,7 @@
                         <div class="tab-content">
                             <div id="callstacks" class="tab-pane active">
                                 <table class="table table-bordered table-striped">
-                                    <tbody>
-                                    <tr>
-                                        <td class="bold">0</td>
-                                        <td class="table-text-ellipsis-1">
-                                            <div>java.lang.RuntimeException: An error occured while executing doInBackground()</div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="bold">1</td>
-                                        <td class="table-text-ellipsis-1">
-                                            <div>at android.os.AsyncTask$3.done (AsyncTask.java:300)</div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="bold">2</td>
-                                        <td class="table-text-ellipsis-1">
-                                            <div>at java.util.concurrent.FutureTask.finishCompletion (FutureTask.java:355)</div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="bold">3</td>
-                                        <td class="table-text-ellipsis-1">
-                                            <div>at java.util.concurrent.FutureTask.setException (FutureTask.java:222)</div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="bold">4</td>
-                                        <td class="table-text-ellipsis-1">
-                                            <div>at java.util.concurrent.FutureTask.run (FutureTask.java:242)</div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="bold">5</td>
-                                        <td class="table-text-ellipsis-1">
-                                            <div>at android.os.AsyncTask$SerialExecutor$1.run (AsyncTask.java:231)</div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="bold">6</td>
-                                        <td class="table-text-ellipsis-1">
-                                            <div>at java.util.concurrent.ThreadPoolExecutor.runWorker (ThreadPoolExecutor.java:1112)</div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="bold">7</td>
-                                        <td class="table-text-ellipsis-1">
-                                            <div>at java.util.concurrent.ThreadPoolExecutor$Worker.run (ThreadPoolExecutor.java:587)</div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="bold">8</td>
-                                        <td class="table-text-ellipsis-1">
-                                            <div>at java.lang.Thread.run Caused by: java.lang.NullPointerException (Thread.java:841)</div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="bold">9</td>
-                                        <td class="table-text-ellipsis-1">
-                                            <div>at com.teletalkvi.core.BaseAsyncTask.doInBackground (BaseAsyncTask.java:62)</div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="bold">10</td>
-                                        <td class="table-text-ellipsis-1">
-                                            <div>at com.teletalkvi.core.BaseAsyncTask.doInBackground (BaseAsyncTask.java:1)</div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="bold">11</td>
-                                        <td class="table-text-ellipsis-1">
-                                            <div>at android.os.AsyncTask$2.call (AsyncTask.java:288)</div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="bold">12</td>
-                                        <td class="table-text-ellipsis-1">
-                                            <div>at java.util.concurrent.FutureTask.run (FutureTask.java:237)</div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="bold">13</td>
-                                        <td class="table-text-ellipsis-1">
-                                            <div>... 4 more</div>
-                                        </td>
-                                    </tr>
+                                    <tbody id="load_callstacks">
                                     </tbody>
                                 </table>
                             </div>

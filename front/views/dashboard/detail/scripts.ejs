@@ -36,8 +36,16 @@
 {{:data}}
 </script>
 
+<script id="callstackTmpl" type="text/x-jsrender">
+    <tr>
+    <td class="bold">{{:line}}</td>
+    <td class="table-text-ellipsis-1"><div>{{:data}}</div></td>
+    </tr>
+</script>
+
 <script>
     var template = $.templates("#textDataTmpl");
+    var callstackTemplate = $.templates("#callstackTmpl");
     var plainTemplate = $.templates("#plainDataTmpl");
     $.ajax({
         url:'/api/project/<%= data.id %>',
@@ -73,7 +81,7 @@
             plain = plainTemplate.render({data:data.update_date});
             $("#load_errorupdated").html(plain);
             // memory
-            var t = template.render({data:numeral(data.totalmemusage*1000).format('0.00b')});
+            var t = template.render({data:data.totalmemusage + 'MB'});
             $("#load_memory").html(t);
             // gps
             t = template.render({data:numeral(data.gpson/ec).format('0.0%')});
@@ -100,6 +108,21 @@
             $("#load_errorclass").html(t2);
             $("#load_errorcreated").html(t2);
             $("#load_errorupdated").html(t2);
+        }
+    });
+    $.ajax({
+        url:'/api/project/<%= data.id %>/error/<%= data.eid %>/callstack',
+        success:function(data){
+            for(var i=0;i<data.length;i++){
+                if(data[i]!=''){
+                    var t = callstackTemplate.render({line:i, data:data[i]});
+                    $("#load_callstacks").append(t);
+                }
+            }
+            $("#load_status_callstack").remove();
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            $("#load_status_callstack").attr('class','fa fa-exclamation-triangle');
         }
     });
 </script>
