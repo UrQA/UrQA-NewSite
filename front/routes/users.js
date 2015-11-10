@@ -4,7 +4,11 @@ var router = express.Router();
 module.exports = function(passport){
 
     router.get('/login', function(req, res, next) {
+        if(!req.user){
         res.render('user/login');
+    }else{
+        res.redirect('/projects');
+    }
     });
 
     router.post('/login', passport.authenticate('login', { successRedirect: '/projects',
