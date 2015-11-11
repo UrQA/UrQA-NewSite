@@ -74,8 +74,8 @@
         <td>{{:data.osversion}}</td>
         <td><i class="{{:data.wifion}}" style="font-size:120%"></i></td>
         <td><i class="{{:data.mobileon}}" style="font-size:120%"></i></td>
-        <td>View</td>
-        <td style="cursor:pointer" onclick="openDetails('dv_{{:data.id}}')"><i class="fa fa-chevron-down"></i></td>
+        <td onclick="alert('준비중입니다.')"><i class="fa fa-exclamation-triangle"></i></td>
+        <td style="cursor:pointer" onclick="openDetails('dv_{{:data.id}}')"><i id="dv_{{:data.id}}_i" class="fa fa-chevron-down"></i></td>
     </tr>
     <tr id="dv_{{:data.id}}" style="display:none">
         <td colspan="8">
@@ -461,8 +461,11 @@
         var attr = $("#"+e).attr('style');
         if(attr){
             $("#"+e).removeAttr('style');
+            $("#"+e+"_i").attr('class','fa fa-chevron-up');
         } else {
             $("#"+e).attr('style','display:none');
+            $("#"+e+"_i").attr('class','fa fa-chevron-down');
         }
     }
+
 </script>
