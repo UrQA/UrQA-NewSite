@@ -66,11 +66,145 @@
     </tr>
 </script>
 
+<script id="instanceTmpl" type="text/x-jsrender">
+    <tr>
+        <td>{{:data.appversion}}</td>
+        <td>{{:data.country}}</td>
+        <td>{{:data.device}}</td>
+        <td>{{:data.osversion}}</td>
+        <td><i class="{{:data.wifion}}" style="font-size:120%"></i></td>
+        <td><i class="{{:data.mobileon}}" style="font-size:120%"></i></td>
+        <td>View</td>
+        <td style="cursor:pointer" onclick="openDetails('dv_{{:data.id}}')"><i class="fa fa-chevron-down"></i></td>
+    </tr>
+    <tr id="dv_{{:data.id}}" style="display:none">
+        <td colspan="8">
+            <form class="form-horizontal bucket-form" method="get">
+                <div class="form-group">
+                    <label class="col-xs-3 col-sm-3 control-label">App Version</label>
+                    <div class="col-xs-3 col-sm-3">
+                        <p class="form-control-static text-ellipsis">{{:data.appversion}}</p>
+                    </div>
+                    <label class="col-xs-3 col-sm-3 control-label">OS Version</label>
+                    <div class="col-xs-3 col-sm-3">
+                        <p class="form-control-static text-ellipsis">{{:data.osversion}}</p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-3 col-sm-3 control-label">Device</label>
+                        <div class="col-xs-3 col-sm-3">
+                            <p class="form-control-static text-ellipsis">{{:data.device}}</p>
+                        </div>
+                    <label class="col-xs-3 col-sm-3 control-label">Carrier</label>
+                    <div class="col-xs-3 col-sm-3">
+                        <p class="form-control-static text-ellipsis">{{:data.carrier_name}}</p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-3 col-sm-3 control-label">Country</label>
+                        <div class="col-xs-3 col-sm-3">
+                            <p class="form-control-static text-ellipsis">{{:data.country}}</p>
+                        </div>
+                        <label class="col-xs-3 col-sm-3 control-label">Locale</label>
+                        <div class="col-xs-3 col-sm-3">
+                            <p class="form-control-static text-ellipsis">{{:data.locale}}</p>
+                        </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-3 col-sm-3 control-label">GPS</label>
+                    <div class="col-xs-3 col-sm-3">
+                        <p class="form-control-static text-ellipsis">
+                            <i class="{{:data.gpson}}" style="font-size:120%"></i>
+                        </p>
+                    </div>
+                    <label class="col-xs-3 col-sm-3 control-label">Battery</label>
+                    <div class="col-xs-3 col-sm-3">
+                        <p class="form-control-static text-ellipsis">{{:data.batterylevel}}%</p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-3 col-sm-3 control-label">Wifi</label>
+                    <div class="col-xs-3 col-sm-3">
+                        <p class="form-control-static text-ellipsis">
+                            <i class="{{:data.wifion}}" style="font-size:120%"></i>
+                        </p>
+                    </div>
+                    <label class="col-xs-3 col-sm-3 control-label">Mobile Network</label>
+                    <div class="col-xs-3 col-sm-3">
+                        <p class="form-control-static text-ellipsis">
+                            <i class="{{:data.mobileon}}" style="font-size:120%"></i>
+                        </p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-3 col-sm-3 control-label">Screen (w | h)</label>
+                    <div class="col-xs-3 col-sm-3">
+                        <p class="form-control-static text-ellipsis">{{:data.scrwidth}} X {{:data.scrheight}}</p>
+                    </div>
+                    <label class="col-xs-3 col-sm-3 control-label">DPI (x | y)</label>
+                    <div class="col-xs-3 col-sm-3">
+                        <p class="form-control-static text-ellipsis">{{:data.xdpi}} x {{:data.ydpi}}</p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-3 col-sm-3 control-label">Created Date</label>
+                    <div class="col-xs-3 col-sm-3">
+                        <p class="form-control-static text-ellipsis">{{:data.datetime}}</p>
+                    </div>
+                    <label class="col-xs-3 col-sm-3 control-label">Memory Available</label>
+                    <div class="col-xs-3 col-sm-3">
+                        <p class="form-control-static text-ellipsis">{{:data.appmemfree}}</p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-3 col-sm-3 control-label">Memory Total</label>
+                    <div class="col-xs-3 col-sm-3">
+                        <p class="form-control-static text-ellipsis">{{:data.appmemtotal}}</p>
+                    </div>
+                    <label class="col-xs-3 col-sm-3 control-label">Memory Max</label>
+                    <div class="col-xs-3 col-sm-3">
+                        <p class="form-control-static text-ellipsis">{{:data.appmemmax}}</p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-3 col-sm-3 control-label">Instance ID</label>
+                    <div class="col-xs-3 col-sm-3">
+                        <p class="form-control-static text-ellipsis">{{:data.id}}</p>
+                    </div>
+                    <label class="col-xs-3 col-sm-3 control-label">SDK Version</label>
+                    <div class="col-xs-3 col-sm-3">
+                        <p class="form-control-static text-ellipsis">{{:data.sdkversion}}</p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-3 col-sm-3 control-label">Screen Orientation</label>
+                    <div class="col-xs-3 col-sm-3">
+                        <p class="form-control-static text-ellipsis">{{:data.scrorientation}}</p>
+                    </div>
+                    <label class="col-xs-3 col-sm-3 control-label">Rooted</label>
+                    <div class="col-xs-3 col-sm-3">
+                        <p class="form-control-static text-ellipsis">
+                            <i class="{{:data.rooted}}" style="font-size:120%"></i>
+                        </p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-3 col-sm-3 control-label">Last Activity</label>
+                    <div class="col-xs-9 col-sm-9">
+                        <p class="form-control-static text-ellipsis">{{:data.lastactivity}}</p>
+                    </div>
+                </div>
+            </form>
+        </td>
+    </tr>
+</script>
+
 <script>
     var template = $.templates("#textDataTmpl");
     var plainTemplate = $.templates("#plainDataTmpl");
     var progressTemplate = $.templates("#progressTmpl");
     var callstackTemplate = $.templates("#callstackTmpl");
+    var instanceTemplate = $.templates("#instanceTmpl");
     $.ajax({
         url:'/api/project/<%= data.id %>',
         success:function(data){
@@ -190,6 +324,25 @@
             $("#load_status_statistics").attr('class','fa fa-exclamation-triangle');
         }
     });
+    $.ajax({
+        url:'/api/project/<%= data.id %>/error/<%= data.eid %>/instances',
+        success:function(data){
+            var o;
+            for(var i in data){
+                data[i].wifion = getStatusIcon(data[i].wifion);
+                data[i].mobileon = getStatusIcon(data[i].mobileon);
+                data[i].gpson = getStatusIcon(data[i].gpson);
+                data[i].rooted = getStatusIcon(data[i].rooted);
+                data[i].scrorientation = getScreenStatus(data[i].scrorientation);
+                o = instanceTemplate.render({data:data[i]});
+                $("#load_instances").append(o);
+            }
+            $("#load_status_instance").remove();
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            $("#load_status_instance").attr('class','fa fa-exclamation-triangle');
+        }
+    });
     // Graph
     $(document).ready(function () {
         if ($.fn.plot) {
@@ -286,5 +439,30 @@
             return 'warning';
         }
         return 'info';
+    }
+
+    function getScreenStatus(i){
+        if(i == 0 || i == 2){
+            return 'Portrait';
+        }else{
+            return 'Landscape';
+        }
+    }
+
+    function getStatusIcon(i){
+        if(i==1){
+            return 'fa fa-check-circle text-success';
+        }else{
+            return 'fa fa-times-circle text-danger';
+        }
+    }
+
+    function openDetails(e){
+        var attr = $("#"+e).attr('style');
+        if(attr){
+            $("#"+e).removeAttr('style');
+        } else {
+            $("#"+e).attr('style','display:none');
+        }
     }
 </script>
