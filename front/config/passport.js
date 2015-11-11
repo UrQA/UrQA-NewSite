@@ -103,7 +103,6 @@ module.exports = function(passport) {
                                     for(var i=0;i<rows.length;i++){
                                         project[rows[i].id] = true;
                                     }
-                                    project[720] = true;
                                     user.project = project;
                                 }
                                 connection.release();
