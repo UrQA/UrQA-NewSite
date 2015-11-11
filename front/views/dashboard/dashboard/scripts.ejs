@@ -91,7 +91,7 @@
     $.ajax({
         url:'/api/project/<%= data.id %>',
         success:function(data){
-            var htmlOutput = plainTemplate.render({data:JSON.parse(data).title});
+            var htmlOutput = plainTemplate.render({data:data.title});
             $("#load_title").html(htmlOutput);
         },
         error: function(jqXHR, textStatus, errorThrown) {
