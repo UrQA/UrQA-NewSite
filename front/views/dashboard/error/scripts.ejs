@@ -52,7 +52,7 @@
     $.ajax({
         url:'/api/project/<%= data.id %>',
         success:function(data){
-            var htmlOutput = plainTemplate.render({data:JSON.parse(data).title});
+            var htmlOutput = plainTemplate.render({data:data.title});
             $("#load_title").html(htmlOutput);
         },
         error: function(jqXHR, textStatus, errorThrown) {
@@ -64,12 +64,11 @@
     $.ajax({
         url:'/api/project/<%= data.id %>/errors/filter',
         success:function(data){
-            var j = JSON.parse(data);
-            var appv = appvtemplate.render(j.filter_appversions);
+            var appv = appvtemplate.render(data.filter_appversions);
             $("#select-app").append(appv);
-            var sdkv = sdkvtemplate.render(j.filter_sdkversions);
+            var sdkv = sdkvtemplate.render(data.filter_sdkversions);
             $("#select-os").append(sdkv);
-            var cv = countrytemplate.render(j.filter_countries);
+            var cv = countrytemplate.render(data.filter_countries);
             $("#select-country").append(cv);
         },
         error: function(jqXHR, textStatus, errorThrown) {
