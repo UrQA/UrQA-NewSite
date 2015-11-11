@@ -21,7 +21,11 @@ router.get('/projects/list', function(req, res, next) {
                     res.json([]);
                 }
             }else{
-                res.status(500);
+                if(!error){
+                    res.status(204);
+                }else{
+                    res.status(500);
+                }
                 res.json({});
             }
         })
@@ -51,7 +55,11 @@ router.post('/project/add', function(req, res, next) {
                     req.user.project[JSON.parse(body).insertId] = true;
                     res.json(JSON.parse(body));
                 }else{
-                    res.status(500);
+                    if(!error){
+                        res.status(204);
+                    }else{
+                        res.status(500);
+                    }
                     res.json({});
                 }
             });
@@ -72,7 +80,11 @@ router.get('/project/:id', function(req, res, next) {
                 res.status(200);
                 res.json(JSON.parse(body));
             }else{
-                res.status(500);
+                if(!error){
+                    res.status(204);
+                }else{
+                    res.status(500);
+                }
                 res.json({});
             }
         })
@@ -90,7 +102,11 @@ router.get('/project/:id/sdk', function(req, res, next) {
                 var data = {"data":JSON.parse(body).osversion};
                 res.json(data);
             }else{
-                res.status(500);
+                if(!error){
+                    res.status(204);
+                }else{
+                    res.status(500);
+                }
                 res.json({});
             }
         })
@@ -108,7 +124,11 @@ router.get('/project/:id/weekly/error', function(req, res, next) {
                 var data = {"data":JSON.parse(body).weekly_instancecount};
                 res.json(data);
             }else{
-                res.status(500);
+                if(!error){
+                    res.status(204);
+                }else{
+                    res.status(500);
+                }
                 res.json({});
             }
         })
@@ -126,7 +146,11 @@ router.get('/project/:id/weekly/session', function(req, res, next) {
                 var data = {"data":JSON.parse(body).weekly_sessioncount};
                 res.json(data);
             }else{
-                res.status(500);
+                if(!error){
+                    res.status(204);
+                }else{
+                    res.status(500);
+                }
                 res.json({});
             }
         })
@@ -143,7 +167,11 @@ router.get('/project/:id/daily/error', function(req, res, next) {
                 res.status(200);
                 res.json(JSON.parse(body).data);
             }else{
-                res.status(500);
+                if(!error){
+                    res.status(204);
+                }else{
+                    res.status(500);
+                }
                 res.json({});
             }
         })
@@ -160,7 +188,11 @@ router.get('/project/:id/error/:idx', function(req, res, next) {
                 res.status(200);
                 res.json(JSON.parse(body));
             }else{
-                res.status(500);
+                if(!error){
+                    res.status(204);
+                }else{
+                    res.status(500);
+                }
                 res.json({});
             }
         })
@@ -190,7 +222,11 @@ router.get('/project/:id/error/:idx/callstack', function(req, res, next) {
                 res.status(200);
                 res.json(data);
             }else{
-                res.status(500);
+                if(!error){
+                    res.status(204);
+                }else{
+                    res.status(500);
+                }
                 res.json({});
             }
         })
@@ -207,7 +243,11 @@ router.get('/project/:id/error/:idx/daily', function(req, res, next) {
                 res.status(200);
                 res.json(JSON.parse(body).data);
             }else{
-                res.status(500);
+                if(!error){
+                    res.status(204);
+                }else{
+                    res.status(500);
+                }
                 res.json([]);
             }
         })
@@ -224,7 +264,11 @@ router.get('/project/:id/error/:idx/instances', function(req, res, next) {
                 res.status(200);
                 res.json(JSON.parse(body));
             }else{
-                res.status(500);
+                if(!error){
+                    res.status(204);
+                }else{
+                    res.status(500);
+                }
                 res.json({});
             }
         })
@@ -259,7 +303,11 @@ router.get('/project/:id/error/:idx/statistics', function(req, res, next) {
                 res.status(200);
                 res.json(data);
             }else{
-                res.status(500);
+                if(!error){
+                    res.status(204);
+                }else{
+                    res.status(500);
+                }
                 res.json({});
             }
         })
@@ -317,7 +365,11 @@ router.get('/project/:id/errors', function(req, res, next) {
                     res.status(200);
                     res.json(JSON.parse(body));
                 }else{
-                    res.status(500);
+                    if(!error){
+                        res.status(204);
+                    }else{
+                        res.status(500);
+                    }
                     res.json({});
                 }
             })
@@ -334,7 +386,11 @@ router.get('/project/:id/errors/filter', function(req, res, next) {
                 res.status(200);
                 res.json(JSON.parse(body));
             }else{
-                res.status(500);
+                if(!error){
+                    res.status(204);
+                }else{
+                    res.status(500);
+                }
                 res.json({});
             }
         })
@@ -372,7 +428,11 @@ router.get('/project/:id/errors/latest', function(req, res, next) {
                 }
                 res.json({sEcho:0, iTotalRecords: 60, iTotalDisplayRecords: size, errorData:result});
             }else{
-                res.status(500);
+                if(!error){
+                    res.status(204);
+                }else{
+                    res.status(500);
+                }
                 res.json({});
             }
         })
@@ -410,7 +470,11 @@ router.get('/project/:id/errors/tranding', function(req, res, next) {
                 }
                 res.json({sEcho:0, iTotalRecords: 60, iTotalDisplayRecords: size, errorData:result});
             }else{
-                res.status(500);
+                if(!error){
+                    res.status(204);
+                }else{
+                    res.status(500);
+                }
                 res.json({});
             }
         })
@@ -468,7 +532,11 @@ router.get('/project/:id/errors/latest/filtered', function(req, res, next) {
                     res.status(200);
                     res.json(JSON.parse(body));
                 }else{
-                    res.status(500);
+                    if(!error){
+                        res.status(204);
+                    }else{
+                        res.status(500);
+                    }
                     res.json({});
                 }
             })
@@ -483,13 +551,18 @@ router.get('/project/:id/weekly/rank', function(req, res, next) {
         request('https://honeyqa.io:8080/statistics/'+req.params.id+'/rank_rate', function (error, response, body) {
             if (!error && response.statusCode == 200) {
                 res.status(200);
+                console.log(body);
                 var ranks = JSON.parse(body);
                 for(var i in ranks){
                     ranks[i].rank = locale.RANK[ranks[i].rank];
                 }
                 res.json(ranks);
             }else{
-                res.status(500);
+                if(!error){
+                    res.status(204);
+                }else{
+                    res.status(500);
+                }
                 res.json({});
             }
         })
