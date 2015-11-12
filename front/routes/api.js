@@ -353,6 +353,26 @@ router.get('/project/:id/errors', function(req, res, next) {
             }
         }
         data['osversion'] = dataArr;
+        dataArr = [];
+        if(checkAll(req.query.rank)){
+        }else{
+            raw = req.query.rank;
+            rawArr = raw.split(',');
+            for(var i=0;i<rawArr.length-1;i++){
+                dataArr.push(rawArr[i]);
+            }
+        }
+        data['rank'] = dataArr;
+        dataArr = [];
+        if(checkAll(req.query.status)){
+        }else{
+            raw = req.query.status;
+            rawArr = raw.split(',');
+            for(var i=0;i<rawArr.length-1;i++){
+                dataArr.push(rawArr[i]);
+            }
+        }
+        data['status'] = dataArr;
         data['start'] = req.query.datestart;
         data['end'] = req.query.dateend;
         request({ method: 'POST'
@@ -520,6 +540,26 @@ router.get('/project/:id/errors/latest/filtered', function(req, res, next) {
             }
         }
         data['osversion'] = dataArr;
+        dataArr = [];
+        if(checkAll(req.query.rank)){
+        }else{
+            raw = req.query.rank;
+            rawArr = raw.split(',');
+            for(var i=0;i<rawArr.length-1;i++){
+                dataArr.push(rawArr[i]);
+            }
+        }
+        data['rank'] = dataArr;
+        dataArr = [];
+        if(checkAll(req.query.status)){
+        }else{
+            raw = req.query.status;
+            rawArr = raw.split(',');
+            for(var i=0;i<rawArr.length-1;i++){
+                dataArr.push(rawArr[i]);
+            }
+        }
+        data['status'] = dataArr;
         data['start'] = req.query.datestart;
         data['end'] = req.query.dateend;
         request({ method: 'POST'
