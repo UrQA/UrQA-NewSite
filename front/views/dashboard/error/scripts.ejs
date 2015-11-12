@@ -532,6 +532,7 @@
                     }else{
                         len = data.filter_appversions.length;
                     }
+                    data.filter_appversions[len] = {};
                     data.filter_appversions[len].appversion = 'Others';
                     for (var i = 0; i<=len; i++){
                         var appvv = data.filter_appversions[i].appversion;
@@ -564,6 +565,7 @@
                     }else{
                         len = data.filter_sdkversions.length;
                     }
+                    data.filter_sdkversions[len] = {};
                     data.filter_sdkversions[len].osversion = 'Others';
                     for (var i = 0; i<=len; i++){
                         var osv = data.filter_sdkversions[i].osversion;
