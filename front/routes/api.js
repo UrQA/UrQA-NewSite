@@ -325,56 +325,81 @@ router.get('/project/:id/errors', function(req, res, next) {
         var raw = '';
         var rawArr;
         if(checkAll(req.query.country)){
+            dataArr = ['all'];
         }else{
             raw = req.query.country;
             rawArr = raw.split(',');
             for(var i=0;i<rawArr.length-1;i++){
+                if(checkAll(rawArr[i])){
+                    dataArr = ['all'];
+                    break;
+                }
                 dataArr.push(rawArr[i]);
             }
         }
         data['country'] = dataArr;
         dataArr = [];
         if(checkAll(req.query.appversion)){
+            dataArr = ['all'];
         }else{
             raw = req.query.appversion;
             rawArr = raw.split(',');
             for(var i=0;i<rawArr.length-1;i++){
+                if(checkAll(rawArr[i])){
+                    dataArr = ['all'];
+                    break;
+                }
                 dataArr.push(rawArr[i]);
             }
         }
         data['appversion'] = dataArr;
         dataArr = [];
         if(checkAll(req.query.osversion)){
+            dataArr = ['all'];
         }else{
             raw = req.query.osversion;
             rawArr = raw.split(',');
             for(var i=0;i<rawArr.length-1;i++){
+                if(checkAll(rawArr[i])){
+                    dataArr = ['all'];
+                    break;
+                }
                 dataArr.push(rawArr[i]);
             }
         }
         data['osversion'] = dataArr;
         dataArr = [];
         if(checkAll(req.query.rank)){
+            dataArr = ['all'];
         }else{
             raw = req.query.rank;
             rawArr = raw.split(',');
             for(var i=0;i<rawArr.length-1;i++){
+                if(checkAll(rawArr[i])){
+                    dataArr = ['all'];
+                    break;
+                }
                 dataArr.push(rawArr[i]);
             }
         }
         data['rank'] = dataArr;
         dataArr = [];
         if(checkAll(req.query.status)){
+            dataArr = ['all'];
         }else{
             raw = req.query.status;
             rawArr = raw.split(',');
             for(var i=0;i<rawArr.length-1;i++){
+                if(checkAll(rawArr[i])){
+                    dataArr = ['all'];
+                    break;
+                }
                 dataArr.push(rawArr[i]);
             }
         }
         data['status'] = dataArr;
-        data['start'] = req.query.datestart;
-        data['end'] = req.query.dateend;
+        data['start'] = Number(req.query.datestart);
+        data['end'] = Number(req.query.dateend);
         request({ method: 'POST'
                 ,headers:{'content-type': 'application/json'}
                 , uri: 'https://honeyqa.io:8080/project/'+req.params.id+'/errors/filtered'
@@ -512,56 +537,81 @@ router.get('/project/:id/errors/latest/filtered', function(req, res, next) {
         var raw = '';
         var rawArr;
         if(checkAll(req.query.country)){
+            dataArr = ['all'];
         }else{
             raw = req.query.country;
             rawArr = raw.split(',');
             for(var i=0;i<rawArr.length-1;i++){
+                if(checkAll(rawArr[i])){
+                    dataArr = ['all'];
+                    break;
+                }
                 dataArr.push(rawArr[i]);
             }
         }
         data['country'] = dataArr;
         dataArr = [];
         if(checkAll(req.query.appversion)){
+            dataArr = ['all'];
         }else{
             raw = req.query.appversion;
             rawArr = raw.split(',');
             for(var i=0;i<rawArr.length-1;i++){
+                if(checkAll(rawArr[i])){
+                    dataArr = ['all'];
+                    break;
+                }
                 dataArr.push(rawArr[i]);
             }
         }
         data['appversion'] = dataArr;
         dataArr = [];
         if(checkAll(req.query.osversion)){
+            dataArr = ['all'];
         }else{
             raw = req.query.osversion;
             rawArr = raw.split(',');
             for(var i=0;i<rawArr.length-1;i++){
+                if(checkAll(rawArr[i])){
+                    dataArr = ['all'];
+                    break;
+                }
                 dataArr.push(rawArr[i]);
             }
         }
         data['osversion'] = dataArr;
         dataArr = [];
         if(checkAll(req.query.rank)){
+            dataArr = ['all'];
         }else{
             raw = req.query.rank;
             rawArr = raw.split(',');
             for(var i=0;i<rawArr.length-1;i++){
+                if(checkAll(rawArr[i])){
+                    dataArr = ['all'];
+                    break;
+                }
                 dataArr.push(rawArr[i]);
             }
         }
         data['rank'] = dataArr;
         dataArr = [];
         if(checkAll(req.query.status)){
+            dataArr = ['all'];
         }else{
             raw = req.query.status;
             rawArr = raw.split(',');
             for(var i=0;i<rawArr.length-1;i++){
+                if(checkAll(rawArr[i])){
+                    dataArr = ['all'];
+                    break;
+                }
                 dataArr.push(rawArr[i]);
             }
         }
         data['status'] = dataArr;
-        data['start'] = req.query.datestart;
-        data['end'] = req.query.dateend;
+        data['start'] = Number(req.query.datestart);
+        data['end'] = Number(req.query.dateend);
         request({ method: 'POST'
                 ,headers:{'content-type': 'application/json'}
                 , uri: 'https://honeyqa.io:8080/project/'+req.params.id+'/errors/filtered/latest'
@@ -613,7 +663,8 @@ router.get('/project/:id/weekly/rank', function(req, res, next) {
 });
 
 function checkAll(d){
-    if(d == '' || d == 'all')
+    var l = d.toLowerCase();
+    if(l == '' || l == 'all')
         return true;
     return false;
 }
