@@ -296,60 +296,6 @@ $(document).ready(function()
 		}
 	});
 
-	//// class error line graph
-	//$.ajax({
-	//	url: baseurl + '/statistics/' + project_id + '/country',
-	//	success:function(data){
-    //
-	//		var chart_data =[];
-	//		for(var i = 0; i < data.length; i++){
-	//			var element = new Object();
-	//			element.value =  data[i].count;
-	//			element.label = data[i].country;
-	//			element.formatted = ((data[i].count/total_errorcount) * 100).toFixed(1) + '%';
-	//			chart_data.push(element);
-	//		}
-    //
-	//		Morris.Donut({
-	//			element: 'graph-donut-country',
-	//			data: chart_data,
-	//			backgroundColor: '#fff',
-	//			labelColor: '#1fb5ac',
-	//			colors: [
-	//				'#E67A77','#D9DD81','#79D1CF','#95D7BB'
-	//			],
-	//			formatter: function (x, data) { return data.formatted; }
-	//		});
-	//	} // error 처리
-	//});
-    //
-	//// error activity line graph
-	//$.ajax({
-	//	url: baseurl + '/statistics/' + project_id + '/country',
-	//	success:function(data){
-    //
-	//		var chart_data =[];
-	//		for(var i = 0; i < data.length; i++){
-	//			var element = new Object();
-	//			element.value =  data[i].count;
-	//			element.label = data[i].country;
-	//			element.formatted = ((data[i].count/total_errorcount) * 100).toFixed(1) + '%';
-	//			chart_data.push(element);
-	//		}
-    //
-	//		Morris.Donut({
-	//			element: 'graph-donut-country',
-	//			data: chart_data,
-	//			backgroundColor: '#fff',
-	//			labelColor: '#1fb5ac',
-	//			colors: [
-	//				'#E67A77','#D9DD81','#79D1CF','#95D7BB'
-	//			],
-	//			formatter: function (x, data) { return data.formatted; }
-	//		});
-	//	} // error 처리
-	//});
-
 	var totals;
 
 	function set_exists(x){
@@ -454,9 +400,8 @@ $(document).ready(function()
 
 	// version error rate multi line graph
 	$.ajax({
-		url: baseurl + '/statistics/' + urqaio.currentProject + '/country',
+		url: baseurl + '/statistics/' + urqaio.currentProject + '/error_version',
 		success:function(data){
-
 			var chart_data =[];
 			for(var i = 0; i < data.length; i++){
 			}
@@ -465,35 +410,16 @@ $(document).ready(function()
 				var chart = c3.generate({
 					bindto: '#version-chart',
 					data: {
-						columns: [
-							['data1', 30, 20, 50, 40, 60, 50],
-							['data2', 200, 130, 90, 240, 130, 220],
-							['data3', 300, 200, 160, 400, 250, 250],
-							['data4', 200, 130, 90, 240, 130, 220],
-							['data5', 130, 120, 150, 140, 160, 150]
-						],
-						types: {
-							data1: 'bar',
-							data2: 'bar',
-							data3: 'bar',
-							data4: 'bar',
-							data5: 'bar'
-						},
+						columns: data.data,
+						type: 'bar',
 						groups: [
-							['data1','data2', 'data3', 'data4', 'data5']
+							data.osversion
 						]
 					},color: {
 						pattern: ['#1fb5ac','#E67A77','#D9DD81','#f0ad4e','#95D7BB']
 					},
 					axis: {
-						rotated: true,
-						x: {
-							type: 'categorized'
-						},
-						y: {
-							type: 'categorized',
-							categories: ['cat1', 'cat2', 'cat3', 'cat4', 'cat5', 'cat6', 'cat7', 'cat8', 'cat9']
-						}
+						rotated: true
 					}
 				});
 			})();
