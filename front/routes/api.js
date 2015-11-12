@@ -407,8 +407,29 @@ router.get('/project/:id/errors', function(req, res, next) {
             },
             function (error, response, body) {
                 if (!error && response.statusCode == 200) {
-                    res.status(200);
-                    res.json(JSON.parse(body));
+                    var result = [];
+                    var errors = JSON.parse(body).errors;
+                    var size = 0;
+                    for(var i in errors){
+                        var data = {};
+                        data["ID"] = errors[i].id;
+                        data["0"] = locale.RANK[errors[i].rank];
+                        data["1"] = errors[i].numofinstance;
+                        data["2"] = errors[i].errorname + '<br>' + errors[i].errorclassname + ':' + errors[i].linenum;
+                        var str = "";
+                        for(var j in errors[i].tags){
+                            if(j!=0){
+                                str += ',';
+                            }
+                            str += errors[i].tags[j].tag;
+                        }
+                        data["3"] = str;
+                        data["4"] = locale.Status[errors[i].status];
+                        data["5"] = errors[i].update_date;
+                        result.push(data);
+                        size++;
+                    }
+                    res.json({sEcho:0, iTotalRecords: 60, iTotalDisplayRecords: size, errorData:result});
                 }else{
                     if(!error){
                         res.status(204);
@@ -619,8 +640,29 @@ router.get('/project/:id/errors/latest/filtered', function(req, res, next) {
             },
             function (error, response, body) {
                 if (!error && response.statusCode == 200) {
-                    res.status(200);
-                    res.json(JSON.parse(body));
+                    var result = [];
+                    var errors = JSON.parse(body).errors;
+                    var size = 0;
+                    for(var i in errors){
+                        var data = {};
+                        data["ID"] = errors[i].id;
+                        data["0"] = locale.RANK[errors[i].rank];
+                        data["1"] = errors[i].numofinstance;
+                        data["2"] = errors[i].errorname + '<br>' + errors[i].errorclassname + ':' + errors[i].linenum;
+                        var str = "";
+                        for(var j in errors[i].tags){
+                            if(j!=0){
+                                str += ',';
+                            }
+                            str += errors[i].tags[j].tag;
+                        }
+                        data["3"] = str;
+                        data["4"] = locale.Status[errors[i].status];
+                        data["5"] = errors[i].update_date;
+                        result.push(data);
+                        size++;
+                    }
+                    res.json({sEcho:0, iTotalRecords: 60, iTotalDisplayRecords: size, errorData:result});
                 }else{
                     if(!error){
                         res.status(204);
@@ -641,7 +683,6 @@ router.get('/project/:id/weekly/rank', function(req, res, next) {
         request('https://honeyqa.io:8080/statistics/'+req.params.id+'/rank_rate', function (error, response, body) {
             if (!error && response.statusCode == 200) {
                 res.status(200);
-                console.log(body);
                 var ranks = JSON.parse(body);
                 for(var i in ranks){
                     ranks[i].rank = locale.RANK[ranks[i].rank];

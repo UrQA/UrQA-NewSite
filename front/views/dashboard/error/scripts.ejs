@@ -86,6 +86,7 @@
             "status": "",
             "appversion": "",
             "osversion": "",
+            "country": "",
             "tag": ""
         };
 
@@ -97,7 +98,7 @@
                     "bProcessing": true,
                     "bServerSide": true,
                     "sAjaxSource": "/api/project/"+urqaio.currentProject+"/errors",
-                    "sAjaxDataProp": "aaData",
+                    "sAjaxDataProp": "errorData",
                     "aaSorting": [[ 1, "desc" ]],
                     "bUseRendered": true,
                     "bLengthChange": false,
@@ -113,7 +114,6 @@
                                 if (iCol == 0)
                                 {
                                     $(nTd).parent().attr('onclick', 'document.location="error-details.html?id=' + oData["ID"] + '"').css("cursor", "pointer");
-
                                     $(nTd).html('<span class=\"label label-' + sData.toLowerCase() + ' label-mini\" style=\"width:100%\">' + sData + '</span>');
                                 }
                                 else if (iCol == 1)
@@ -176,7 +176,7 @@
         };
 
         $('#btnTranding').click(function() { _dataTable.api().ajax.url("/api/project/"+urqaio.currentProject+"/errors").load(); } );
-        $('#btnLatest').click(function() { _dataTable.api().ajax.url("/api/project/"+urqaio.currentProject+"/errors/latest").load(); } );
+        $('#btnLatest').click(function() { _dataTable.api().ajax.url("/api/project/"+urqaio.currentProject+"/errors/latest/filtered").load(); } );
 
         /** iCheck */
         $(function(){
@@ -191,7 +191,6 @@
                     $('input').iCheck('update');
                 }
                 if(event.type ==="ifDisabled"){
-                    console.log($(this).attr('id')+'dis');
                     $('input').iCheck('update');
                 }
             };
@@ -329,7 +328,6 @@
                         $('input').iCheck('update');
                     }
                     if(event.type ==="ifDisabled"){
-                        console.log($(this).attr('id')+'dis');
                         $('input').iCheck('update');
                     }
                 }).iCheck({
@@ -552,7 +550,6 @@
                                 $('input').iCheck('update');
                             }
                             if(event.type ==="ifDisabled"){
-                                console.log($(this).attr('id')+'dis');
                                 $('input').iCheck('update');
                             }
                         }).iCheck({
@@ -585,7 +582,6 @@
                                 $('input').iCheck('update');
                             }
                             if(event.type ==="ifDisabled"){
-                                console.log($(this).attr('id')+'dis');
                                 $('input').iCheck('update');
                             }
                         }).iCheck({
