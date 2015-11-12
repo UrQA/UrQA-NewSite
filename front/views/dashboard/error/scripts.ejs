@@ -53,11 +53,16 @@
 <option value="{{:country}}">{{:country}}</option>
 </script>
 
+<script id="tagTmpl" type="text/x-jsrender">
+<option value="{{:tag}}">{{:tag}}</option>
+</script>
+
 <script>
     var appvtemplate = $.templates("#appvTmpl");
     var countrytemplate = $.templates("#countryTmpl");
     var plainTemplate = $.templates("#plainDataTmpl");
     var sdkvtemplate = $.templates("#sdkvTmpl");
+    var tagtemplate = $.templates("#tagTmpl");
 
     $.ajax({
         url:'/api/project/<%= data.id %>',
@@ -81,8 +86,7 @@
             "status": "",
             "appversion": "",
             "osversion": "",
-            "tag": "",
-            "classes": ""
+            "tag": ""
         };
 
         /** Data Table */
@@ -260,8 +264,8 @@
                 },
                 {
                     "type": "tags",
-                    "keyword": "classes",
-                    "taglist": $("#classsearch")
+                    "keyword": "tag",
+                    "taglist": $("#tsearch")
                 }
             ];
 
@@ -428,7 +432,6 @@
             tagSelectboxChange = function() {
                 if ($(this).val() === "Select")
                     return;
-
                 // Add Checkbox
                 var index = $(this).parent().attr("data-index");
                 var obj = $(this).children("option:selected");
@@ -594,8 +597,10 @@
                             filterData[checkInfo[3]["keyword"]] += checkInfo[3]["filterString"]($("#"+id)) + ',';
                     }
                     reloadFilterData();
-                    var cv = countrytemplate.render(data.filter_countries);
-                    $("#select-country").append(cv);
+                    var tv = countrytemplate.render(data.filter_countries);
+                    $("#select-country").append(tv);
+                    tv = tagtemplate.render(data.filter_tags);
+                    $("#select-tag").append(tv);
                 },
                 error: function(jqXHR, textStatus, errorThrown) {
                     $('#load_icon').attr('class','fa fa-exclamation-triangle');
