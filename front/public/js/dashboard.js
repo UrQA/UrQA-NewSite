@@ -59,7 +59,6 @@
         $('#btnLatest').click(function() {
             _dataTable.ajax.url('/api/project/'+urqaio.currentProject+'/errors/latest').load();
         });
-
         $('#dynamic-table tbody').on('click', 'tr', function () {
             var data = _dataTable.row(this).data();
             location.href = '/dashboard/' + urqaio.currentProject + '/error/' + data['ID'];

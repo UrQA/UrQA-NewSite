@@ -91,7 +91,7 @@
         };
 
         /** Data Table */
-        var _dataTable = $('#dynamic-table').dataTable(
+        var _dataTable = $('#dynamic-table').DataTable(
                 {
                     "bJQueryUI": true,
                     "bStateSave": true,
@@ -113,7 +113,6 @@
                                 $(nTd).attr("data-title", nameList[iCol]).addClass(styleList[iCol]);
                                 if (iCol == 0)
                                 {
-                                    $(nTd).parent().attr('onclick', 'document.location="error-details.html?id=' + oData["ID"] + '"').css("cursor", "pointer");
                                     $(nTd).html('<span class=\"label label-' + sData.toLowerCase() + ' label-mini\" style=\"width:100%\">' + sData + '</span>');
                                 }
                                 else if (iCol == 1)
@@ -172,11 +171,16 @@
                     }
                 } );
         updateFilterData = function() {
-            _dataTable.api().ajax.reload();
+            _dataTable.ajax.reload();
         };
 
-        $('#btnTranding').click(function() { _dataTable.api().ajax.url("/api/project/"+urqaio.currentProject+"/errors").load(); } );
-        $('#btnLatest').click(function() { _dataTable.api().ajax.url("/api/project/"+urqaio.currentProject+"/errors/latest/filtered").load(); } );
+        $('#btnTranding').click(function() { _dataTable.ajax.url("/api/project/"+urqaio.currentProject+"/errors").load(); } );
+        $('#btnLatest').click(function() { _dataTable.ajax.url("/api/project/"+urqaio.currentProject+"/errors/latest/filtered").load(); } );
+
+        $('#dynamic-table tbody').on('click', 'tr', function () {
+            var data = _dataTable.row(this).data();
+            location.href = '/dashboard/' + urqaio.currentProject + '/error/' + data['ID'];
+        });
 
         /** iCheck */
         $(function(){
