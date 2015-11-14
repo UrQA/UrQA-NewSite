@@ -41,22 +41,4 @@
             $("#load_title").html(htmlOutput);
         }
     });
-    $("#date-slider").ionRangeSlider({
-        onFinish: function(data) {
-            if (filterData["datestart"] !== data.fromNumber ||
-                    filterData["dateend"] !== data.toNumber)
-            {
-                filterData["datestart"] = data.fromNumber;
-                filterData["dateend"] = data.toNumber;
-
-                updateFilterData();
-            }
-        }
-    });
-    $(window).resize(function(){
-        clearTimeout(updateSliderScale);
-        updateSliderScale = setTimeout(function(){
-            $("#date-slider").ionRangeSlider('update');
-        }, 100);
-    });
 </script>

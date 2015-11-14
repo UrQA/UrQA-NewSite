@@ -52,6 +52,9 @@ $(document).ready(function()
 				element.value =  data[i].count;
 				element.label = data[i].rank;
 				element.formatted = ((data[i].count/total_errorcount) * 100).toFixed(1) + '%';
+				//console.log(data[i].rank +': '+data[i].count);
+				//console.log(total_errorcount);
+				//console.log(((data[i].count/total_errorcount) * 100).toFixed(1) + '%');
 				chart_data.push(element);
 			}
 			Morris.Donut({
@@ -304,8 +307,6 @@ $(document).ready(function()
 	}
 
 	function t_exists(){
-
-    console.log("g:"+totals);
 		return totals;
 	}
 
@@ -367,7 +368,6 @@ $(document).ready(function()
 		url:'https://honeyqa.io:8080/statistics/'+urqaio.currentProject+'/lastactivity',async: false,
 		success:function(data){
 			var chart_data =[];
-			console.log("to;"+totals);
 			for(var i = 0; i < data.length; i++){
 					var gax='progress-bar progress-bar-danger';
 				var element = new Object();
@@ -392,9 +392,6 @@ $(document).ready(function()
 }
 
 			chart_data.push(element);
-
-			console.log(chart_data);
-
 		} // error 처리
 	});
 
@@ -419,10 +416,39 @@ $(document).ready(function()
 						pattern: ['#1fb5ac','#E67A77','#D9DD81','#f0ad4e','#95D7BB']
 					},
 					axis: {
-						rotated: true
+						rotated: true,
+						x: {
+							tick: {
+								format: function (i) { return data.appversion[i]; }
+							}
+						}
 					}
 				});
 			})();
 		} // error 처리
+	});
+
+
+	var filterData = {};
+
+	$("#date-slider").ionRangeSlider({
+		onFinish: function(data) {
+			if (filterData["datestart"] !== data.fromNumber ||
+				filterData["dateend"] !== data.toNumber)
+			{
+				filterData["datestart"] = data.fromNumber;
+				filterData["dateend"] = data.toNumber;
+
+				location.reload();
+			}
+		}
+	});
+
+	var updateSliderScale = null;
+	$(window).resize(function(){
+		clearTimeout(updateSliderScale);
+		updateSliderScale = setTimeout(function(){
+			$("#date-slider").ionRangeSlider('update');
+		}, 100);
 	});
 });
