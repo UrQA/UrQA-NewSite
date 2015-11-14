@@ -1,6 +1,5 @@
 $(document).ready(function()
 {
-	var project_id = 720;
 	var total_errorcount;
 	var baseurl = 'https://honeyqa.io:8080';
 
@@ -14,7 +13,7 @@ $(document).ready(function()
 
 	// daily error count area graph
 	$.ajax({
-		url:'https://honeyqa.io:8080/project/'+urqaio.currentProject+'/weekly_appruncount2',
+		url: baseurl + '/project/'+urqaio.currentProject+'/weekly_appruncount2',
 		success:function(data){
 			var chart_data =[];
 
@@ -52,8 +51,7 @@ $(document).ready(function()
 				element.value =  data[i].count;
 				element.label = data[i].rank;
 				element.formatted = ((data[i].count/total_errorcount) * 100).toFixed(1) + '%';
-				//console.log(data[i].rank +': '+data[i].count);
-				//console.log(total_errorcount);
+				console.log(data[i].rank +': '+data[i].count);
 				//console.log(((data[i].count/total_errorcount) * 100).toFixed(1) + '%');
 				chart_data.push(element);
 			}
@@ -311,7 +309,7 @@ $(document).ready(function()
 	}
 
 	$.ajax({
-	 url:'https://honeyqa.io:8080/project/'+urqaio.currentProject+'/weekly_errorcount', async: false,
+	 url:baseurl+'/project/'+urqaio.currentProject+'/weekly_errorcount', async: false,
 	 success:function(data){
 
 		 var chart_data =[];
@@ -330,7 +328,7 @@ $(document).ready(function()
 	});
 
    $.ajax({
-		url:'https://honeyqa.io:8080/statistics/'+urqaio.currentProject+'/errorclassname',
+		url:baseurl+'/statistics/'+urqaio.currentProject+'/errorclassname',
 		success:function(data){
 			var chart_data =[];
 
@@ -365,7 +363,7 @@ $(document).ready(function()
 
 
    $.ajax({
-		url:'https://honeyqa.io:8080/statistics/'+urqaio.currentProject+'/lastactivity',async: false,
+		url:baseurl+'/statistics/'+urqaio.currentProject+'/lastactivity',async: false,
 		success:function(data){
 			var chart_data =[];
 			for(var i = 0; i < data.length; i++){
