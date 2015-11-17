@@ -27,7 +27,7 @@ module.exports = function(passport) {
                     if(err){
                         return done(null, false);
                     }
-                    var selectSql = 'SELECT * FROM user WHERE email = ?';
+                    var selectSql = 'SELECT * FROM userh WHERE email = ?';
                     connection.query(selectSql, [username], function(err,rows,fields){
                         if(err){
                             connection.release();
@@ -39,11 +39,11 @@ module.exports = function(passport) {
                         }
                         var u = {
                             email: username,
-                            nickname: req.body.join_name,
+                            first_name: req.body.join_name,
                             password: bcrypt.hashSync(password, null, null),
                         };
-                        var insertSql = "INSERT INTO user ( email, username, nickname, password ) values (?,?,?,?)";
-                        connection.query(insertSql, [u.email, u.email, u.nickname, u.password], function(err,rows,fields){
+                        var insertSql = "INSERT INTO userh ( email, username, first_name, password ) values (?,?,?,?)";
+                        connection.query(insertSql, [u.email, u.email, u.first_name, u.password], function(err,rows,fields){
                             if(err){
                                 connection.release();
                                 return done(null, false);
@@ -69,7 +69,7 @@ module.exports = function(passport) {
                     if(err){
                         return done(null, false);
                     }
-                    var selectSql = 'SELECT id,nickname,email,password FROM user WHERE email = ?';
+                    var selectSql = 'SELECT id,first_name,email,password FROM userh WHERE email = ?';
                     connection.query(selectSql, [username], function(err,rows,fields){
                         if(err){
                             connection.release();
@@ -82,14 +82,14 @@ module.exports = function(passport) {
                         var user = {};
                         user.id = rows[0].id;
                         user.email = rows[0].email;
-                        user.nickname = rows[0].nickname;
+                        user.first_name = rows[0].first_name;
                         user.password = rows[0].password;
                         bcrypt.compare(password, user.password, function(err, result){
                             delete user.password;
                             if(!result){
                                 return done(null, false, {'loginMessage':'Wrong password'});
                             }
-                            var projectSql = 'SELECT id FROM project WHERE user_id = ?';
+                            var projectSql = 'SELECT pid FROM projects WHERE owner_uid = ?';
                             connection.query(projectSql, [user.id], function(err, rows, fields){
                                 if(err){
                                     connection.release();
@@ -101,7 +101,7 @@ module.exports = function(passport) {
                                 }else{
                                     var project = {};
                                     for(var i=0;i<rows.length;i++){
-                                        project[rows[i].id] = true;
+                                        project[rows[i].pid] = true;
                                     }
                                     user.project = project;
                                 }
