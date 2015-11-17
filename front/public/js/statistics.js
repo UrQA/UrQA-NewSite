@@ -338,10 +338,8 @@ $(document).ready(function()
 				element.value =  data[i].errorclassname;
 				element.label = data[i].count;
 				chart_data.push(element);
-				if(data[i].count>100){
-					var gq=t_exists();
-					data[i].count=Math.round((data[i].count/gq)*100);
-				}
+				//data[i].count=Math.round((data[i].count/total_errorcount)*100);
+				data[i].rate = Math.round((data[i].count/total_errorcount)*100);
 				// 색칠
 				if(i==0){
 				 gax='progress-bar progress-bar-danger';
@@ -352,7 +350,7 @@ $(document).ready(function()
 				 gax='progress-bar progress-bar-info';
 				}
 
-			$( "#erate" ).append( '<div class="content-row"><p class="text-ellipsis">'+data[i].errorclassname+'</p><div><div class="progress progress-xs"><div style="width: '+data[i].count+'%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="20" role="progressbar" class="'+gax+'"><span class="sr-only">'+data[i].count+'% Complete</span></div></div><div>'+data[i].count+'</div></div></div>' );
+			$( "#erate" ).append( '<div class="content-row"><p class="text-ellipsis">'+data[i].errorclassname+'</p><div><div class="progress progress-xs"><div style="width: '+data[i].rate+'%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="20" role="progressbar" class="'+gax+'"><span class="sr-only">'+data[i].rate+'% Complete</span></div></div><div>'+data[i].rate+'%</div></div></div>' );
 
 }
 			chart_data.push(element);
@@ -370,10 +368,8 @@ $(document).ready(function()
 					var gax='progress-bar progress-bar-danger';
 				var element = new Object();
 				element.value =  data[i].lastactivity;
-				if(data[i].count>100){
-					var gq=t_exists();
-					data[i].count=Math.round((data[i].count/gq)*100);
-				}
+				//data[i].count=Math.round((data[i].count/total_errorcount)*100);
+				data[i].rate = Math.round((data[i].count/total_errorcount)*100);
 				element.label = data[i].count;
 
 				chart_data.push(element);
@@ -386,7 +382,7 @@ $(document).ready(function()
 				 gax='progress-bar progress-bar-info';
 				}
 
-			$( "#eact" ).append('<div class="content-row"><p class="text-ellipsis">'+data[i].lastactivity+'</p><div><div class="progress progress-xs"><div style="width: '+data[i].count+'%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="20" role="progressbar" class="'+gax+'"><span class="sr-only">'+data[i].count+'% Complete</span></div></div><div>'+data[i].count+'</div></div></div>');
+			$( "#eact" ).append('<div class="content-row"><p class="text-ellipsis">'+data[i].lastactivity+'</p><div><div class="progress progress-xs"><div style="width: '+data[i].rate+'%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="20" role="progressbar" class="'+gax+'"><span class="sr-only">'+data[i].rate+'% Complete</span></div></div><div>'+data[i].rate+'%</div></div></div>');
 }
 
 			chart_data.push(element);
