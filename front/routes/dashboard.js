@@ -6,7 +6,7 @@ var getViewContainer = function(defaultPath, data, user) {
         scriptContainer: defaultPath + "/scripts",
         data: data,
         user_id: user.id,
-        user_name: user.nickname
+        user_name: user.first_name
     };
 };
 
