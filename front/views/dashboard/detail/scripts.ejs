@@ -9,6 +9,9 @@
 <script src="<%= resourceUrl('/bower_components/jquery.nicescroll/jquery.nicescroll.min.js') %>"></script>
 
 <!-- chart -->
+<!-- Sankey Diagram -->
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+
 <!-- Morris -->
 <script src="<%= resourceUrl('/bower_components/jquery.easy-pie-chart/dist/jquery.easypiechart.min.js') %>"></script>
 <script src="<%= resourceUrl('/bower_components/morris.js/morris.min.js') %>"></script>
@@ -200,6 +203,33 @@
 </script>
 
 <script>
+    <!-- Sankey Diagram -->
+    google.load("visualization", "1.1", {packages:["sankey"]});
+    google.setOnLoadCallback(drawChart);
+
+    function drawChart(rows) {
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'From');
+        data.addColumn('string', 'To');
+        data.addColumn('number', 'Weight');
+        data.addRows(rows);
+
+        // Sets chart options.
+
+        var colors = ['#a6cee3', '#b2df8a', '#fb9a99', '#fdbf6f',
+            '#cab2d6', '#ffff99', '#1f78b4', '#33a02c'];
+
+        var options = {
+
+            width: 900,
+            sankey: { node: { width: 5 } },
+        };
+
+        // Instantiates and draws our chart, passing in some options.
+        var chart = new google.visualization.Sankey(document.getElementById('sankey_basic'));
+        chart.draw(data, options);
+    }
+
     var template = $.templates("#textDataTmpl");
     var plainTemplate = $.templates("#plainDataTmpl");
     var progressTemplate = $.templates("#progressTmpl");
@@ -208,7 +238,7 @@
     $.ajax({
         url:'/api/project/<%= data.id %>',
         success:function(data){
-            var htmlOutput = plainTemplate.render({data:data.title});
+            var htmlOutput = plainTemplate.render({data:data.name});
             $("#load_title").html(htmlOutput);
         },
         error: function(jqXHR, textStatus, errorThrown) {
@@ -430,6 +460,15 @@
                 }
             });
         }
+
+        $.ajax({
+            url:'/api/project/'+urqaio.currentProject+'/error/<%= data.eid %>/eventpath',
+            success:function(data) {
+                console.log(JSON.stringify(data));
+                drawChart(data);
+            },error: function(jqXHR, textStatus, errorThrown) {
+            }
+        });
     });
 
     function getIndexStatus(i){
@@ -467,5 +506,7 @@
             $("#"+e+"_i").attr('class','fa fa-chevron-down');
         }
     }
+
+
 
 </script>
