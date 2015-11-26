@@ -1,9 +1,10 @@
 var LocalStrategy = require('passport-local').Strategy;
 
 var mysql = require('mysql');
-var bcrypt = require('bcrypt-nodejs');
 var dbConfig = require('./database');
 var connectionPool = mysql.createPool(dbConfig);
+var check_password = require('./check_password');
+var async = require('async');
 
 module.exports = function(passport) {
 
@@ -27,7 +28,7 @@ module.exports = function(passport) {
                     if(err){
                         return done(null, false);
                     }
-                    var selectSql = 'SELECT * FROM userh WHERE email = ?';
+                    var selectSql = 'SELECT * FROM auth_user WHERE email = ?';
                     connection.query(selectSql, [username], function(err,rows,fields){
                         if(err){
                             connection.release();
@@ -40,9 +41,9 @@ module.exports = function(passport) {
                         var u = {
                             email: username,
                             first_name: req.body.join_name,
-                            password: bcrypt.hashSync(password, null, null),
+                            password: check_password.hashSync(password),
                         };
-                        var insertSql = "INSERT INTO userh ( email, username, first_name, password ) values (?,?,?,?)";
+                        var insertSql = "INSERT INTO auth_user ( email, username, first_name, password, date_joined ) values (?,?,?,?,now())";
                         connection.query(insertSql, [u.email, u.email, u.first_name, u.password], function(err,rows,fields){
                             if(err){
                                 connection.release();
@@ -69,46 +70,71 @@ module.exports = function(passport) {
                     if(err){
                         return done(null, false);
                     }
-                    var selectSql = 'SELECT id,first_name,email,password FROM userh WHERE email = ?';
-                    connection.query(selectSql, [username], function(err,rows,fields){
-                        if(err){
-                            connection.release();
-                            return done(null, false);
-                        }
-                        if(!rows.length){
-                            connection.release();
-                            return done(null, false, {'loginMessage':'Email not found'});
-                        }
-                        var user = {};
-                        user.id = rows[0].id;
-                        user.email = rows[0].email;
-                        user.first_name = rows[0].first_name;
-                        user.password = rows[0].password;
-                        bcrypt.compare(password, user.password, function(err, result){
-                            delete user.password;
-                            if(!result){
-                                return done(null, false, {'loginMessage':'Wrong password'});
-                            }
-                            var projectSql = 'SELECT pid FROM projects WHERE owner_uid = ?';
-                            connection.query(projectSql, [user.id], function(err, rows, fields){
+                    async.waterfall([
+                        function(callback){
+                            var selectSql = 'SELECT id,first_name,email,password FROM auth_user WHERE email = ?';
+                            connection.query(selectSql, [username], function(err,rows,fields){
                                 if(err){
                                     connection.release();
-                                    return done(null, false, {'loginMessage':'Internal server error'});
+                                    return done(null, false);
                                 }
                                 if(!rows.length){
-                                    var project = {};
-                                    user.project = project;
-                                }else{
-                                    var project = {};
-                                    for(var i=0;i<rows.length;i++){
-                                        project[rows[i].pid] = true;
-                                    }
-                                    user.project = project;
+                                    connection.release();
+                                    return done(null, false, {'loginMessage':'Email not found'});
                                 }
-                                connection.release();
-                                return done(null, user);
+                                var user = {};
+                                user.id = rows[0].id;
+                                user.email = rows[0].email;
+                                user.first_name = rows[0].first_name;
+                                user.password = rows[0].password;
+                                check_password.validatePassword(password, user.password, function(err, result){
+                                    delete user.password;
+                                    if(!result){
+                                        return done(null, false, {'loginMessage':'Wrong password'});
+                                    }
+                                    var projectSql = 'SELECT pid FROM projects WHERE owner_uid = ?';
+                                    connection.query(projectSql, [user.id], function(err, rows, fields){
+                                        if(err){
+                                            connection.release();
+                                            return done(null, false);
+                                        }
+                                        if(!rows.length){
+                                            var project = {};
+                                            user.project = project;
+                                        }else{
+                                            var project = {};
+                                            for(var i=0;i<rows.length;i++){
+                                                project[rows[i].pid] = true;
+                                            }
+                                            user.project = project;
+                                        }
+                                        callback(null, user);
+                                    });
+                                });
                             });
-                        });
+                        },
+                        function(user, callback){
+                            if(err){
+                                callback(err, '#2');
+                            }
+
+                            var updateSql = 'UPDATE auth_user SET last_login = NOW() WHERE email = ?';
+                            connection.query(updateSql, [user.email], function(err,rows,fields){
+                                if(err){
+                                    connection.release();
+                                    return done(null, false);
+                                }
+                                callback(null, user);
+                            });
+                        }
+                    ], function(err, result){
+                        if(err){
+                            console.log(err);
+                            connection.release();
+                            return done(null, false, {'loginMessage':'Internal server error'});
+                        }
+                        connection.release();
+                        return done(null, result);
                     });
                 });
             })
