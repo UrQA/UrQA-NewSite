@@ -13,11 +13,8 @@
             <input name="login_password" type="password" placeholder="password" class="form-control" required>
           </div>
           <button type="submit" class="btn btn-lg btn-login btn-block">Sign in</button>
-          <div class="btn btn-lg btn-google btn-block">
-            <span style="display: none">
-              sign in by Google
-            </span>
-          </div>
+          <a href="/users/auth/google"><div class="btn btn-lg btn-google btn-block"></div></a>
+
 
           <div class="registration">Don't have an account yet?<a href="/users/join">  Create account</a></div>
         </div>
@@ -45,6 +42,6 @@
     </div>
     <!-- Placed js at the end of the document so the pages load faster-->
     
-    <% include ../layout/script %>
+    <% include script %>
   </body>
 </html>

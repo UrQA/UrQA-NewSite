@@ -30,6 +30,17 @@ module.exports = function(passport){
         failureFlash: true })
     );
 
+    router.get('/auth/google',
+        passport.authenticate('google', { scope: [
+            'https://www.googleapis.com/auth/userinfo.profile',
+            'https://www.googleapis.com/auth/userinfo.email'
+        ]}));
+
+    router.get('/auth/google/callback',
+        passport.authenticate('google', { successRedirect: '/projects',
+            failureRedirect: '/login' ,
+            failureFlash: true }));
+
     return router;
 }
 
