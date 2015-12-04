@@ -1,6 +1,6 @@
 var express = require('express');
 var request = require('request');
-var locale = require('../public/app/locale/en.json')
+var locale = require('../public/app/locale/en.json');
 var router = express.Router();
 
 router.get('/projects/list', function(req, res, next) {
