@@ -15,7 +15,6 @@ module.exports = function(passport) {
     passport.deserializeUser(function(user, done) {
         done(null, user);
     });
-
     passport.use(
         'join',
         new LocalStrategy({
@@ -92,24 +91,7 @@ module.exports = function(passport) {
                                     if(!result){
                                         return done(null, false, {'loginMessage':'Wrong password'});
                                     }
-                                    var projectSql = 'SELECT pid FROM projects WHERE owner_uid = ?';
-                                    connection.query(projectSql, [user.id], function(err, rows, fields){
-                                        if(err){
-                                            connection.release();
-                                            return done(null, false);
-                                        }
-                                        if(!rows.length){
-                                            var project = {};
-                                            user.project = project;
-                                        }else{
-                                            var project = {};
-                                            for(var i=0;i<rows.length;i++){
-                                                project[rows[i].pid] = true;
-                                            }
-                                            user.project = project;
-                                        }
-                                        callback(null, user);
-                                    });
+                                    callback(null, user);
                                 });
                             });
                         },
