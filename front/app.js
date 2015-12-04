@@ -8,10 +8,10 @@ var cookieParser = require('cookie-parser');
 var express = require('express');
 var favicon = require('serve-favicon');
 var flash = require('express-flash');
-var local = require('./config/local');
+var local = require('./auth/local');
 var logger = require('morgan');
 var passport = require('passport');
-require('./config/passport')(passport);
+require('./auth/passport')(passport);
 var path = require('path');
 var session  = require('express-session');
 
@@ -95,5 +95,6 @@ app.use(function(err, req, res, next) {
         error: {}
     });
 });
+
 
 module.exports = app;
