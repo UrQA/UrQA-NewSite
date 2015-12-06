@@ -52,7 +52,6 @@ router.post('/project/add', function(req, res, next) {
             }, function (error, response, body) {
                 if (!error && response.statusCode == 200) {
                     res.status(200);
-                    req.user.project[JSON.parse(body).insertId] = true;
                     res.json(JSON.parse(body));
                 }else{
                     if(!error){
