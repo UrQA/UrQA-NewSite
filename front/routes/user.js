@@ -1,18 +1,16 @@
-var request = require('request');
-var locale = require('../public/app/locale/en.json');
+var express = require('express');
 var router = express.Router();
 
 module.exports = function(passport){
-
     router.get('/login', function(req, res, next) {
         if(!req.user){
             res.render('user/login');
         }else{
-            res.redirect('/projects');
+            res.redirect('/project');
         }
     });
 
-    router.post('/login', passport.authenticate('login', { successRedirect: '/projects',
+    router.post('/login', passport.authenticate('login', { successRedirect: '/project',
         failureRedirect: '/user/login',
         failureFlash: true })
     );
@@ -26,7 +24,7 @@ module.exports = function(passport){
         res.render('user/join');
     });
 
-    router.post('/join', passport.authenticate('join', { successRedirect: '/projects',
+    router.post('/join', passport.authenticate('join', { successRedirect: '/project',
         failureRedirect: '/user/join',
         failureFlash: true })
     );
@@ -38,7 +36,7 @@ module.exports = function(passport){
         ]}));
 
     router.get('/auth/google/callback',
-        passport.authenticate('google', { successRedirect: '/projects',
+        passport.authenticate('google', { successRedirect: '/project',
             failureRedirect: '/login' ,
             failureFlash: true }));
 
