@@ -2,8 +2,7 @@ var LocalStrategy = require('passport-local').Strategy;
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 var config = require('./config.json');
 var mysql = require('mysql');
-var dbConfig = require('./config.json');
-var connectionPool = mysql.createPool(dbConfig);
+var connectionPool = mysql.createPool(config);
 var check_password = require('./check_password');
 var async = require('async');
 
@@ -92,7 +91,7 @@ module.exports = function(passport) {
                     }
                     async.waterfall([
                         function(callback){
-                            var selectSql = 'SELECT id, first_name, email, password FROM auth_user WHERE username = ?';
+                            var selectSql = 'SELECT * FROM auth_user WHERE username = ?';
                             connection.query(selectSql, [username], function(err,rows,fields){
                                 if(err){
                                     console.log(err);
@@ -110,7 +109,8 @@ module.exports = function(passport) {
                                         username: rows[0].username,
                                         email: rows[0].email,
                                         first_name: rows[0].first_name,
-                                        password: rows[0].password
+                                        password: rows[0].password,
+                                        is_superuser: rows[0].is_superuser
                                     };
 
                                     // password 확인
@@ -205,7 +205,8 @@ module.exports = function(passport) {
                                            id: rows.insertId,
                                            username:'google:' + profile.emails[0].value,
                                            email: profile.emails[0].value,
-                                           first_name: profile.displayName
+                                           first_name: profile.displayName,
+                                           is_superuser: 0
                                        };
                                        callback(null, user);
                                    }
@@ -217,7 +218,8 @@ module.exports = function(passport) {
                                     username:'google:' + profile.emails[0].value,
                                     email: rows[0].email,
                                     first_name: rows[0].first_name,
-                                    password: rows[0].password
+                                    password: rows[0].password,
+                                    is_superuser: rows[0].is_superuser
                                 };
 
                                 check_password.validatePassword(profile.id, user.password, function(err, result){
