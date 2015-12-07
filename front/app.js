@@ -16,7 +16,6 @@ var path = require('path');
 var session  = require('express-session');
 
 var routes = rootRequire('routes/index');
-var apiRoutes = rootRequire('routes/api');
 var dashboardRoutes = rootRequire('routes/dashboard');
 var projectRoutes = rootRequire('routes/project');
 var userRoutes = rootRequire('routes/user');
@@ -59,7 +58,6 @@ app.use(flash()); // use connect-flash for flash messages stored in session
 app.use('/static', express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
-app.use('/api', apiRoutes);
 app.use('/dashboard', dashboardRoutes);
 app.use('/project', projectRoutes);
 app.use('/user', userRoutes(passport));
