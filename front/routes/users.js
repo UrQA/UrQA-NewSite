@@ -38,7 +38,7 @@ module.exports = function(passport){
 
     router.get('/auth/google/callback',
         passport.authenticate('google', { successRedirect: '/projects',
-            failureRedirect: '/login' ,
+            failureRedirect: '/users/login' ,
             failureFlash: true }));
 
     return router;
