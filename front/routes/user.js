@@ -1,4 +1,5 @@
-var express = require('express');
+var request = require('request');
+var locale = require('../public/app/locale/en.json');
 var router = express.Router();
 
 module.exports = function(passport){
@@ -12,7 +13,7 @@ module.exports = function(passport){
     });
 
     router.post('/login', passport.authenticate('login', { successRedirect: '/projects',
-        failureRedirect: '/users/login',
+        failureRedirect: '/user/login',
         failureFlash: true })
     );
 
@@ -26,7 +27,7 @@ module.exports = function(passport){
     });
 
     router.post('/join', passport.authenticate('join', { successRedirect: '/projects',
-        failureRedirect: '/users/join',
+        failureRedirect: '/user/join',
         failureFlash: true })
     );
 
