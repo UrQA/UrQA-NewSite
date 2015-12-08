@@ -58,7 +58,7 @@ module.exports = function(passport) {
                         };
 
                         // auth_user 테이블에 계정 추가
-                        var insertSql = "INSERT INTO auth_user ( email, username, first_name, password, date_joined ) values ( ?, ?, ?, ?, now() )";
+                        var insertSql = "INSERT INTO auth_user ( email, username, first_name, password, date_joined, last_login ) values ( ?, ?, ?, ?, now(), now() )";
                         connection.query(insertSql, [user.username, user.username, user.first_name, user.password], function(err,rows,fields){
                             if(err){
                                 console.log(err);
