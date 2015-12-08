@@ -23,6 +23,7 @@ var projectRoutes = rootRequire('routes/project');
 var projectAPI = rootRequire('routes/api/project');
 var errorsAPI = rootRequire('routes/api/errors');
 var dashboardAPI = rootRequire('routes/api/dashboard');
+var errorAPI = rootRequire('routes/api/error');
 
 var app = express();
 
@@ -69,6 +70,7 @@ app.use('/user', userRoutes(passport));
 app.use('/api/project', projectAPI);
 app.use('/api/errors', errorsAPI);
 app.use('/api/dashboard', dashboardAPI);
+app.use('/api/error', errorAPI);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
