@@ -10,7 +10,7 @@ router.get('/project/:id/sdk', function(req, res, next) {
     res.header('Access-Control-Allow-Origin', '*');
     if(req.user){
         var project_id = req.params.id;
-        var period = 7;
+        var period = 6;
         var queryString = 'select osversion, count(*) as count ' +
             'from instances ' +
             'where pid = ? and datetime >= date(now()) - interval ? day ' +
@@ -44,7 +44,7 @@ router.get('/project/:id/weekly/error', function(req, res, next) {
     res.header('Access-Control-Allow-Origin', '*');
     if(req.user){
         var project_id = req.params.id;
-        var period = 7;
+        var period = 6;
         var queryString = 'select count(*) as weekly_errorcount ' +
             'from instances ' +
             'where pid = ? and datetime >= date(now()) - interval ? day';
@@ -74,7 +74,7 @@ router.get('/project/:id/weekly/session', function(req, res, next) {
     res.header('Access-Control-Allow-Origin', '*');
     if(req.user){
         var project_id = req.params.id;
-        var period = 7;
+        var period = 6;
         var queryString = 'select sum(appruncount) as weekly_sessioncount ' +
             'from appruncount2 ' +
             'where pid = ? and datetime >= date(now()) - interval ? day';
@@ -107,7 +107,7 @@ router.get('/project/:id/daily/error', function(req, res, next) {
     res.header('Access-Control-Allow-Origin', '*');
     if(req.user){
         var project_id = req.params.id;
-        var period = 7;
+        var period = 6;
         var queryString = 'select (date(datetime) + interval 1 day) as datetime, count(*) as error_count ' +
             'from instances ' +
             'where pid = ? and date(datetime) >= date(now()) - interval ? day and date(datetime) < date(now()) + interval 1 day ' +
@@ -145,7 +145,7 @@ router.get('/project/:id/weekly/rank', function(req, res, next) {
     res.header('Access-Control-Allow-Origin', '*');
     if(req.user){
         var project_id = req.params.id;
-        var period = 7;
+        var period = 6;
         var queryString = 'select errors.rank as rank, count(errors.rank) as count ' +
             'from instances join errors on instances.iderror = errors.iderror ' +
             'where instances.pid = ? and instances.datetime >= date(now()) - interval ? day ' +
@@ -187,7 +187,7 @@ router.get('/project/:id/errors/tranding', function(req, res, next) {
     res.header('Access-Control-Allow-Origin', '*');
     if(req.user){
         var project_id = req.params.id;
-        var period = 7;
+        var period = 6;
         var queryString = 'select iderror, rank, numofinstances, errorname, errorclassname, linenum, status, DATE_FORMAT(lastdate,\'%Y-%m-%d\') as lastdate ' +
             'from errors ' +
             'where pid = ? and (status = 0 or status = 1) and lastdate >= date(now()) - interval ? day ' +
@@ -269,17 +269,15 @@ router.get('/project/:id/errors/tranding', function(req, res, next) {
     }
 });
 
-
 router.get('/project/:id/errors/latest', function(req, res, next) {
     res.header('Access-Control-Allow-Origin', '*');
     if(req.user){
         var project_id = req.params.id;
-        var period = 7;
+        var period = 6;
         var queryString = 'select iderror, rank, numofinstances, errorname, errorclassname, linenum, status, DATE_FORMAT(lastdate,\'%Y-%m-%d\') as lastdate ' +
             'from errors ' +
             'where pid = ? and lastdate >= date(now()) - interval ? day ' +
             'order by lastdate desc, (case rank when 2 then 1 when 3 then 2 when 1 then 3 when 0 then 4 else 9 end), numofinstances desc limit 15';
-
 
         connectionPool.getConnection(function(err, connection) {
             connection.query(queryString, [project_id, period], function(err, rows, fields) {
