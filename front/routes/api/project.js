@@ -7,23 +7,6 @@ var mysql = require('mysql');
 var connectionPool = mysql.createPool(config);
 var async = require('async');
 
-router.get('/', function(req, res, next) {
-    if(req.user){
-        var data = {'user_id':req.user.id,'user_name':req.user.first_name};
-        res.render('projects/index', data);
-    }
-    else{
-        res.redirect('/user/login');
-    }
-});
-
-
-/*
-
-    데이터 호출 api
-
- */
-
 // 프로젝트 리스트
 router.get('/list', function(req, res, next) {
     res.header('Access-Control-Allow-Origin', '*');
