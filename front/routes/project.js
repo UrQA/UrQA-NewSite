@@ -214,11 +214,10 @@ router.post('/add', function(req, res, next) {
             var user_id = parseInt(req.user.id);
             var today = new Date();
             var apikey = md5(user_id + name + today + 'honey' + Math.floor(Math.random() * 100)).substr(0, 8);
-            var timezone = 'Asiz/Seoul';
+            var timezone = 'Asia/Seoul';
             var queryString = 'insert into ' +
                 'projects (apikey, platform, name, category, stage, timezone, owner_uid) ' +
                 'values (?,?,?,?,?,?,?)';
-
             connectionPool.getConnection(function(err, connection) {
                 connection.query(queryString, [apikey, platform, name, category, stage, timezone, user_id], function(err, rows, fields) {
                     if (err) {
