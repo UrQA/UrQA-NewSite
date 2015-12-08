@@ -17,8 +17,12 @@ var session  = require('express-session');
 
 var routes = rootRequire('routes/index');
 var dashboardRoutes = rootRequire('routes/dashboard');
-var projectRoutes = rootRequire('routes/project');
 var userRoutes = rootRequire('routes/user');
+var projectRoutes = rootRequire('routes/project');
+
+var projectAPI = rootRequire('routes/api/project');
+var errorsAPI = rootRequire('routes/api/errors');
+var dashboardAPI = rootRequire('routes/api/dashboard');
 
 var app = express();
 
@@ -61,6 +65,10 @@ app.use('/', routes);
 app.use('/dashboard', dashboardRoutes);
 app.use('/project', projectRoutes);
 app.use('/user', userRoutes(passport));
+
+app.use('/api/project', projectAPI);
+app.use('/api/errors', errorsAPI);
+app.use('/api/dashboard', dashboardAPI);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
