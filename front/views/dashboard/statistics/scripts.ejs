@@ -30,7 +30,7 @@
     var filterData = {};
     var plainTemplate = $.templates("#plainDataTmpl");
     $.ajax({
-        url:'/project/<%= data.id %>',
+        url:'/api/project/<%= data.id %>',
         success:function(data){
             var htmlOutput = plainTemplate.render({data:data.name});
             $("#load_title").html(htmlOutput);
