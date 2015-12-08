@@ -43,7 +43,7 @@
     var b, s = -1;
     var err = false;
     $.ajax({
-        url:'/api/project/<%= data.id %>/weekly/error',
+        url:'/api/dashboard/project/<%= data.id %>/weekly/error',
         success:function(data){
             var htmlOutput = template.render(data);
             $("#load_crash").html(htmlOutput);
@@ -58,7 +58,7 @@
         }
     });
     $.ajax({
-        url:'/api/project/<%= data.id %>/weekly/session',
+        url:'/api/dashboard/project/<%= data.id %>/weekly/session',
         success:function(data){
             var htmlOutput = template.render(data);
             $("#load_user").html(htmlOutput);
@@ -74,7 +74,7 @@
         }
     });
     $.ajax({
-        url:'/api/project/<%= data.id %>/sdk',
+        url:'/api/dashboard/project/<%= data.id %>/sdk',
         success:function(data){
             var htmlOutput = template.render(data);
             $("#load_sdk").html(htmlOutput);

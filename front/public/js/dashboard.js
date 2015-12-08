@@ -7,7 +7,7 @@
             "bStateSave": true,
             "bProcessing": true,
             "bServerSide": true,
-            "sAjaxSource": '/api/project/'+urqaio.currentProject+'/errors/tranding',
+            "sAjaxSource": '/api/dashboard/project/'+urqaio.currentProject+'/errors/tranding',
             "sAjaxDataProp": "errorData",
             "bUseRendered": true,
             "bLengthChange": false,
@@ -54,10 +54,10 @@
             }
         });
         $('#btnTranding').click(function() {
-            _dataTable.ajax.url('/api/project/'+urqaio.currentProject+'/errors/tranding').load();
+            _dataTable.ajax.url('/api/dashboard/project/'+urqaio.currentProject+'/errors/tranding').load();
         });
         $('#btnLatest').click(function() {
-            _dataTable.ajax.url('/api/project/'+urqaio.currentProject+'/errors/latest').load();
+            _dataTable.ajax.url('/api/dashboard/project/'+urqaio.currentProject+'/errors/latest').load();
         });
         $('#dynamic-table tbody').on('click', 'tr', function () {
             var data = _dataTable.row(this).data();
@@ -126,7 +126,7 @@
                 colors: ["#87cfcb", "#48a9a7"]
             };
             $.ajax({
-                url:'/api/project/'+urqaio.currentProject+'/daily/error',
+                url:'/api/dashboard/project/'+urqaio.currentProject+'/daily/error',
                 success:function(data){
                     var d = ([{
                         label: "Too",
@@ -146,7 +146,7 @@
                 }
             });
             $.ajax({
-                url:'/api/project/'+urqaio.currentProject+'/weekly/rank',
+                url:'/api/dashboard/project/'+urqaio.currentProject+'/weekly/rank',
                 success:function(data){
                     var check = false;
                     var dataPie = [];
