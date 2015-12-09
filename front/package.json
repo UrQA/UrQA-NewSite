@@ -21,6 +21,7 @@
     "request": "^2.65.0",
     "serve-favicon": "~2.2.0",
     "pbkdf2-sha256": "1.1.1",
-    "passport-google-oauth": "0.2.0"
+    "passport-google-oauth": "0.2.0",
+    "md5": "2.0.0"
   }
 }

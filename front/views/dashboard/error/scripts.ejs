@@ -97,7 +97,7 @@
                     "bStateSave": true,
                     "bProcessing": true,
                     "bServerSide": true,
-                    "sAjaxSource": "/api/project/"+urqaio.currentProject+"/errors",
+                    "sAjaxSource": "/api/errors/"+urqaio.currentProject,
                     "sAjaxDataProp": "errorData",
                     "aaSorting": [[ 1, "desc" ]],
                     "bUseRendered": true,
@@ -174,8 +174,8 @@
             _dataTable.ajax.reload();
         };
 
-        $('#btnTranding').click(function() { _dataTable.ajax.url("/api/project/"+urqaio.currentProject+"/errors").load(); } );
-        $('#btnLatest').click(function() { _dataTable.ajax.url("/api/project/"+urqaio.currentProject+"/errors/latest/filtered").load(); } );
+        $('#btnTranding').click(function() { _dataTable.ajax.url("/api/errors/"+urqaio.currentProject+"").load(); } );
+        $('#btnLatest').click(function() { _dataTable.ajax.url("/api/errors/"+urqaio.currentProject+"/latest").load(); } );
 
         $('#dynamic-table tbody').on('click', 'tr', function () {
             var data = _dataTable.row(this).data();
@@ -529,7 +529,7 @@
             }
             reloadFilterData();
             $.ajax({
-                url:'/api/project/<%= data.id %>/errors/filter',
+                url:'/api/errors/filter/<%= data.id %>',
                 success:function(data){
                     var len;
                     if(data.filter_appversions.length>4){

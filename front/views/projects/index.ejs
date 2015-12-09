@@ -12,7 +12,7 @@
             <div class="leftside-navigation">
                 <ul class="sidebar-menu" id="nav-accordion">
                     <li>
-                        <a class="active" href="<%= getUrl('/projects') %>">
+                        <a class="active" href="<%= getUrl('/project') %>">
                             <i class="fa fa-archive"></i>
                             <span>Projects</span>
                         </a>
@@ -143,9 +143,9 @@
 <div class="col-sm-6 col-md-4 col-lg-3">
     <aside class="profile-nav alt">
         <section class="panel">
-            <div class="user-heading alt gray-bg" onclick="javascript:location.href='/dashboard/{{:id}}';">
+            <div class="user-heading alt gray-bg" onclick="javascript:location.href='/dashboard/{{:pid}}';">
                 <h1>
-                    <span data-placement="top" data-toggle="tooltip" class="tooltips" type="button">{{:title}}</span>
+                    <span data-placement="top" data-toggle="tooltip" class="tooltips" type="button">{{:name}}</span>
                 </h1>
                 <p>{{:stage}} stage</p>
             </div>
@@ -171,7 +171,7 @@
     function updateProject(){
         var template = $.templates("#projectTmpl");
         $.ajax({
-            url:'/api/projects/list',
+            url:'/api/project/list',
             success:function(data){
                 if(data.length != 0){
                     var htmlOutput = template.render(data);

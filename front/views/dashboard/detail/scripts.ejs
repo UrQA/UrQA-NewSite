@@ -248,7 +248,7 @@
         }
     });
     $.ajax({
-        url:'/api/project/<%= data.id %>/error/<%= data.eid %>',
+        url:'/api/error/<%= data.eid %>',
         success:function(data){
             var ec = data.numofinstances;
             // update error status
@@ -263,10 +263,10 @@
             plain = plainTemplate.render({data:data.errorclassname+':'+data.linenum});
             $("#load_errorclass").html(plain);
             // errorcreated
-            plain = plainTemplate.render({data:data.create_date});
+            plain = plainTemplate.render({data:data.createdate});
             $("#load_errorcreated").html(plain);
             // errorupdated
-            plain = plainTemplate.render({data:data.update_date});
+            plain = plainTemplate.render({data:data.lastdate});
             $("#load_errorupdated").html(plain);
             // memory
             var t = template.render({data:data.totalmemusage + 'MB'});
@@ -314,7 +314,7 @@
         }
     });
     $.ajax({
-        url:'/api/project/<%= data.id %>/error/<%= data.eid %>/callstack',
+        url:'/api/error/<%= data.eid %>/callstack',
         success:function(data){
             for(var i=0;i<data.length;i++){
                 if(data[i]!=''){
@@ -329,7 +329,7 @@
         }
     });
     $.ajax({
-        url:'/api/project/<%= data.id %>/error/<%= data.eid %>/statistics',
+        url:'/api/error/<%= data.eid %>/statistics',
         success:function(data){
             var t;
             for(var i in data.appversion_counts){
@@ -355,7 +355,7 @@
         }
     });
     $.ajax({
-        url:'/api/project/<%= data.id %>/error/<%= data.eid %>/instances',
+        url:'/api/error/<%= data.eid %>/instances',
         success:function(data){
             var o;
             for(var i in data){
@@ -437,7 +437,7 @@
                 colors: ["#87cfcb", "#48a9a7"]
             };
             $.ajax({
-                url:'/api/project/'+urqaio.currentProject+'/error/<%= data.eid %>/daily',
+                url:'/api/error/<%= data.eid %>/daily',
                 success:function(data){
                     var d = ([{
                         label: "Too",
@@ -462,7 +462,7 @@
         }
 
         $.ajax({
-            url:'/api/project/'+urqaio.currentProject+'/error/<%= data.eid %>/eventpath',
+            url:'/api/error/<%= data.eid %>/eventpath',
             success:function(data) {
                 console.log(JSON.stringify(data));
                 drawChart(data);

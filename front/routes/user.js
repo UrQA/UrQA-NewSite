@@ -2,17 +2,16 @@ var express = require('express');
 var router = express.Router();
 
 module.exports = function(passport){
-
     router.get('/login', function(req, res, next) {
         if(!req.user){
             res.render('user/login');
         }else{
-            res.redirect('/projects');
+            res.redirect('/project');
         }
     });
 
-    router.post('/login', passport.authenticate('login', { successRedirect: '/projects',
-        failureRedirect: '/users/login',
+    router.post('/login', passport.authenticate('login', { successRedirect: '/project',
+        failureRedirect: '/user/login',
         failureFlash: true })
     );
 
@@ -25,8 +24,8 @@ module.exports = function(passport){
         res.render('user/join');
     });
 
-    router.post('/join', passport.authenticate('join', { successRedirect: '/projects',
-        failureRedirect: '/users/join',
+    router.post('/join', passport.authenticate('join', { successRedirect: '/project',
+        failureRedirect: '/user/join',
         failureFlash: true })
     );
 
@@ -37,8 +36,8 @@ module.exports = function(passport){
         ]}));
 
     router.get('/auth/google/callback',
-        passport.authenticate('google', { successRedirect: '/projects',
-            failureRedirect: '/users/login' ,
+        passport.authenticate('google', { successRedirect: '/project',
+            failureRedirect: '/login' ,
             failureFlash: true }));
 
     return router;

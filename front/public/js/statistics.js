@@ -1,29 +1,28 @@
 $(document).ready(function()
 {
 	var total_errorcount;
-	var baseurl = 'https://honeyqa.io:8080';
 
 	$.ajax({
-		url:'/api/project/'+urqaio.currentProject+'/weekly/error',
+		url:'/api/dashboard/project/'+urqaio.currentProject+'/weekly/error',
 		async: false,
 		success:function(data){
 			total_errorcount = data.data;
 		}
 	});
-
+	//urqaio.currentProject
 	// daily error count area graph
 	$.ajax({
-		url: baseurl + '/project/'+urqaio.currentProject+'/weekly_appruncount2',
+		url: '/api/dashboard/project/'+urqaio.currentProject+'/daily/error',
 		success:function(data){
 			var chart_data =[];
 
-			for(var i = 0; i < data.data.length; i++){
-				var datetime = new Date(data.data[i][0]);
+			for(var i = 0; i < data.length; i++){
+				var datetime = new Date(data[i][0]);
 				var mm = (datetime.getMonth()+1).toString();
 				var dd = datetime.getDate().toString();
 				var elapsed = (mm[1] ? mm : '0' + mm[0])+'/'+(dd[1] ? dd : '0' + dd[0]);
-				var value = data.data[i][1];
-				var element = new Object();
+				var value = data[i][1];
+				var element = {};
 				element.elapsed =  elapsed;
 				element.value = value;
 				chart_data.push(element);
@@ -38,21 +37,19 @@ $(document).ready(function()
 				lineColors:['#79D1CF'],
 				parseTime: false
 			});
-		} // error 처리
+		}
 	});
 
 	// error rank rate donut graph
 	$.ajax({
-		url:'/api/project/' + urqaio.currentProject + '/weekly/rank',
+		url:'/api/dashboard/project/' + urqaio.currentProject + '/weekly/rank',
 		success:function(data){
 			var chart_data =[];
 			for(var i = 0; i < data.length; i++){
-				var element = new Object();
+				var element = {};
 				element.value =  data[i].count;
 				element.label = data[i].rank;
 				element.formatted = ((data[i].count/total_errorcount) * 100).toFixed(1) + '%';
-				console.log(data[i].rank +': '+data[i].count);
-				//console.log(((data[i].count/total_errorcount) * 100).toFixed(1) + '%');
 				chart_data.push(element);
 			}
 			Morris.Donut({
@@ -88,12 +85,11 @@ $(document).ready(function()
 
 	// error osversion rate donut graph
 	$.ajax({
-		url: baseurl + '/statistics/' + urqaio.currentProject + '/osversion',
+		url: '/api/statistics/project/' + urqaio.currentProject + '/osversion',
 		success:function(data){
-
 			var chart_data =[];
 			for(var i = 0; i < data.length; i++){
-				var element = new Object();
+				var element = {};
 				element.value =  data[i].count;
 				element.label = data[i].osversion;
 				element.formatted = ((data[i].count/total_errorcount) * 100).toFixed(1) + '%';
@@ -133,12 +129,11 @@ $(document).ready(function()
 
 	// error country rate donut graph
 	$.ajax({
-		url: baseurl + '/statistics/' + urqaio.currentProject + '/country',
+		url: '/api/statistics/project/' + urqaio.currentProject + '/country',
 		success:function(data){
-
 			var chart_data =[];
 			for(var i = 0; i < data.length; i++){
-				var element = new Object();
+				var element = {};
 				element.value =  data[i].count;
 				element.label = data[i].country;
 				element.formatted = ((data[i].count/total_errorcount) * 100).toFixed(1) + '%';
@@ -178,11 +173,10 @@ $(document).ready(function()
 
 	// error device line graph
 	$.ajax({
-		url: baseurl + '/statistics/' + urqaio.currentProject + '/device',
+		url: '/api/statistics/project/' + urqaio.currentProject + '/device',
 		success:function(data){
 			var labels = [];
 			var chart_data = [];
-
 			for(var i = 0; i < data.length; i++){
 				labels.push(data[i].device);
 				chart_data.push(data[i].count);
@@ -297,48 +291,16 @@ $(document).ready(function()
 		}
 	});
 
-	var totals;
-
-	function set_exists(x){
-    totals = x;
-    console.log("s:"+totals);
-	}
-
-	function t_exists(){
-		return totals;
-	}
-
-	$.ajax({
-	 url:baseurl+'/project/'+urqaio.currentProject+'/weekly_errorcount', async: false,
-	 success:function(data){
-
-		 var chart_data =[];
-
-		 for(var i = 0; i < data.length; i++){
-			 var element = new Object();
-			// chart_data.push(element);
-			 var tot=data[i].weekly_instancecount;
-       set_exists(tot);
-		// $( "#erate" ).append( '<div class="content-row"><p class="text-ellipsis">'+data[i].errorclassname+'</p><div><div class="progress progress-xs"><div style="width: '+data[i].count+'%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="20" role="progressbar" class="progress-bar progress-bar-info"><span class="sr-only">'+data[i].count+'% Complete</span></div></div><div>'+data[i].count+'</div></div></div>' );
-
-	}
-
-
-	 } // error 처리
-	});
-
    $.ajax({
-		url:baseurl+'/statistics/'+urqaio.currentProject+'/errorclassname',
+		url:'/api/statistics/project/'+urqaio.currentProject+'/errorclassname',
 		success:function(data){
 			var chart_data =[];
-
 			for(var i = 0; i < data.length; i++){
 				var gax='progress-bar progress-bar-danger';
-				var element = new Object();
+				var element = {};
 				element.value =  data[i].errorclassname;
 				element.label = data[i].count;
 				chart_data.push(element);
-				//data[i].count=Math.round((data[i].count/total_errorcount)*100);
 				data[i].rate = Math.round((data[i].count/total_errorcount)*100);
 				// 색칠
 				if(i==0){
@@ -351,24 +313,20 @@ $(document).ready(function()
 				}
 
 			$( "#erate" ).append( '<div class="content-row"><p class="text-ellipsis">'+data[i].errorclassname+'</p><div><div class="progress progress-xs"><div style="width: '+data[i].rate+'%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="20" role="progressbar" class="'+gax+'"><span class="sr-only">'+data[i].rate+'% Complete</span></div></div><div>'+data[i].rate+'%</div></div></div>' );
-
-}
+			}
 			chart_data.push(element);
-		
-
 		} // error 처리
 	});
 
 
    $.ajax({
-		url:baseurl+'/statistics/'+urqaio.currentProject+'/lastactivity',async: false,
+		url:'/api/statistics/project/'+urqaio.currentProject+'/lastactivity',async: false,
 		success:function(data){
 			var chart_data =[];
 			for(var i = 0; i < data.length; i++){
 					var gax='progress-bar progress-bar-danger';
-				var element = new Object();
+				var element = {};
 				element.value =  data[i].lastactivity;
-				//data[i].count=Math.round((data[i].count/total_errorcount)*100);
 				data[i].rate = Math.round((data[i].count/total_errorcount)*100);
 				element.label = data[i].count;
 
@@ -383,15 +341,14 @@ $(document).ready(function()
 				}
 
 			$( "#eact" ).append('<div class="content-row"><p class="text-ellipsis">'+data[i].lastactivity+'</p><div><div class="progress progress-xs"><div style="width: '+data[i].rate+'%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="20" role="progressbar" class="'+gax+'"><span class="sr-only">'+data[i].rate+'% Complete</span></div></div><div>'+data[i].rate+'%</div></div></div>');
-}
-
+			}
 			chart_data.push(element);
 		} // error 처리
 	});
 
 	// version error rate multi line graph
 	$.ajax({
-		url: baseurl + '/statistics/' + urqaio.currentProject + '/error_version',
+		url: '/api/statistics/project/' + urqaio.currentProject + '/error_version',
 		success:function(data){
 			var chart_data =[];
 			for(var i = 0; i < data.length; i++){

@@ -7,7 +7,7 @@ router.get('/', function(req, res, next) {
         res.render('projects/index', data);
     }
     else{
-        res.redirect('/users/login');
+        res.redirect('/user/login');
     }
 });
 

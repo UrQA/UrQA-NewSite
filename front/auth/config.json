@@ -2,13 +2,15 @@
   // Local Test api
   "google_auth":{
     "client_id":"873155508546-5m6r07bbu7shhr20uorg9b813dvtq20s.apps.googleusercontent.com",
-    "client_secret":"7E7J_WHLXKiIMW9pyncm69Lh"
+    "client_secret":"7E7J_WHLXKiIMW9pyncm69Lh",
+    "callback_url": "http://localhost:3000/user/auth/google/callback"
   },
 
 //  // n.honeuqa.io api
 //    "google_auth":{
 //    "client_id":"873155508546-c65sbr2dtuh5v994icfun005hqrh4p8b.apps.googleusercontent.com",
-//    "client_secret":"euDh_xAwZBE-pwLlHcBJi7Ta"
+//    "client_secret":"euDh_xAwZBE-pwLlHcBJi7Ta",
+//    "callback_url": "http://n.honeyqa.io/user/auth/google/callback"
 //  },
 
   "connection": {
@@ -21,5 +23,4 @@
   "password": "gjslqa",
   "database": "urqa",
   "users_table": "auth_user"
-
 }

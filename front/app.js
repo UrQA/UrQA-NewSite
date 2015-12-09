@@ -16,10 +16,16 @@ var path = require('path');
 var session  = require('express-session');
 
 var routes = rootRequire('routes/index');
-var apiRoutes = rootRequire('routes/api');
 var dashboardRoutes = rootRequire('routes/dashboard');
-var projectsRoutes = rootRequire('routes/projects');
-var users = rootRequire('routes/users');
+var userRoutes = rootRequire('routes/user');
+var projectRoutes = rootRequire('routes/project');
+
+var projectAPI = rootRequire('routes/api/project');
+var errorsAPI = rootRequire('routes/api/errors');
+var dashboardAPI = rootRequire('routes/api/dashboard');
+var errorAPI = rootRequire('routes/api/error');
+var errorsAPI = rootRequire('routes/api/errors');
+var statisticsAPI = rootRequire('routes/api/statistics');
 
 var app = express();
 
@@ -59,10 +65,16 @@ app.use(flash()); // use connect-flash for flash messages stored in session
 app.use('/static', express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
-app.use('/api', apiRoutes);
 app.use('/dashboard', dashboardRoutes);
-app.use('/projects', projectsRoutes);
-app.use('/users', users(passport));
+app.use('/project', projectRoutes);
+app.use('/user', userRoutes(passport));
+
+app.use('/api/project', projectAPI);
+app.use('/api/errors', errorsAPI);
+app.use('/api/dashboard', dashboardAPI);
+app.use('/api/error', errorAPI);
+app.use('/api/errors', errorsAPI);
+app.use('/api/statistics', statisticsAPI);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
