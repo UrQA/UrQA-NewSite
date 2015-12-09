@@ -263,10 +263,10 @@
             plain = plainTemplate.render({data:data.errorclassname+':'+data.linenum});
             $("#load_errorclass").html(plain);
             // errorcreated
-            plain = plainTemplate.render({data:data.create_date});
+            plain = plainTemplate.render({data:data.createdate});
             $("#load_errorcreated").html(plain);
             // errorupdated
-            plain = plainTemplate.render({data:data.update_date});
+            plain = plainTemplate.render({data:data.lastdate});
             $("#load_errorupdated").html(plain);
             // memory
             var t = template.render({data:data.totalmemusage + 'MB'});

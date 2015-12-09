@@ -24,6 +24,7 @@ var projectAPI = rootRequire('routes/api/project');
 var errorsAPI = rootRequire('routes/api/errors');
 var dashboardAPI = rootRequire('routes/api/dashboard');
 var errorAPI = rootRequire('routes/api/error');
+var errorsAPI = rootRequire('routes/api/errors');
 var statisticsAPI = rootRequire('routes/api/statistics');
 
 var app = express();
@@ -72,6 +73,7 @@ app.use('/api/project', projectAPI);
 app.use('/api/errors', errorsAPI);
 app.use('/api/dashboard', dashboardAPI);
 app.use('/api/error', errorAPI);
+app.use('/api/errors', errorsAPI);
 app.use('/api/statistics', statisticsAPI);
 
 // catch 404 and forward to error handler
