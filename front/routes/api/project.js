@@ -20,7 +20,7 @@ router.get('/list', function(req, res, next) {
                 async.waterfall([
                     function(callback) {
                         var queryString = 'select * from projects ' +
-                            'where pid in (select pid from errors where lastdate >= date(now()) - interval 1 week)';
+                            'where pid in (select pid from errors where lastdate >= date(now()) - interval 6 day)';
                         connection.query(queryString, [user_id], function(err, rows, fields) {
                             if (err) {
                                 res.status(500);
@@ -41,7 +41,7 @@ router.get('/list', function(req, res, next) {
                                         function(index, element, callback) {
                                             var queryString = 'select count(*) as weekly_errorcount ' +
                                                 'from instances ' +
-                                                'where pid = ? and datetime >= date(now()) - interval 1 week';
+                                                'where pid = ? and datetime >= date(now()) - interval 6 day';
                                             connection.query(queryString, [element.pid], function(err, rows, fields) {
                                                 if (err) {
                                                     res.status(500);
@@ -124,7 +124,7 @@ router.get('/list', function(req, res, next) {
                                             function (index, element, callback) {
                                                 var queryString = 'select count(*) as weekly_errorcount ' +
                                                     'from instances ' +
-                                                    'where pid = ? and datetime >= date(now()) - interval 1 week';
+                                                    'where pid = ? and datetime >= date(now()) - interval 6 day';
                                                 connection.query(queryString, [element.pid], function (err, rows, fields) {
                                                     if (err) {
                                                         res.status(500);
