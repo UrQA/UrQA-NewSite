@@ -14,14 +14,15 @@
     "express": "~4.11.1",
     "express-flash": "0.0.2",
     "express-session": "^1.12.1",
+    "jstz": "^1.0.7",
+    "md5": "2.0.0",
     "morgan": "~1.5.1",
     "mysql": "^2.9.0",
     "passport": "^0.3.2",
-    "passport-local": "^1.0.0",
-    "request": "^2.65.0",
-    "serve-favicon": "~2.2.0",
-    "pbkdf2-sha256": "1.1.1",
     "passport-google-oauth": "0.2.0",
-    "md5": "2.0.0"
+    "passport-local": "^1.0.0",
+    "pbkdf2-sha256": "1.1.1",
+    "request": "^2.65.0",
+    "serve-favicon": "~2.2.0"
   }
 }
