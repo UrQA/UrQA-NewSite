@@ -5,6 +5,7 @@ var mysql = require('mysql');
 var connectionPool = mysql.createPool(config);
 var check_password = require('./check_password');
 var async = require('async');
+var jstz = require('jstz');
 
 // Google API Config
 var GOOGLE_CLIENT_ID = config.google_auth.client_id;
@@ -54,6 +55,7 @@ module.exports = function(passport) {
                         var user = {
                             username: username, // 일반 가입의 경우 username과 email 동일
                             first_name: req.body.join_name,
+                            timezone: jstz.determine().name(),
                             password: check_password.hashSync(password) // password 암호화
                         };
 
@@ -110,6 +112,7 @@ module.exports = function(passport) {
                                         email: rows[0].email,
                                         first_name: rows[0].first_name,
                                         password: rows[0].password,
+                                        timezone: jstz.determine().name(),
                                         is_superuser: rows[0].is_superuser
                                     };
 
@@ -205,6 +208,7 @@ module.exports = function(passport) {
                                            id: rows.insertId,
                                            username:'google:' + profile.emails[0].value,
                                            email: profile.emails[0].value,
+                                           timezone: jstz.determine().name(),
                                            first_name: profile.displayName,
                                            is_superuser: 0
                                        };
@@ -217,6 +221,7 @@ module.exports = function(passport) {
                                     id: rows[0].id,
                                     username:'google:' + profile.emails[0].value,
                                     email: rows[0].email,
+                                    timezone: jstz.determine().name(),
                                     first_name: rows[0].first_name,
                                     password: rows[0].password,
                                     is_superuser: rows[0].is_superuser
