@@ -99,6 +99,7 @@
                 xaxis: {
                     mode : 'time',
                     type : 'timeseries',
+                    timezone: "browser",
                     timeformat: "%m/%d",
                     minTickSize: [1, "day"],
                     show: true,
@@ -130,7 +131,7 @@
                 success:function(data){
                     var d = ([{
                         label: "Too",
-                        data: data,
+                        data: data.data,
                         lines: {
                             show: true,
                             fill: true,

@@ -77,10 +77,10 @@
         <td>{{:data.osversion}}</td>
         <td><i class="{{:data.wifion}}" style="font-size:120%"></i></td>
         <td><i class="{{:data.mobileon}}" style="font-size:120%"></i></td>
-        <td onclick="alert('준비중입니다.')"><i class="fa fa-exclamation-triangle"></i></td>
-        <td style="cursor:pointer" onclick="openDetails('dv_{{:data.id}}')"><i id="dv_{{:data.id}}_i" class="fa fa-chevron-down"></i></td>
+        <td onclick="alert('준비중입니다.')"><i class="fa fa-list-alt"></i></td>
+        <td style="cursor:pointer" onclick="openDetails('dv_{{:data.idinstance}}')"><i id="dv_{{:data.idinstance}}_i" class="fa fa-chevron-up"></i></td>
     </tr>
-    <tr id="dv_{{:data.id}}" style="display:none">
+    <tr id="dv_{{:data.idinstance}}" style="display:none">
         <td colspan="8">
             <form class="form-horizontal bucket-form" method="get">
                 <div class="form-group">
@@ -354,6 +354,7 @@
             $("#load_status_statistics").attr('class','fa fa-exclamation-triangle');
         }
     });
+
     $.ajax({
         url:'/api/error/<%= data.eid %>/instances',
         success:function(data){
@@ -411,6 +412,7 @@
                     mode : 'time',
                     type : 'timeseries',
                     timeformat: "%m/%d",
+                    timezone: 'browser',
                     minTickSize: [1, "day"],
                     show: true,
                     font: {
@@ -441,7 +443,7 @@
                 success:function(data){
                     var d = ([{
                         label: "Too",
-                        data: data,
+                        data: data.data,
                         lines: {
                             show: true,
                             fill: true,
@@ -464,7 +466,6 @@
         $.ajax({
             url:'/api/error/<%= data.eid %>/eventpath',
             success:function(data) {
-                console.log(JSON.stringify(data));
                 drawChart(data);
             },error: function(jqXHR, textStatus, errorThrown) {
             }
@@ -500,10 +501,10 @@
         var attr = $("#"+e).attr('style');
         if(attr){
             $("#"+e).removeAttr('style');
-            $("#"+e+"_i").attr('class','fa fa-chevron-up');
+            $("#"+e+"_i").attr('class','fa fa-chevron-down');
         } else {
             $("#"+e).attr('style','display:none');
-            $("#"+e+"_i").attr('class','fa fa-chevron-down');
+            $("#"+e+"_i").attr('class','fa fa-chevron-up');
         }
     }
 </script>

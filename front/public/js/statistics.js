@@ -13,15 +13,15 @@ $(document).ready(function()
 	// daily error count area graph
 	$.ajax({
 		url: '/api/dashboard/project/'+urqaio.currentProject+'/daily/error',
-		success:function(data){
+		success:function(result){
 			var chart_data =[];
 
-			for(var i = 0; i < data.length; i++){
-				var datetime = new Date(data[i][0]);
+			for(var i = 0; i < result.data.length; i++){
+				var datetime = new Date(result.data[i][0]);
 				var mm = (datetime.getMonth()+1).toString();
 				var dd = datetime.getDate().toString();
 				var elapsed = (mm[1] ? mm : '0' + mm[0])+'/'+(dd[1] ? dd : '0' + dd[0]);
-				var value = data[i][1];
+				var value = result.data[i][1];
 				var element = {};
 				element.elapsed =  elapsed;
 				element.value = value;
