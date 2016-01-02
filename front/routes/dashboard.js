@@ -1,5 +1,9 @@
 var express = require('express');
 var router = express.Router();
+var config = require('../auth/config.json');
+var mysql = require('mysql');
+var connectionPool = mysql.createPool(config);
+var async = require('async');
 
 var getViewContainer = function(defaultPath, data, user) {
     return {
@@ -13,8 +17,32 @@ var getViewContainer = function(defaultPath, data, user) {
 
 router.get('/:id', function(req, res) {
     if(req.user){
-        var data = {id:req.params.id, section:0};
-        res.render('layout/dashboard/layout', getViewContainer("../../dashboard/dashboard", data, req.user));
+        async.waterfall([
+            // 대시보드 진입 시 프로젝트 timezone 세팅
+            function(callback){
+                var project_id = req.params.id;
+                var queryString = 'select * from projects where pid = ?';
+                connectionPool.getConnection(function(err, connection){
+                    connection.query (queryString, [project_id], function(err, rows, fields) {
+                        if(err){
+                            callback(err);
+                            connection.release();
+                        }else{
+                            req.session.timezone = rows[0].timezone;
+                            callback(null);
+                        }
+                    });
+                });
+            }
+        ], function(err){
+            if(err){
+                res.status(500);
+                res.redirect('/user/login');
+            }else{
+                var data = {id:req.params.id, section:0};
+                res.render('layout/dashboard/layout', getViewContainer("../../dashboard/dashboard", data, req.user));
+            }
+        });
     }else{
         res.redirect('/user/login');
     }

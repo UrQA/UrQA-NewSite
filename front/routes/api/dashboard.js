@@ -108,14 +108,15 @@ router.get('/project/:id/daily/error', function(req, res, next) {
     if(req.user){
         var project_id = req.params.id;
         var period = 6;
-        var queryString = 'select (date(datetime) + interval 1 day) as datetime, count(*) as error_count ' +
+        var queryString = 'select (date(CONVERT_TZ(datetime, \'UTC\', ?)) + interval 1 day) as datetime, count(*) as error_count ' +
             'from instances ' +
             'where pid = ? and date(datetime) >= date(now()) - interval ? day and date(datetime) < date(now()) + interval 1 day ' +
             'group by date(datetime)';
 
         connectionPool.getConnection(function(err, connection) {
-            connection.query(queryString, [project_id, period], function(err, rows, fields) {
-                var result = [];
+            connection.query(queryString, [req.session.timezone, project_id, period], function(err, rows, fields) {
+                var result = {};
+                var data = [];
 
                 if (err) {
                     res.status(500);
@@ -127,8 +128,10 @@ router.get('/project/:id/daily/error', function(req, res, next) {
                         var datetime = rows[i].datetime;
                         element.push(datetime.getTime());
                         element.push(rows[i].error_count);
-                        result.push(element);
+                        data.push(element);
                     }
+                    result.data = data;
+                    result.timezone = req.session.timezone;
                     res.status(200);
                     res.json(result);
                     connection.release();
@@ -188,13 +191,13 @@ router.get('/project/:id/errors/tranding', function(req, res, next) {
     if(req.user){
         var project_id = req.params.id;
         var period = 6;
-        var queryString = 'select iderror, rank, numofinstances, errorname, errorclassname, linenum, status, DATE_FORMAT(lastdate,\'%Y-%m-%d\') as lastdate ' +
+        var queryString = 'select iderror, rank, numofinstances, errorname, errorclassname, linenum, status, DATE_FORMAT(CONVERT_TZ(lastdate, \'UTC\', ?), \'%Y-%m-%d\') as lastdate ' +
             'from errors ' +
             'where pid = ? and (status = 0 or status = 1) and lastdate >= date(now()) - interval ? day ' +
             'order by (case rank when 2 then 1 when 3 then 2 when 1 then 3 when 0 then 4 else 9 end), numofinstances desc limit 15';
 
         connectionPool.getConnection(function(err, connection) {
-            connection.query(queryString, [project_id, period], function(err, rows, fields) {
+            connection.query(queryString, [req.session.timezone, project_id, period], function(err, rows, fields) {
                 if (err) {
                     res.status(500);
                     res.json({});
@@ -274,13 +277,13 @@ router.get('/project/:id/errors/latest', function(req, res, next) {
     if(req.user){
         var project_id = req.params.id;
         var period = 6;
-        var queryString = 'select iderror, rank, numofinstances, errorname, errorclassname, linenum, status, DATE_FORMAT(lastdate,\'%Y-%m-%d\') as lastdate ' +
+        var queryString = 'select iderror, rank, numofinstances, errorname, errorclassname, linenum, status, DATE_FORMAT(CONVERT_TZ(lastdate, \'UTC\', ?), \'%Y-%m-%d\') as lastdate ' +
             'from errors ' +
             'where pid = ? and lastdate >= date(now()) - interval ? day ' +
             'order by lastdate desc, (case rank when 2 then 1 when 3 then 2 when 1 then 3 when 0 then 4 else 9 end), numofinstances desc limit 15';
 
         connectionPool.getConnection(function(err, connection) {
-            connection.query(queryString, [project_id, period], function(err, rows, fields) {
+            connection.query(queryString, [req.session.timezone, project_id, period], function(err, rows, fields) {
                 if (err) {
                     res.status(500);
                     res.json({});

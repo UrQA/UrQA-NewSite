@@ -9,12 +9,13 @@ router.get('/:idx', function(req, res, next) {
     res.header('Access-Control-Allow-Origin', '*');
     if(req.user){
         var queryString = 'select iderror, rank, numofinstances, errorname, errorclassname, linenum, status, ' +
-            'DATE_FORMAT(createdate,\'%Y-%m-%d %T\') as createdate, DATE_FORMAT(lastdate,\'%Y-%m-%d %T\') as lastdate, wifion, mobileon, gpson, totalmemusage ' +
+            'DATE_FORMAT(CONVERT_TZ(createdate, \'UTC\', ?), \'%Y-%m-%d %T\') as createdate, DATE_FORMAT(CONVERT_TZ(lastdate, \'UTC\', ?), \'%Y-%m-%d %T\') as lastdate, wifion, mobileon, gpson, totalmemusage ' +
             'from errors ' +
             'where iderror = ?';
         var error_id = req.params.idx;
+
         connectionPool.getConnection(function(err, connection) {
-            connection.query(queryString, [error_id], function(err, rows, fields) {
+            connection.query(queryString, [req.session.timezone, req.session.timezone, error_id], function(err, rows, fields) {
                 if (err) {
                     res.status(500);
                     res.json({});
@@ -26,6 +27,8 @@ router.get('/:idx', function(req, res, next) {
                     connection.release();
                 } else {
                     var result = rows[0];
+                    result.createdate = rows[0].createdate;
+                    result.lastdate = rows[0].lastdate;
                     res.status(200);
                     res.json(result);
                     connection.release();
@@ -96,16 +99,17 @@ router.get('/:idx/daily', function(req, res, next) {
                     res.json({});
                     connection.release();
                 }else{
-                    var result = [];
-
+                    var result = {
+                         data: []
+                    };
                     for (var i = 0; i < rows.length; i++) {
                         var element = [];
                         var datetime = rows[i].datetime;
                         element.push(datetime.getTime());
                         element.push(rows[i].error_count);
-                        result.push(element);
+                        result.data.push(element);
                     }
-
+                    result.timezone = req.session.timezone;
                     res.status(200);
                     res.json(result);
                     connection.release();
@@ -123,7 +127,7 @@ router.get('/:idx/instances', function(req, res, next) {
     if(req.user){
         var error_id = req.params.idx;
         var period = 6;
-        var queryString = 'select idinstance, sdkversion, locale, DATE_FORMAT(datetime,\'%Y-%m-%d %T\') as datetime, ' +
+        var queryString = 'select idinstance, sdkversion, locale, DATE_FORMAT(CONVERT_TZ(datetime, \'UTC\', ?), \'%Y-%m-%d %T\') as datetime, ' +
             'device, country, appversion, osversion, gpson, wifion, mobileon, scrwidth, scrheight, batterylevel, availsdcard, ' +
             'rooted, appmemtotal, appmemfree, appmemmax, kernelversion, xdpi, ydpi, scrorientation, sysmemlow, ' +
             'if(lastactivity = \'\', \'unknown\', lastactivity) as lastactivity, null as carrier_name ' +
@@ -131,7 +135,7 @@ router.get('/:idx/instances', function(req, res, next) {
             'where iderror = ? and datetime >= date(now()) - interval ? day order by datetime desc limit 20';
 
         connectionPool.getConnection(function(err, connection) {
-            connection.query(queryString, [error_id, period], function(err, rows, fields) {
+            connection.query(queryString, [req.session.timezone, error_id, period], function(err, rows, fields) {
                 if (err) {
                     res.status(500);
                     res.json({});
@@ -142,9 +146,8 @@ router.get('/:idx/instances', function(req, res, next) {
                     res.json({});
                     connection.release();
                 } else {
-                    var result = rows;
                     res.status(200);
-                    res.json(result);
+                    res.json(rows);
                     connection.release();
                 }
             });

@@ -7,7 +7,6 @@ var mysql = require('mysql');
 var connectionPool = mysql.createPool(config);
 var async = require('async');
 
-
 router.get('/filter/:pid', function(req, res, next) {
     res.header('Access-Control-Allow-Origin', '*');
     if(req.user){
@@ -257,7 +256,7 @@ router.get('/:pid', function(req, res, next) {
                     });
                 },
                 function(body, errors, callback) {
-                    var queryString = 'select iderror, rank, numofinstances, errorname, errorclassname, linenum, status, DATE_FORMAT(lastdate,\'%Y-%m-%d\') as lastdate from errors where iderror in (';
+                    var queryString = 'select iderror, rank, numofinstances, errorname, errorclassname, linenum, status, DATE_FORMAT(CONVERT_TZ(lastdate, \'UTC\', ?), \'%Y-%m-%d\') as lastdate from errors where iderror in (';
                     for (var i = 0; i < errors.length; i++) {
                         if (i != 0) {
                             queryString += ', ';
@@ -271,7 +270,7 @@ router.get('/:pid', function(req, res, next) {
                     // error table query
 
                     queryString += 'order by (case rank when 2 then 1 when 3 then 2 when 1 then 3 when 0 then 4 else 9 end), status, numofinstances desc limit 50';
-                    connection.query(queryString, [project_id], function(err, rows, fields) {
+                    connection.query(queryString, [req.session.timezone], function(err, rows, fields) {
                         if (err) {
                             res.status(500);
                             res.json({});
@@ -478,7 +477,7 @@ router.get('/:pid/latest', function(req, res, next) {
                     });
                 },
                 function(body, errors, callback) {
-                    var queryString = 'select iderror, rank, numofinstances, errorname, errorclassname, linenum, status, DATE_FORMAT(lastdate,\'%Y-%m-%d\') as lastdate from errors where iderror in (';
+                    var queryString = 'select iderror, rank, numofinstances, errorname, errorclassname, linenum, status, DATE_FORMAT(CONVERT_TZ(lastdate, \'UTC\', ?), \'%Y-%m-%d\') as lastdate from errors where iderror in (';
                     for (var i = 0; i < errors.length; i++) {
                         if (i != 0) {
                             queryString += ', ';
@@ -492,7 +491,7 @@ router.get('/:pid/latest', function(req, res, next) {
                     // error table query
 
                     queryString += 'order by lastdate desc, (case rank when 2 then 1 when 3 then 2 when 1 then 3 when 0 then 4 else 9 end), numofinstances desc limit 50';
-                    connection.query(queryString, [project_id], function(err, rows, fields) {
+                    connection.query(queryString, [req.session.timezone], function(err, rows, fields) {
                         if (err) {
                             res.status(500);
                             res.json({});
