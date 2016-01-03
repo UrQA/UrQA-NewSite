@@ -302,6 +302,29 @@ div.tagsearch span.tags a {
 	margin-top:-4px;
 	margin-bottom:9px;
 }
+
+#instancelogs table {
+	table-layout:fixed;
+}
+#instancelogs table td {
+	border-left:0;
+	border-right:0;
+}
+#instancelogs table td.bold {
+	text-align:center;
+	font-weight:700;
+	width:30px;
+	color:#1FB5AD;
+}
+
+#eventpaths table {
+	table-layout:fixed;
+}
+#eventpaths table td {
+	border-left:0;
+	border-right:0;
+}
+
 @media only screen and (max-width: 800px) {
 	#instance table th:nth-child(4),
 	#instance table th:nth-child(5),
@@ -326,6 +349,7 @@ div.tagsearch span.tags a {
 		margin-top:-8px;
 		margin-bottom:8px;
 	}
+	#instancelogs table td
 }
 
 .comment-body {
