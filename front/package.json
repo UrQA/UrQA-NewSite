@@ -24,5 +24,9 @@
     "pbkdf2-sha256": "1.1.1",
     "request": "^2.65.0",
     "serve-favicon": "~2.2.0"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-express": "^0.3.5"
   }
 }
