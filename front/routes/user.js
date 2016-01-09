@@ -1,10 +1,6 @@
 module.exports = function (app, passport) {
     app.get('/user/login', function(req, res, next) {
-        if(!req.user){
-            res.render('user/login');
-        }else{
-            res.redirect('/project');
-        }
+        res.render('user/login');
     });
 
     app.post('/user/login', passport.authenticate('login', {
