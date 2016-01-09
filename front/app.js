@@ -1,8 +1,4 @@
 //https://gist.github.com/branneman/8048520
-global.rootRequire = function(name) {
-    return require(__dirname + '/' + name);
-}
-
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 var express = require('express');
@@ -14,19 +10,6 @@ var passport = require('passport');
 require('./auth/passport')(passport);
 var path = require('path');
 var session  = require('express-session');
-
-var routes = rootRequire('routes/index');
-var dashboardRoutes = rootRequire('routes/dashboard');
-var userRoutes = rootRequire('routes/user');
-var projectRoutes = rootRequire('routes/project');
-
-var projectAPI = rootRequire('routes/api/project');
-var errorsAPI = rootRequire('routes/api/errors');
-var dashboardAPI = rootRequire('routes/api/dashboard');
-var errorAPI = rootRequire('routes/api/error');
-var errorsAPI = rootRequire('routes/api/errors');
-var statisticsAPI = rootRequire('routes/api/statistics');
-
 var app = express();
 
 app.use(function(req, res, next) {
@@ -64,17 +47,7 @@ app.use(flash()); // use connect-flash for flash messages stored in session
 
 app.use('/static', express.static(path.join(__dirname, 'public')));
 
-app.use('/', routes);
-app.use('/dashboard', dashboardRoutes);
-app.use('/project', projectRoutes);
-app.use('/user', userRoutes(passport));
-
-app.use('/api/project', projectAPI);
-app.use('/api/errors', errorsAPI);
-app.use('/api/dashboard', dashboardAPI);
-app.use('/api/error', errorAPI);
-app.use('/api/errors', errorsAPI);
-app.use('/api/statistics', statisticsAPI);
+require('./urqa-routes')(app, 'routes', passport);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -82,8 +55,6 @@ app.use(function(req, res, next) {
     err.status = 404;
     next(err);
 });
-
-// error handlers
 
 // development error handler
 // will print stacktrace

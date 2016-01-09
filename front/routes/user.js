@@ -1,8 +1,5 @@
-var express = require('express');
-var router = express.Router();
-
-module.exports = function(passport){
-    router.get('/login', function(req, res, next) {
+module.exports = function (app, passport) {
+    app.get('/user/login', function(req, res, next) {
         if(!req.user){
             res.render('user/login');
         }else{
@@ -10,36 +7,38 @@ module.exports = function(passport){
         }
     });
 
-    router.post('/login', passport.authenticate('login', { successRedirect: '/project',
+    app.post('/user/login', passport.authenticate('login', {
+	   	successRedirect: '/project',
         failureRedirect: '/user/login',
         failureFlash: true })
     );
 
-    router.get('/logout', function(req, res, next){
+    app.get('/user/logout', function(req, res, next){
         req.logout();
         res.redirect('/');
     });
 
-    router.get('/join', function(req, res, next) {
+    app.get('/user/join', function(req, res, next) {
         res.render('user/join');
     });
 
-    router.post('/join', passport.authenticate('join', { successRedirect: '/project',
+    app.post('/user/join', passport.authenticate('join', {
+	   	successRedirect: '/project',
         failureRedirect: '/user/join',
         failureFlash: true })
     );
 
-    router.get('/auth/google',
-        passport.authenticate('google', { scope: [
-            'https://www.googleapis.com/auth/userinfo.profile',
-            'https://www.googleapis.com/auth/userinfo.email'
+    app.get('/user/auth/google',
+        passport.authenticate('google', {
+		   	scope: [
+            	'https://www.googleapis.com/auth/userinfo.profile',
+            	'https://www.googleapis.com/auth/userinfo.email',
         ]}));
 
-    router.get('/auth/google/callback',
-        passport.authenticate('google', { successRedirect: '/project',
+    app.get('/user/auth/google/callback',
+        passport.authenticate('google', {
+		   	successRedirect: '/project',
             failureRedirect: '/login' ,
-            failureFlash: true }));
-
-    return router;
-}
-
+            failureFlash: true })
+	);
+};
