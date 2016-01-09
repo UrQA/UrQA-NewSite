@@ -12,6 +12,8 @@ var path = require('path');
 var session  = require('express-session');
 var app = express();
 
+var middleware = require('./middleware');
+
 app.use(function(req, res, next) {
     res.locals.baseUrl = req.protocol + '://' + req.get('host');
     res.locals.resourceUrl = function(path) {
@@ -43,6 +45,8 @@ app.use(session({
 } )); // session secret
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
+app.use(middleware.requireAuthentication);
+
 app.use(flash()); // use connect-flash for flash messages stored in session
 
 app.use('/static', express.static(path.join(__dirname, 'public')));
