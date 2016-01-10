@@ -285,7 +285,6 @@ module.exports = function (app) {
 							} else {
 								end = rows[i].methodname + ': ' + rows[i].linenum;
 							}
-
 							arr.push(start);
 							arr.push(end);
 							arr.push(1);
@@ -305,4 +304,65 @@ module.exports = function (app) {
 			});
 		});
 	});
-};
+
+	// 해당 instance의 log 정보 호출
+	app.get('/api/error/:idx/instance/:idinstance/logs', function(req, res, next) {
+		var queryString = 'select log from instancelog where idinstance = ?';
+		var instance_id = req.params.idinstance;
+
+		connectionPool.getConnection(function(err, connection) {
+			connection.query(queryString, [instance_id], function(err, rows, fields) {
+				if (err) {
+					res.status(500);
+					res.json({});
+					connection.release();
+				}else{
+					res.status(200);
+					var data = {};
+					if (rows.length === 0) {
+						data.length = 0;
+						res.json(data);
+						connection.release();
+					} else {
+						var rawArr = rows[0].log.replace(/\n\t/g,'\n    ').split('\n');
+						var count = 0;
+						for(var i in rawArr){
+							data[i] = rawArr[i];
+							count++;
+						}
+						data.length = count;
+						res.json(data);
+						connection.release();
+					}
+				}
+			});
+		});
+	});
+
+	// 해당 instance의 eventpath list 호출
+	app.get('/api/error/:idx/instance/:idinstance/eventpaths', function(req, res, next) {
+		var queryString = 'select DATE_FORMAT(CONVERT_TZ(datetime, \'UTC\', ?), \'%Y-%m-%d %T\') as datetime, classname, methodname, linenum from eventpaths where idinstance = ?';
+		var instance_id = req.params.idinstance;
+
+		connectionPool.getConnection(function(err, connection) {
+			connection.query(queryString, [req.session.timezone, instance_id], function(err, rows, fields) {
+				if (err) {
+					res.status(500);
+					res.json({});
+					connection.release();
+				}
+				else{
+					res.status(200);
+					if(rows.length === 0) {
+						res.json({ length: 0 });
+						connection.release();
+					}else{
+						console.log(rows);
+						res.json(rows);
+						connection.release();
+					}
+				}
+			});
+		});
+	});
+}

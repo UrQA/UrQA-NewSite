@@ -147,10 +147,10 @@
                     <header class="panel-heading">
                         Error Statistics <i id="load_status_statistics" class="fa fa-refresh fa-spin"></i>
                         <span class="tools pull-right">
-                            <a href="javascript:;" class="fa fa-chevron-up"></a>
+                            <a href="javascript:;" class="fa fa-chevron-down"></a>
                         </span>
                     </header>
-                    <div class="panel-body" style="display:none">
+                    <div class="panel-body">
                         <div class="row">
                             <!-- App Version -->
                             <div class="progress-table col-sm-6">
@@ -214,7 +214,7 @@
                                 <a data-toggle="tab" href="#instance">Instance  <i id="load_status_instance" class="fa fa-refresh fa-spin"></i></a>
                             </li>
                             <li class="">
-                                <a data-toggle="tab" href="#breadcrumb">Breadcrumb  <i id="load_status_breadcrumb" class="fa fa-exclamation-triangle"></i></a>
+                                <a data-toggle="tab" href="#eventpath">EventPath  <i id="load_status_eventpath" class="fa fa-exclamation-triangle"></i></a>
                             </li>
                         </ul>
                         <span class="tools pull-right" style="margin-top:-18px">
@@ -232,20 +232,21 @@
                             <div id="instance" class="tab-pane">
                                 <table class="table table-striped">
                                     <thead>
-                                    <th data-label="APP Ver." data-mini="APP" style="width:18%"></th>
-                                    <th data-label="Country" data-mini="Area" style="widht:15%"></th>
-                                    <th data-label="Device" data-mini="Device"></th>
-                                    <th data-label="OS Ver." data-mini="OS" style="width:14%"></th>
+                                    <th data-label="APP Ver." data-mini="APP" style="width:10%"></th>
+                                    <th data-label="Country" data-mini="Area" style="widht:10%"></th>
+                                    <th data-label="Device" data-mini="Device" style="widht:20%"></th>
+                                    <th data-label="OS Ver." data-mini="OS" style="width:10%"></th>
                                     <th data-label="Wifi" data-mini="Wifi" style="width:10%"></th>
                                     <th data-label="Mobile" data-mini="Mobile" style="width:10%"></th>
                                     <th data-label="Logs" data-mini="Logs" style="width:10%"></th>
-                                    <th data-label="Details" data-mini="Details" style="width:12%"></th>
+                                    <th data-label="EventPaths" data-mini="EventPaths" style="width:10%"></th>
+                                    <th data-label="Details" data-mini="Details" style="width:10%"></th>
                                     </thead>
                                     <tbody id="load_instances">
                                     </tbody>
                                 </table>
                             </div>
-                            <div id="breadcrumb" class="tab-pane">Breadcrumb
+                            <div id="eventpath" class="tab-pane">EventPath 준비중입니다.
                                 <div id="sankey_basic" style="width: 900px; height: 300px;"></div>
                             </div>
                             <div id="comments" class="tab-pane">
@@ -298,6 +299,67 @@
                         </div>
                     </div>
                 </section>
+            </div>
+        </div>
+
+        <!-- Instance log Modal -->
+        <div id="instanceLogsModal" class="modal fade" role="dialog">
+            <div class="modal-dialog modal-lg">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title" style="font-weight: 700;">Logs</h4>
+                    </div>
+                    <div class="modal-body">
+                        <i id="load_status_instancelogs" class="fa fa-refresh fa-spin"></i>
+                        <div id="instancelogs">
+                            <table class="table table-bordered table-striped">
+                                <tbody id="load_instancelogs">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- EventPaths Modal -->
+        <div id="eventPathsModal" class="modal fade" role="dialog">
+            <div class="modal-dialog modal-lg">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title" style="font-weight: 700;">EventPaths</h4>
+                    </div>
+                    <div class="modal-body">
+                        <i id="load_status_eventpaths" class="fa fa-refresh fa-spin"></i>
+                        <div id="eventpaths">
+                            <table class="table table-hover table-striped no-footer">
+                                <thead style="background: #474751; color: white;">
+                                    <tr>
+                                        <th style="width:20%">Date</th>
+                                        <th>ClassName</th>
+                                        <th style="width:30%">Method/Line</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="load_eventpaths">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>

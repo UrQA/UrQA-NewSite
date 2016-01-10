@@ -62,13 +62,6 @@
     </div>
 </script>
 
-<script id="callstackTmpl" type="text/x-jsrender">
-    <tr>
-    <td class="bold">{{:line}}</td>
-    <td class="table-text-ellipsis-1"><div>{{:data}}</div></td>
-    </tr>
-</script>
-
 <script id="instanceTmpl" type="text/x-jsrender">
     <tr>
         <td>{{:data.appversion}}</td>
@@ -77,128 +70,144 @@
         <td>{{:data.osversion}}</td>
         <td><i class="{{:data.wifion}}" style="font-size:120%"></i></td>
         <td><i class="{{:data.mobileon}}" style="font-size:120%"></i></td>
-        <td onclick="alert('준비중입니다.')"><i class="fa fa-list-alt"></i></td>
+        <td style="cursor:pointer" onclick="openInstanceLogs('{{:data.idinstance}}')"><i class="fa fa-info-circle"></i></td>
+        <td style="cursor:pointer" onclick="openEventPaths('{{:data.idinstance}}')"><i class="fa fa-info-circle"></i></td>
         <td style="cursor:pointer" onclick="openDetails('dv_{{:data.idinstance}}')"><i id="dv_{{:data.idinstance}}_i" class="fa fa-chevron-up"></i></td>
     </tr>
     <tr id="dv_{{:data.idinstance}}" style="display:none">
-        <td colspan="8">
+        <td colspan="9">
             <form class="form-horizontal bucket-form" method="get">
                 <div class="form-group">
-                    <label class="col-xs-3 col-sm-3 control-label">App Version</label>
-                    <div class="col-xs-3 col-sm-3">
+                    <label class="col-xs-2 col-sm-2 control-label">App Version</label>
+                    <div class="col-xs-4 col-sm-4">
                         <p class="form-control-static text-ellipsis">{{:data.appversion}}</p>
                     </div>
-                    <label class="col-xs-3 col-sm-3 control-label">OS Version</label>
-                    <div class="col-xs-3 col-sm-3">
+                    <label class="col-xs-2 col-sm-2 control-label">OS Version</label>
+                    <div class="col-xs-4 col-sm-4">
                         <p class="form-control-static text-ellipsis">{{:data.osversion}}</p>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-xs-3 col-sm-3 control-label">Device</label>
-                        <div class="col-xs-3 col-sm-3">
+                    <label class="col-xs-2 col-sm-2 control-label">Device</label>
+                        <div class="col-xs-4 col-sm-4">
                             <p class="form-control-static text-ellipsis">{{:data.device}}</p>
                         </div>
-                    <label class="col-xs-3 col-sm-3 control-label">Carrier</label>
-                    <div class="col-xs-3 col-sm-3">
+                    <label class="col-xs-2 col-sm-2 control-label">Carrier</label>
+                    <div class="col-xs-4 col-sm-4">
                         <p class="form-control-static text-ellipsis">{{:data.carrier_name}}</p>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-xs-3 col-sm-3 control-label">Country</label>
-                        <div class="col-xs-3 col-sm-3">
+                    <label class="col-xs-2 col-sm-2 control-label">Country</label>
+                        <div class="col-xs-4 col-sm-4">
                             <p class="form-control-static text-ellipsis">{{:data.country}}</p>
                         </div>
-                        <label class="col-xs-3 col-sm-3 control-label">Locale</label>
-                        <div class="col-xs-3 col-sm-3">
+                        <label class="col-xs-2 col-sm-2 control-label">Locale</label>
+                        <div class="col-xs-4 col-sm-4">
                             <p class="form-control-static text-ellipsis">{{:data.locale}}</p>
                         </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-xs-3 col-sm-3 control-label">GPS</label>
-                    <div class="col-xs-3 col-sm-3">
+                    <label class="col-xs-2 col-sm-2 control-label">GPS</label>
+                    <div class="col-xs-4 col-sm-4">
                         <p class="form-control-static text-ellipsis">
                             <i class="{{:data.gpson}}" style="font-size:120%"></i>
                         </p>
                     </div>
-                    <label class="col-xs-3 col-sm-3 control-label">Battery</label>
-                    <div class="col-xs-3 col-sm-3">
+                    <label class="col-xs-2 col-sm-2 control-label">Battery</label>
+                    <div class="col-xs-4 col-sm-4">
                         <p class="form-control-static text-ellipsis">{{:data.batterylevel}}%</p>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-xs-3 col-sm-3 control-label">Wifi</label>
-                    <div class="col-xs-3 col-sm-3">
+                    <label class="col-xs-2 col-sm-2 control-label">Wifi</label>
+                    <div class="col-xs-4 col-sm-4">
                         <p class="form-control-static text-ellipsis">
                             <i class="{{:data.wifion}}" style="font-size:120%"></i>
                         </p>
                     </div>
-                    <label class="col-xs-3 col-sm-3 control-label">Mobile Network</label>
-                    <div class="col-xs-3 col-sm-3">
+                    <label class="col-xs-2 col-sm-2 control-label">Mobile Network</label>
+                    <div class="col-xs-4 col-sm-4">
                         <p class="form-control-static text-ellipsis">
                             <i class="{{:data.mobileon}}" style="font-size:120%"></i>
                         </p>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-xs-3 col-sm-3 control-label">Screen (w | h)</label>
-                    <div class="col-xs-3 col-sm-3">
+                    <label class="col-xs-2 col-sm-2 control-label">Screen (w | h)</label>
+                    <div class="col-xs-4 col-sm-4">
                         <p class="form-control-static text-ellipsis">{{:data.scrwidth}} X {{:data.scrheight}}</p>
                     </div>
-                    <label class="col-xs-3 col-sm-3 control-label">DPI (x | y)</label>
-                    <div class="col-xs-3 col-sm-3">
+                    <label class="col-xs-2 col-sm-2 control-label">DPI (x | y)</label>
+                    <div class="col-xs-4 col-sm-4">
                         <p class="form-control-static text-ellipsis">{{:data.xdpi}} x {{:data.ydpi}}</p>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-xs-3 col-sm-3 control-label">Created Date</label>
-                    <div class="col-xs-3 col-sm-3">
+                    <label class="col-xs-2 col-sm-2 control-label">Created Date</label>
+                    <div class="col-xs-4 col-sm-4">
                         <p class="form-control-static text-ellipsis">{{:data.datetime}}</p>
                     </div>
-                    <label class="col-xs-3 col-sm-3 control-label">Memory Available</label>
-                    <div class="col-xs-3 col-sm-3">
+                    <label class="col-xs-2 col-sm-2 control-label">Memory Available</label>
+                    <div class="col-xs-4 col-sm-4">
                         <p class="form-control-static text-ellipsis">{{:data.appmemfree}}</p>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-xs-3 col-sm-3 control-label">Memory Total</label>
-                    <div class="col-xs-3 col-sm-3">
+                    <label class="col-xs-2 col-sm-2 control-label">Memory Total</label>
+                    <div class="col-xs-4 col-sm-4">
                         <p class="form-control-static text-ellipsis">{{:data.appmemtotal}}</p>
                     </div>
-                    <label class="col-xs-3 col-sm-3 control-label">Memory Max</label>
-                    <div class="col-xs-3 col-sm-3">
+                    <label class="col-xs-2 col-sm-2 control-label">Memory Max</label>
+                    <div class="col-xs-4 col-sm-4">
                         <p class="form-control-static text-ellipsis">{{:data.appmemmax}}</p>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-xs-3 col-sm-3 control-label">Instance ID</label>
-                    <div class="col-xs-3 col-sm-3">
+                    <label class="col-xs-2 col-sm-2 control-label">Instance ID</label>
+                    <div class="col-xs-4 col-sm-4">
                         <p class="form-control-static text-ellipsis">{{:data.id}}</p>
                     </div>
-                    <label class="col-xs-3 col-sm-3 control-label">SDK Version</label>
-                    <div class="col-xs-3 col-sm-3">
+                    <label class="col-xs-2 col-sm-2 control-label">SDK Version</label>
+                    <div class="col-xs-4 col-sm-4">
                         <p class="form-control-static text-ellipsis">{{:data.sdkversion}}</p>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-xs-3 col-sm-3 control-label">Screen Orientation</label>
-                    <div class="col-xs-3 col-sm-3">
+                    <label class="col-xs-2 col-sm-2 control-label">Screen Orientation</label>
+                    <div class="col-xs-4 col-sm-4">
                         <p class="form-control-static text-ellipsis">{{:data.scrorientation}}</p>
                     </div>
-                    <label class="col-xs-3 col-sm-3 control-label">Rooted</label>
-                    <div class="col-xs-3 col-sm-3">
+                    <label class="col-xs-2 col-sm-2 control-label">Rooted</label>
+                    <div class="col-xs-4 col-sm-4">
                         <p class="form-control-static text-ellipsis">
                             <i class="{{:data.rooted}}" style="font-size:120%"></i>
                         </p>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-xs-3 col-sm-3 control-label">Last Activity</label>
+                    <label class="col-xs-2 col-sm-2 control-label">Last Activity</label>
                     <div class="col-xs-9 col-sm-9">
                         <p class="form-control-static text-ellipsis">{{:data.lastactivity}}</p>
                     </div>
                 </div>
             </form>
         </td>
+    </tr>
+</script>
+
+<script id="infoTableTmpl" type="text/x-jsrender">
+    <tr>
+        <td class="bold">{{:line}}</td>
+        <td class="table-text-ellipsis-1">{{:data}}</td>
+    </tr>
+</script>
+
+<script id="eventPathsTmpl" type="text/x-jsrender">
+    <tr>
+        <td class="table-text-ellipsis-1">{{:data.datetime}}</td>
+        <td class="table-text-ellipsis-1">{{:data.classname}}</td>
+        <td class="table-text-ellipsis-1">{{:data.methodname}}:{{:data.linenum}}</td>
     </tr>
 </script>
 
@@ -233,8 +242,10 @@
     var template = $.templates("#textDataTmpl");
     var plainTemplate = $.templates("#plainDataTmpl");
     var progressTemplate = $.templates("#progressTmpl");
-    var callstackTemplate = $.templates("#callstackTmpl");
     var instanceTemplate = $.templates("#instanceTmpl");
+    var infoTableTemplate = $.templates("#infoTableTmpl");
+    var eventPathsTemplate = $.templates("#eventPathsTmpl");
+
     $.ajax({
         url:'/api/project/<%= data.id %>',
         success:function(data){
@@ -318,7 +329,7 @@
         success:function(data){
             for(var i=0;i<data.length;i++){
                 if(data[i]!=''){
-                    var t = callstackTemplate.render({line:i, data:data[i]});
+                    var t = infoTableTemplate.render({line:i, data:data[i]});
                     $("#load_callstacks").append(t);
                 }
             }
@@ -328,6 +339,7 @@
             $("#load_status_callstack").attr('class','fa fa-exclamation-triangle');
         }
     });
+
     $.ajax({
         url:'/api/error/<%= data.eid %>/statistics',
         success:function(data){
@@ -506,5 +518,46 @@
             $("#"+e).attr('style','display:none');
             $("#"+e+"_i").attr('class','fa fa-chevron-up');
         }
+    }
+
+    function openInstanceLogs(idinstance){
+        $.ajax({
+            url:'/api/error/<%= data.eid %>/instance/'+idinstance+'/logs',
+            success:function(data) {
+                $("#load_instancelogs tr").remove();
+                for(var i=0;i<data.length;i++){
+                    if(data[i]!=''){
+                        var t = infoTableTemplate.render({line:i, data:data[i]});
+                        $("#load_instancelogs").append(t);
+                    }
+                }
+                $("#instanceLogsModal").modal();
+                $("#load_status_instancelogs").remove();
+            },error: function(jqXHR, textStatus, errorThrown) {
+            }
+        });
+    }
+
+    function openEventPaths(idinstance){
+        $.ajax({
+            url:'/api/error/<%= data.eid %>/instance/'+idinstance+'/eventpaths',
+            success:function(data) {
+                $("#load_eventpaths tr").remove();
+                if(data.length === 0){
+                    $("#eventpaths table").remove();
+                    $("#eventpaths").html('등록된 EventPath가 존재하지 않습니다.');
+                }else{
+                    for(var i=0;i<data.length;i++){
+                        if(data[i]!=''){
+                            var t = eventPathsTemplate.render({data:data[i]});
+                            $("#load_eventpaths").append(t);
+                        }
+                    }
+                }
+                $("#eventPathsModal").modal();
+                $("#load_status_eventpaths").remove();
+            },error: function(jqXHR, textStatus, errorThrown) {
+            }
+        });
     }
 </script>
